@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "pychirps"
+version = "0.1.0"
+description = ""
+authors = ["hatvalues <julian@hatvalues.org>"]
+readme = "README.md"
+packages = [{include = "pychirps", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+polars = "^1.8.2"
+numpy = "^2.1.1"
+pyfpgrowth = "^1.0"
+imblearn = "^0.0"
+scikit-learn = "^1.5.2"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.3"
+pytest-cov = "^5.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.8"
+pylint = "^3.3.1"
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
