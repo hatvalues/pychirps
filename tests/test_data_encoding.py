@@ -85,13 +85,25 @@ def test_encode_pandas():
     ]
 
     # Check that the transformed features match the original values
-    row = nursery_pd.features.iloc[0] # type: ignore # more mypy madness
-    original_values = [f'{col}_{val}' for col, val in row.items()]
+    row = nursery_pd.features.iloc[0]  # type: ignore # more mypy madness
+    original_values = [f"{col}_{val}" for col, val in row.items()]
     # pick up just the transformed feature names where we get a 1/True
-    transformed_values = [fname.replace("cat__", "") for fname, tfeat in zip(encoder.preprocessor.get_feature_names_out(), transformed_features[0]) if tfeat == 1]
+    transformed_values = [
+        fname.replace("cat__", "")
+        for fname, tfeat in zip(
+            encoder.preprocessor.get_feature_names_out(), transformed_features[0]
+        )
+        if tfeat == 1
+    ]
     assert original_values == transformed_values
 
-    bool_example_features = pd.DataFrame({"is_it": [True, False, True, False, True], "count_it": [1, 2, 3, 4, 5], "tell_it": ["yes", "no", "yes", "no", "maybe"]})
+    bool_example_features = pd.DataFrame(
+        {
+            "is_it": [True, False, True, False, True],
+            "count_it": [1, 2, 3, 4, 5],
+            "tell_it": ["yes", "no", "yes", "no", "maybe"],
+        }
+    )
     bool_example_target = pd.Series([True, False, True, False, True])
     encoder = PandasEncoder(bool_example_features, bool_example_target)
     encoder.fit()

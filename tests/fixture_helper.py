@@ -3,17 +3,22 @@ import yaml
 import numpy as np
 from typing import Optional, Any
 
-fixture_path = os.path.realpath(f"{os.path.dirname(os.path.realpath(__file__))}/file_fixtures")
+fixture_path = os.path.realpath(
+    f"{os.path.dirname(os.path.realpath(__file__))}/file_fixtures"
+)
 update_fixtures = os.environ.get("UPDATE_FILE_FIXTURES", False)
+
 
 def convert_value_primitive(val):
     if isinstance(val, np.generic):
         return val.item()
     return val
 
+
 def convert_native(data: dict[str, Any]) -> dict[str, Any]:
     # Convert each value in each dictionary in the list
     return {key: convert_value_primitive(val) for key, val in data.items()}
+
 
 def _fixture_file_path(fixture: str, file_extension: str = "yaml") -> str:
     return f"{fixture_path}/{fixture}.{file_extension}"

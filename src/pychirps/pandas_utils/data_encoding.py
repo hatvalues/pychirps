@@ -45,5 +45,3 @@ class PandasEncoder:
         self.target = target.copy()
         self.fit()
         return self.transform()
-
-
