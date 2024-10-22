@@ -52,13 +52,13 @@ def test_get_random_forest_paths():
     instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
     forest_paths = get_random_forest_paths(forest_explorer, instance32)
     assert forest_paths.prediction == 0.0
-    assert forest_paths.paths[0].prediction == 0.0
+    assert forest_paths.gathered_paths[0].prediction == 0.0
     assert_dict_matches_fixture(
-        convert_native(asdict(forest_paths.paths[0].nodes[0])), "basic_tree_path_0"
+        convert_native(asdict(forest_paths.gathered_paths[0].paths[0][0])), "basic_tree_path_0"
     )
     assert_dict_matches_fixture(
-        convert_native(asdict(forest_paths.paths[0].nodes[1])), "basic_tree_path_1"
+        convert_native(asdict(forest_paths.gathered_paths[0].paths[0][1])), "basic_tree_path_1"
     )
     assert_dict_matches_fixture(
-        convert_native(asdict(forest_paths.paths[0].nodes[-1])), "basic_tree_path_last"
+        convert_native(asdict(forest_paths.gathered_paths[0].paths[0][-1])), "basic_tree_path_last"
     )

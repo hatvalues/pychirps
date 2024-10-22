@@ -1,5 +1,6 @@
 feature: 11
 feature_name: num__STDs
 leq_threshold: true
+path_weight: 1.0
 threshold: 0.5
 value: 0.0
