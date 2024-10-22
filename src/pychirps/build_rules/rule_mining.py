@@ -4,11 +4,15 @@ from dataclasses import dataclass
 from typing import Optional
 
 
-@dataclass
+@dataclass(frozen=True)
 class NodePattern:
     feature: int
     threshold: float
     leq_threshold: bool
+
+    def __lt__(self, other: 'NodePattern'):
+        return self.feature < other.feature
+
 
 
 @dataclass
@@ -25,7 +29,13 @@ class RuleMiner:
             self.prediction = prediction
         else:
             self.prediction = forest_path.prediction
-        self.paths = [nodes for nodes, weight in self.forest_path.get_for_prediction(prediction=self.prediction) for _ in range(int(weight))]
+        self.paths = tuple(
+            tuple(
+                NodePattern(
+                    feature=node.feature,
+                    threshold=node.threshold,
+                    leq_threshold=node.leq_threshold,
+            ) for node in nodes) for nodes, weight in self.forest_path.get_for_prediction(prediction=self.prediction) for _ in range(int(weight)))
 
 #     def get_paths_by_prediction(self, prediction: int) -> list[list[NodePattern]]:
 
