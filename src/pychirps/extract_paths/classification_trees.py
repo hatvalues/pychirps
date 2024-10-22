@@ -1,39 +1,35 @@
 from sklearn.tree import DecisionTreeClassifier
 from dataclasses import dataclass
 from src.pychirps.extract_paths.forest_metadata import ForestExplorer
-from collections import defaultdict
 import numpy as np
 
 
-@dataclass
+@dataclass(frozen=True)
 class TreeNode:
     feature: int
     feature_name: str
     value: float
     threshold: float
     leq_threshold: bool
-    path_weight: float = 1.0
 
 
-@dataclass
+@dataclass(frozen=True)
 class TreePath:
     prediction: int
-    nodes: list[TreeNode]
+    nodes: tuple[TreeNode]
+    weight: float = 1.0
 
 
-@dataclass
-class GatheredTreePath:
-    prediction: int
-    paths: list[list[TreeNode]]
-
-
-@dataclass
+@dataclass(frozen=True)
 class ForestPath:
     prediction: int
-    gathered_paths: list[GatheredTreePath]
+    paths: tuple[TreePath]
+
+    def get_for_prediction(self, prediction: int) -> list[TreePath]:
+        return tuple((path.nodes, path.weight) for path in self.paths if path.prediction == prediction)
 
 
-def get_instance_tree_path(
+def instance_tree_factory(
     tree: DecisionTreeClassifier,
     feature_names: dict[str, str],
     instance: np.ndarray,
@@ -42,48 +38,33 @@ def get_instance_tree_path(
     prediction = tree.predict(instance)[0]
     features = tree.tree_.feature
     thresholds = tree.tree_.threshold
-    sparse_path = tree.tree_.decision_path(instance).indices.tolist()[
-        :-1
-    ]  # exclude the final leaf node
+    sparse_path = tree.tree_.decision_path(instance).indices.tolist()[:-1]  # exclude the final leaf node
     return TreePath(
         prediction=prediction,
-        nodes=[
+        nodes=tuple(
             TreeNode(
                 feature=features[node],
                 feature_name=feature_names.get(features[node]),
                 value=instance[0, features[node]],
                 threshold=thresholds[node],
                 leq_threshold=instance[0, features[node]] <= thresholds[node],
-                path_weight=path_weight,
             )
             for node in sparse_path
-        ],
+        ),
+        weight=path_weight,
     )
 
 
-def gather_tree_paths(paths=list[TreePath]) -> list[GatheredTreePath]:
-    tree_paths_by_prediction = defaultdict(list)
-    for path in paths:
-        tree_paths_by_prediction[path.prediction].append(path.nodes)
-    return [
-        GatheredTreePath(
-            prediction=prediction,
-            paths=tree_paths_by_prediction[prediction],
-        )
-        for prediction in tree_paths_by_prediction
-    ]
 
-
-def get_random_forest_paths(
+def random_forest_paths_factory(
     forest_explorer: ForestExplorer,
     instance: np.ndarray,
 ) -> ForestPath:
     feature_names = {i: v for i, v in enumerate(forest_explorer.feature_names)}
-    paths = [
-        get_instance_tree_path(tree, feature_names, instance)
-        for tree in forest_explorer.trees
-    ]
     return ForestPath(
         prediction=forest_explorer.model.predict(instance)[0],
-        gathered_paths=gather_tree_paths(paths),
+        paths=tuple(
+            instance_tree_factory(tree, feature_names, instance)
+            for tree in forest_explorer.trees
+        ),
     )

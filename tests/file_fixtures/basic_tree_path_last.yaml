@@ -1,6 +1,5 @@
 feature: 1
 feature_name: num__Number of sexual partners
 leq_threshold: false
-path_weight: 1.0
 threshold: 2.5
 value: 4.0

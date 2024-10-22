@@ -1,21 +1,39 @@
-from src.pychirps.extract_paths.classification_trees import get_random_forest_paths
-from src.pychirps.extract_paths.forest_metadata import ForestExplorer
-from sklearn.ensemble import RandomForestClassifier
-from src.pychirps.pandas_utils.data_encoding import PandasEncoder
-import data_preprocs.data_providers as dp
-import numpy as np
-from dataclasses import asdict
-from tests.fixture_helper import assert_dict_matches_fixture, convert_native
+from tests.forest_paths_helper import random_forest_paths, weighted_paths # noqa # mypy can't cope with pytest fixtures
+from pyfpgrowth import find_frequent_patterns, generate_association_rules
+from src.pychirps.build_rules.rule_mining import RuleMiner
+
+def test_rule_miner(random_forest_paths): # noqa # mypy can't cope with pytest fixtures
+    rule_miner = RuleMiner(forest_path=random_forest_paths)
+    assert len(rule_miner.paths) == 10
+
+def test_rule_miner_prediction(random_forest_paths): # noqa # mypy can't cope with pytest fixtures
+    rule_miner = RuleMiner(forest_path=random_forest_paths, prediction=0)
+    assert len(rule_miner.paths) == 10
+
+def test_rule_miner_alt_prediction(random_forest_paths): # noqa # mypy can't cope with pytest fixtures
+    rule_miner = RuleMiner(forest_path=random_forest_paths, prediction=1)
+    assert len(rule_miner.paths) == 0
+
+def test_rule_miner_weighted_paths(weighted_paths): # noqa # mypy can't cope with pytest fixtures
+    rule_miner = RuleMiner(forest_path=weighted_paths)
+    assert len(rule_miner.paths) == 4
+    assert len(set(rule_miner.paths)) == 2 # one path was repeated thrice
 
 
-def test_get_random_forest_paths():
-    model = RandomForestClassifier(n_estimators=10, random_state=42)
-    encoder = PandasEncoder(dp.cervicalb_pd.features, dp.cervicalb_pd.target)
-    encoder.fit()
-    transformed_features, transformed_target = encoder.transform()
-    model.fit(transformed_features, transformed_target)
-    forest_explorer = ForestExplorer(model, encoder)
+# def test_fp_paths(random_forest_paths):
+#     transactions = [[1, 2, 5],
+#                 [2, 4],
+#                 [2, 3],
+#                 [1, 2, 4],
+#                 [1, 3],
+#                 [2, 3],
+#                 [1, 3],
+#                 [1, 2, 3, 5],
+#                 [1, 2, 3]]
 
-    instance = dp.cervicalh_pd.features.iloc[0]
-    instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
-    forest_paths = get_random_forest_paths(forest_explorer, instance32)
+#     patterns = find_frequent_patterns(transactions, 2)
+
+#     rules = generate_association_rules(patterns, 0.7)
+#     print(patterns)
+#     print(rules)
+#     assert False
