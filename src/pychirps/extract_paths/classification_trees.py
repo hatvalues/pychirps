@@ -26,7 +26,11 @@ class ForestPath:
     paths: tuple[TreePath]
 
     def get_for_prediction(self, prediction: int) -> list[TreePath]:
-        return tuple((path.nodes, path.weight) for path in self.paths if path.prediction == prediction)
+        return tuple(
+            (path.nodes, path.weight)
+            for path in self.paths
+            if path.prediction == prediction
+        )
 
 
 def instance_tree_factory(
@@ -38,7 +42,9 @@ def instance_tree_factory(
     prediction = tree.predict(instance)[0]
     features = tree.tree_.feature
     thresholds = tree.tree_.threshold
-    sparse_path = tree.tree_.decision_path(instance).indices.tolist()[:-1]  # exclude the final leaf node
+    sparse_path = tree.tree_.decision_path(instance).indices.tolist()[
+        :-1
+    ]  # exclude the final leaf node
     return TreePath(
         prediction=prediction,
         nodes=tuple(
@@ -53,7 +59,6 @@ def instance_tree_factory(
         ),
         weight=path_weight,
     )
-
 
 
 def random_forest_paths_factory(
