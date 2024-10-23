@@ -1,5 +1,4 @@
 from tests.forest_paths_helper import random_forest_paths, weighted_paths  # noqa # mypy can't cope with pytest fixtures
-from pyfpgrowth import find_frequent_patterns
 from src.pychirps.build_rules.rule_mining import RuleMiner
 from tests.fixture_helper import assert_dict_matches_fixture, convert_native
 from dataclasses import asdict
@@ -27,8 +26,9 @@ def test_rule_miner_weighted_paths(weighted_paths):  # noqa # mypy can't cope wi
 
 
 def test_fp_paths(weighted_paths):
-    rule_miner = RuleMiner(forest_path=weighted_paths)
-    patterns = find_frequent_patterns(rule_miner.paths, 2)
+    print(weighted_paths)
+    rule_miner = RuleMiner(forest_path=weighted_paths, min_support=0.5)
+    patterns = rule_miner.patterns
     assert_dict_matches_fixture(
         {
             i: [convert_native(asdict(k)) for k in keys]

@@ -1,21 +1,20 @@
 from src.pychirps.extract_paths.classification_trees import ForestPath
 from pyfpgrowth import find_frequent_patterns
-from dataclasses import dataclass
+from src.pychirps.build_rules.rule_utilities import NodePattern
+import numpy as np
 from typing import Optional
 
 
-@dataclass(frozen=True)
-class NodePattern:
-    feature: int
-    threshold: float
-    leq_threshold: bool
-
-    def __lt__(self, other: "NodePattern"):
-        return self.feature < other.feature
-
-
 class RuleMiner:
-    def __init__(self, forest_path: ForestPath, prediction: Optional[int] = None):
+    def __init__(
+        self,
+        forest_path: ForestPath,
+        prediction: Optional[int] = None,
+        min_support: Optional[float] = 0.2,
+    ):
+        if min_support > 1:
+            raise ValueError("Set min_support using a fraction")
+        self.support = round(min_support * len(forest_path.paths))
         self.forest_path = forest_path
         if prediction:
             self.prediction = prediction
@@ -35,65 +34,38 @@ class RuleMiner:
             )
             for _ in range(int(weight))
         )
+        # will need to normalise the weights so min(weights) = 1.0
+        # weighted_counts = np.round(self.paths_weights * 1/min(self.paths_weights)).astype('int')
+        patterns = find_frequent_patterns(self.paths, self.support)
+        print(patterns)
+        if patterns and min(tuple(int(v) for v in patterns.values())) == 1:
+            self.patterns = {
+                patt: float(self.patterns[patt]) / float(len(self.paths))
+                for patt in self.patterns
+            }
+        else:
+            self.patterns = patterns
 
+    def hill_climb(self):
+        # hill climbing algorithm to find the best combination of patterns
+        pass
 
-#     def get_paths_by_prediction(self, prediction: int) -> list[list[NodePattern]]:
+    def dynamic_programming(self):
+        # dynamic programming algorithm to find the best combination of patterns
+        pass
 
-#         weighted_patterns = [
-#             (
-#                 node.path_weight,
-#                 NodePattern(
-#                     feature=node.feature,
-#                     threshold=node.threshold,
-#                     leq_threshold=node.leq_threshold,
-#                 )
-#             )
-#             for gathered_path in forest_paths.gathered_paths
-#             if gathered_path.prediction == prediction
-#             for path in gathered_path.paths
-#             for node in path
-#         ]
+    def genetic_algorithm(self):
+        # genetic algorithm to find the best combination of patterns
+        pass
 
-#         # ensure support to an absolute number of instances rather than a fraction
-#         if support <= 1:
-#             support = round(support * len(self.paths))
+    def beam_search(self):
+        # beam search algorithm to find the best combination of patterns
+        pass
 
-#         # normalise the weights so min(weights) = 1.0
-#         weighted_counts = np.round(self.paths_weights * 1/min(self.paths_weights)).astype('int')
+    def objective_function(self):
+        # objective function to evaluate the quality of the rules
+        pass
 
-#         # replicate the paths a number of times according to weighted counts
-#         self.paths = list(chain.from_iterable(map(repeat, self.paths, weighted_counts)))
-
-# def mine_rules(self, instance: np.ndarray, min_support: int) -> list:
-
-
-# def mine_patterns(self, sample_instances=None, paths_lengths_threshold=2, support=0.1):
-
-#     # repeat paths if max length > path length threshold
-#     # e.g. for boosted models with stumps of depth 1 or 2, it doesn't make much sense
-#     # for longer paths, the boosting weight is used to increase the support count
-#     if len(max(self.paths, key=len)) >= paths_lengths_threshold:
-
-#         # ensure support to an absolute number of instances rather than a fraction
-#         if support <= 1:
-#             support = round(support * len(self.paths))
-
-#         # normalise the weights so min(weights) = 1.0
-#         weighted_counts = np.round(self.paths_weights * 1/min(self.paths_weights)).astype('int')
-
-#         # replicate the paths a number of times according to weighted counts
-#         self.paths = list(chain.from_iterable(map(repeat, self.paths, weighted_counts)))
-
-#         # FP mining
-#         self.patterns = find_frequent_patterns(self.paths, support)
-#         # normalise support score
-#         self.patterns = {patt : self.patterns[patt]/len(self.paths) for patt in self.patterns}
-
-#     # otherwise, convert paths to patterns giving weights as support
-#     else:
-#         # ensure support to a fraction
-#         if support > 1:
-#             support = support / len(self.paths)
 
 #         entropy_weighted_patterns = defaultdict(np.float32)
 #         instances, labels = self.init_instances(instances=sample_instances)
