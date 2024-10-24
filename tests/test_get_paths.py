@@ -1,7 +1,4 @@
 from src.pychirps.extract_paths.classification_trees import instance_tree_factory
-from sklearn.ensemble import RandomForestClassifier
-from src.pychirps.pandas_utils.data_encoding import PandasEncoder
-import data_preprocs.data_providers as dp
 import numpy as np
 from dataclasses import asdict
 from tests.fixture_helper import assert_dict_matches_fixture, convert_native
