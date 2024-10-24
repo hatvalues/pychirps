@@ -1,6 +1,6 @@
 from sklearn.tree import DecisionTreeClassifier
 from dataclasses import dataclass
-from src.pychirps.extract_paths.forest_metadata import ForestExplorer
+from pychirps.extract_paths.forest_explorer import ForestExplorer
 import numpy as np
 
 

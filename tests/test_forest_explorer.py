@@ -1,4 +1,4 @@
-from src.pychirps.extract_paths.forest_metadata import ForestExplorer
+from pychirps.extract_paths.forest_explorer import ForestExplorer
 from sklearn.ensemble import RandomForestClassifier
 from src.pychirps.pandas_utils.data_encoding import PandasEncoder
 import data_preprocs.data_providers as dp
