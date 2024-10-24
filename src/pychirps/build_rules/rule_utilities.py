@@ -28,7 +28,6 @@ def stability(
 
 
 def apply_rule(rule: tuple[NodePattern], Z: np.ndarray) -> np.ndarray:
-
     size = len(rule)
     features = np.empty(size, dtype=int)
     thresholds = np.empty(size, dtype=float)

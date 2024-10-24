@@ -4,6 +4,7 @@ from data_preprocs.data_providers import cervicalb_pd, nursery_pd
 from tests.fixture_helper import load_yaml_fixture_file, assert_dict_matches_fixture
 import numpy as np
 
+
 def test_apply_rule():
     encoder = PandasEncoder(cervicalb_pd.features, cervicalb_pd.target)
     encoder.fit()
@@ -20,6 +21,9 @@ def test_apply_rule():
     not_matching_features = transformed_features[np.ix_(not_indices, features_in_rule)]
 
     assert_dict_matches_fixture(
-        {"matching_features": matching_features.tolist(), "not_matching_features": not_matching_features.tolist()},
+        {
+            "matching_features": matching_features.tolist(),
+            "not_matching_features": not_matching_features.tolist(),
+        },
         "matching_features_example_1",
     )
