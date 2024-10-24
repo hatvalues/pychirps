@@ -8,19 +8,14 @@ from tests.fixture_helper import assert_dict_matches_fixture, convert_native
 from tests.forest_paths_helper import rf_paths, weighted_paths  # noqa # mypy can't cope with pytest fixtures
 
 
-def test_instance_tree_factory():
-    model = RandomForestClassifier(n_estimators=10, random_state=42)
-    encoder = PandasEncoder(dp.cervicalb_pd.features, dp.cervicalb_pd.target)
-    encoder.fit()
-    transformed_features, transformed_target = encoder.transform()
-    model.fit(transformed_features, transformed_target)
+def test_instance_tree_factory(cervicalb_enc, cervicalb_rf):
 
-    instance = dp.cervicalh_pd.features.iloc[0]
-    instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
-    tree = model.estimators_[0]
+    instance = cervicalb_enc.features[0, :]
+    instance32 = instance.astype(np.float32).reshape(1, -1)
+    tree = cervicalb_rf.estimators_[0]
     feature_names = {
         i: v
-        for i, v in enumerate(encoder.preprocessor.get_feature_names_out().tolist())
+        for i, v in enumerate(cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist())
     }
     tree_path = instance_tree_factory(
         tree=tree, feature_names=feature_names, instance=instance32

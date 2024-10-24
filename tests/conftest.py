@@ -15,7 +15,7 @@ class PreparedData:
 
 @pytest.fixture(scope="session")
 def cervicalb_enc():
-    encoder = PandasEncoder(dp.cervicalb_pd.features, dp.cervicalb_pd.target)
+    encoder = PandasEncoder(dp.cervicalb_pd.features.iloc[:600, ], dp.cervicalb_pd.target.iloc[:600])
     encoder.fit()
     transformed_features, transformed_target = encoder.transform()
     return PreparedData(

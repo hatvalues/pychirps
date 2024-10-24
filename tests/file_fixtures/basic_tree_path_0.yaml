@@ -1,5 +1,5 @@
-feature: 27
-feature_name: num__Dx:CIN
+feature: 5
+feature_name: num__Smokes (years)
 leq_threshold: true
-threshold: 0.5
+threshold: 33.0
 value: 0.0

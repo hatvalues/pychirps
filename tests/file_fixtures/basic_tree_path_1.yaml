@@ -1,5 +1,5 @@
-feature: 11
-feature_name: num__STDs
+feature: 26
+feature_name: num__Dx:Cancer
 leq_threshold: true
 threshold: 0.5
 value: 0.0
