@@ -5,7 +5,7 @@ import data_preprocs.data_providers as dp
 import numpy as np
 from dataclasses import asdict
 from tests.fixture_helper import assert_dict_matches_fixture, convert_native
-from tests.forest_paths_helper import random_forest_paths, weighted_paths  # noqa # mypy can't cope with pytest fixtures
+from tests.forest_paths_helper import rf_paths, weighted_paths  # noqa # mypy can't cope with pytest fixtures
 
 
 def test_instance_tree_factory():
@@ -37,21 +37,21 @@ def test_instance_tree_factory():
     )
 
 
-def test_random_forest_paths_factory(random_forest_paths):  # noqa # mypy can't cope with pytest fixtures
-    assert random_forest_paths.prediction == 0.0
-    assert random_forest_paths.paths[0].prediction == 0.0
-    paths_by_prediction_0 = random_forest_paths.get_for_prediction(0)
+def test_rf_paths_factory(rf_paths):  # noqa # mypy can't cope with pytest fixtures
+    assert rf_paths.prediction == 0.0
+    assert rf_paths.paths[0].prediction == 0.0
+    paths_by_prediction_0 = rf_paths.get_for_prediction(0)
     assert len(paths_by_prediction_0) == 10
     assert_dict_matches_fixture(
-        convert_native(asdict(random_forest_paths.paths[0].nodes[0])),
+        convert_native(asdict(rf_paths.paths[0].nodes[0])),
         "basic_tree_path_0",
     )
     assert_dict_matches_fixture(
-        convert_native(asdict(random_forest_paths.paths[0].nodes[1])),
+        convert_native(asdict(rf_paths.paths[0].nodes[1])),
         "basic_tree_path_1",
     )
     assert_dict_matches_fixture(
-        convert_native(asdict(random_forest_paths.paths[0].nodes[-1])),
+        convert_native(asdict(rf_paths.paths[0].nodes[-1])),
         "basic_tree_path_last",
     )
 

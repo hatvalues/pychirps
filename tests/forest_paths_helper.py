@@ -8,19 +8,38 @@ from pychirps.extract_paths.forest_explorer import ForestExplorer
 from sklearn.ensemble import RandomForestClassifier
 from src.pychirps.pandas_utils.data_encoding import PandasEncoder
 import data_preprocs.data_providers as dp
+from dataclasses import dataclass
 import numpy as np
 import pytest
 
 
-@pytest.fixture
-def random_forest_paths():
-    model = RandomForestClassifier(n_estimators=10, random_state=42)
+@dataclass
+class PreparedData:
+    features: np.ndarray
+    target: np.ndarray
+    encoder: PandasEncoder
+
+
+@pytest.fixture(scope="module")
+def cervicalb_enc():
     encoder = PandasEncoder(dp.cervicalb_pd.features, dp.cervicalb_pd.target)
     encoder.fit()
     transformed_features, transformed_target = encoder.transform()
-    model.fit(transformed_features, transformed_target)
-    forest_explorer = ForestExplorer(model, encoder)
+    return PreparedData(
+        features=transformed_features, target=transformed_target, encoder=encoder
+    )
 
+
+@pytest.fixture(scope="module")
+def cervicalb_rf(cervicalb_enc):
+    model = RandomForestClassifier(n_estimators=10, random_state=42)
+    model.fit(cervicalb_enc.features, cervicalb_enc.target)
+    return model
+
+
+@pytest.fixture
+def rf_paths(cervicalb_enc, cervicalb_rf):
+    forest_explorer = ForestExplorer(cervicalb_rf, cervicalb_enc.encoder)
     instance = dp.cervicalh_pd.features.iloc[0]
     instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
     return random_forest_paths_factory(forest_explorer, instance32)
