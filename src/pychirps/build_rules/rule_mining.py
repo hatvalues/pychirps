@@ -2,10 +2,25 @@ from src.pychirps.extract_paths.classification_trees import ForestPath
 from pyfpgrowth import find_frequent_patterns
 from src.pychirps.build_rules.rule_utilities import NodePattern
 import numpy as np
+from dataclasses import dataclass
 from typing import Optional
 
+@dataclass(frozen=True)
+class PatternSet:
+    patterns: list[tuple[NodePattern]]
+    weights: list[float]
 
-class RuleMiner:
+    def __post_init__(self):
+        if len(self.patterns) != len(self.weights):
+            raise ValueError("Patterns and weights must be the same length")
+        if len(self.weights):
+            min_weight = np.min(self.weights)
+            if min_weight == 1:
+                max_weight = np.max(self.weights)
+                self.weights = [weight / max_weight for weight in self.weights]
+
+
+class PatternMiner:
     def __init__(
         self,
         forest_path: ForestPath,
@@ -34,17 +49,19 @@ class RuleMiner:
             )
             for _ in range(int(weight))
         )
-        # will need to normalise the weights so min(weights) = 1.0
-        # weighted_counts = np.round(self.paths_weights * 1/min(self.paths_weights)).astype('int')
-        patterns = find_frequent_patterns(self.paths, self.support)
-        print(patterns)
-        if patterns and min(tuple(int(v) for v in patterns.values())) == 1:
-            self.patterns = {
-                patt: float(self.patterns[patt]) / float(len(self.paths))
-                for patt in self.patterns
-            }
+
+        frequent_patterns = find_frequent_patterns(self.paths, self.support)
+        if frequent_patterns:
+            patterns, weights = zip(*frequent_patterns.items())
         else:
-            self.patterns = patterns
+            patterns, weights = [], []
+        self.pattern_set = PatternSet(patterns=patterns, weights=weights)
+
+
+class RuleMiner:
+    def __init__(self, patterns: dict[tuple[NodePattern], float]):
+        self.patterns = patterns,
+    
 
     def hill_climb(self):
         # hill climbing algorithm to find the best combination of patterns
@@ -66,6 +83,17 @@ class RuleMiner:
         # objective function to evaluate the quality of the rules
         pass
 
+    def tabu_search(self):
+        # tabu search algorithm to find the best combination of patterns
+        pass
+
+    def simulated_annealing(self):
+        # simulated annealing algorithm to find the best combination of patterns
+        pass
+
+
+        # will need to normalise the weights so min(weights) = 1.0
+        # weighted_counts = np.round(self.paths_weights * 1/min(self.paths_weights)).astype('int')
 
 #         entropy_weighted_patterns = defaultdict(np.float32)
 #         instances, labels = self.init_instances(instances=sample_instances)
