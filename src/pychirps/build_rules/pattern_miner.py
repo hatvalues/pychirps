@@ -9,16 +9,7 @@ from typing import Optional
 @dataclass(frozen=True)
 class PatternSet:
     patterns: list[tuple[NodePattern]]
-    weights: list[float]
-
-    def __post_init__(self):
-        if len(self.patterns) != len(self.weights):
-            raise ValueError("Patterns and weights must be the same length")
-        if len(self.weights):
-            min_weight = np.min(self.weights)
-            if min_weight == 1:
-                max_weight = np.max(self.weights)
-                self.weights = [weight / max_weight for weight in self.weights]
+    weights: np.ndarray
 
 
 class PatternMiner:

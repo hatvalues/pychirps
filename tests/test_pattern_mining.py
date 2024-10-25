@@ -26,7 +26,6 @@ def test_pattern_miner_weighted_paths(weighted_paths):  # noqa # mypy can't cope
 
 
 def test_fp_paths(weighted_paths):
-    print(weighted_paths)
     pattern_miner = PatternMiner(forest_path=weighted_paths, min_support=0.5)
     patterns = pattern_miner.pattern_set.patterns
     assert_dict_matches_fixture(

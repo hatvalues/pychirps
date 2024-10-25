@@ -3,7 +3,7 @@
   - feature: 5
     leq_threshold: true
     threshold: 33.0
-  weight: 2
+  weight: 0.2857142857142857
 1:
   pattern:
   - feature: 3
@@ -12,7 +12,7 @@
   - feature: 5
     leq_threshold: true
     threshold: 33.0
-  weight: 2
+  weight: 0.2857142857142857
 2:
   pattern:
   - feature: 5
@@ -21,7 +21,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 3:
   pattern:
   - feature: 3
@@ -33,13 +33,13 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 4:
   pattern:
   - feature: 2
     leq_threshold: true
     threshold: 28.5
-  weight: 2
+  weight: 0.2857142857142857
 5:
   pattern:
   - feature: 2
@@ -48,7 +48,7 @@
   - feature: 5
     leq_threshold: true
     threshold: 33.0
-  weight: 2
+  weight: 0.2857142857142857
 6:
   pattern:
   - feature: 2
@@ -57,7 +57,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 7:
   pattern:
   - feature: 2
@@ -66,7 +66,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 8:
   pattern:
   - feature: 2
@@ -78,7 +78,7 @@
   - feature: 5
     leq_threshold: true
     threshold: 33.0
-  weight: 2
+  weight: 0.2857142857142857
 9:
   pattern:
   - feature: 2
@@ -90,7 +90,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 10:
   pattern:
   - feature: 2
@@ -102,7 +102,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 11:
   pattern:
   - feature: 2
@@ -117,13 +117,13 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 12:
   pattern:
   - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 13:
   pattern:
   - feature: 25
@@ -132,7 +132,7 @@
   - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 14:
   pattern:
   - feature: 0
@@ -141,7 +141,7 @@
   - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 15:
   pattern:
   - feature: 3
@@ -150,7 +150,7 @@
   - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 16:
   pattern:
   - feature: 0
@@ -162,7 +162,7 @@
   - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 17:
   pattern:
   - feature: 3
@@ -174,7 +174,7 @@
   - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 18:
   pattern:
   - feature: 0
@@ -186,7 +186,7 @@
   - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 19:
   pattern:
   - feature: 0
@@ -201,13 +201,13 @@
   - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 20:
   pattern:
   - feature: 1
     leq_threshold: false
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 21:
   pattern:
   - feature: 1
@@ -216,7 +216,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 2.5
-  weight: 2
+  weight: 0.2857142857142857
 22:
   pattern:
   - feature: 1
@@ -225,7 +225,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 23:
   pattern:
   - feature: 1
@@ -234,7 +234,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 24:
   pattern:
   - feature: 1
@@ -246,7 +246,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 25:
   pattern:
   - feature: 1
@@ -258,7 +258,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 26:
   pattern:
   - feature: 1
@@ -270,7 +270,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 27:
   pattern:
   - feature: 1
@@ -285,7 +285,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 28:
   pattern:
   - feature: 0
@@ -294,7 +294,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 29:
   pattern:
   - feature: 0
@@ -303,7 +303,7 @@
   - feature: 25
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 30:
   pattern:
   - feature: 0
@@ -315,7 +315,7 @@
   - feature: 25
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 31:
   pattern:
   - feature: 0
@@ -327,13 +327,13 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 32:
   pattern:
   - feature: 0
     leq_threshold: true
     threshold: 22.5
-  weight: 2
+  weight: 0.2857142857142857
 33:
   pattern:
   - feature: 0
@@ -342,13 +342,13 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 34:
   pattern:
   - feature: 6
     leq_threshold: true
     threshold: 13.5
-  weight: 2
+  weight: 0.2857142857142857
 35:
   pattern:
   - feature: 0
@@ -357,7 +357,7 @@
   - feature: 6
     leq_threshold: true
     threshold: 13.5
-  weight: 2
+  weight: 0.2857142857142857
 36:
   pattern:
   - feature: 6
@@ -366,7 +366,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 37:
   pattern:
   - feature: 1
@@ -375,7 +375,7 @@
   - feature: 6
     leq_threshold: true
     threshold: 13.5
-  weight: 2
+  weight: 0.2857142857142857
 38:
   pattern:
   - feature: 0
@@ -387,7 +387,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 39:
   pattern:
   - feature: 0
@@ -399,7 +399,7 @@
   - feature: 6
     leq_threshold: true
     threshold: 13.5
-  weight: 2
+  weight: 0.2857142857142857
 40:
   pattern:
   - feature: 1
@@ -411,7 +411,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 41:
   pattern:
   - feature: 0
@@ -426,13 +426,13 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 42:
   pattern:
   - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 43:
   pattern:
   - feature: 8
@@ -441,7 +441,7 @@
   - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 44:
   pattern:
   - feature: 19
@@ -450,7 +450,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 45:
   pattern:
   - feature: 1
@@ -459,7 +459,7 @@
   - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 46:
   pattern:
   - feature: 8
@@ -471,7 +471,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 47:
   pattern:
   - feature: 1
@@ -483,7 +483,7 @@
   - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 48:
   pattern:
   - feature: 1
@@ -495,7 +495,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 49:
   pattern:
   - feature: 1
@@ -510,7 +510,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 50:
   pattern:
   - feature: 0
@@ -519,7 +519,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 51:
   pattern:
   - feature: 0
@@ -531,7 +531,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 52:
   pattern:
   - feature: 9
@@ -540,7 +540,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 53:
   pattern:
   - feature: 7
@@ -552,7 +552,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 54:
   pattern:
   - feature: 1
@@ -561,7 +561,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 55:
   pattern:
   - feature: 1
@@ -573,7 +573,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 56:
   pattern:
   - feature: 1
@@ -585,7 +585,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 57:
   pattern:
   - feature: 1
@@ -600,7 +600,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 58:
   pattern:
   - feature: 7
@@ -609,7 +609,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 59:
   pattern:
   - feature: 0
@@ -618,7 +618,7 @@
   - feature: 25
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 60:
   pattern:
   - feature: 0
@@ -630,7 +630,7 @@
   - feature: 25
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 61:
   pattern:
   - feature: 25
@@ -639,7 +639,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 62:
   pattern:
   - feature: 3
@@ -651,7 +651,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 63:
   pattern:
   - feature: 3
@@ -660,7 +660,7 @@
   - feature: 25
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 64:
   pattern:
   - feature: 7
@@ -669,7 +669,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 65:
   pattern:
   - feature: 3
@@ -681,7 +681,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 66:
   pattern:
   - feature: 12
@@ -690,7 +690,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 67:
   pattern:
   - feature: 3
@@ -702,7 +702,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 68:
   pattern:
   - feature: 3
@@ -711,7 +711,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 3
+  weight: 0.3714285714285714
 69:
   pattern:
   - feature: 3
@@ -720,7 +720,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 70:
   pattern:
   - feature: 3
@@ -732,7 +732,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 71:
   pattern:
   - feature: 3
@@ -741,7 +741,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 72:
   pattern:
   - feature: 3
@@ -753,7 +753,7 @@
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 73:
   pattern:
   - feature: 3
@@ -762,7 +762,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 2.5
-  weight: 2
+  weight: 0.2857142857142857
 74:
   pattern:
   - feature: 3
@@ -774,7 +774,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 75:
   pattern:
   - feature: 3
@@ -786,7 +786,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 76:
   pattern:
   - feature: 3
@@ -801,7 +801,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 77:
   pattern:
   - feature: 0
@@ -810,7 +810,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 2.5
-  weight: 2
+  weight: 0.2857142857142857
 78:
   pattern:
   - feature: 0
@@ -822,7 +822,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 79:
   pattern:
   - feature: 1
@@ -831,7 +831,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 2.5
-  weight: 2
+  weight: 0.2857142857142857
 80:
   pattern:
   - feature: 0
@@ -843,7 +843,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 2.5
-  weight: 2
+  weight: 0.2857142857142857
 81:
   pattern:
   - feature: 1
@@ -855,7 +855,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 82:
   pattern:
   - feature: 0
@@ -870,7 +870,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 83:
   pattern:
   - feature: 3
@@ -879,7 +879,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 84:
   pattern:
   - feature: 2
@@ -888,7 +888,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 85:
   pattern:
   - feature: 2
@@ -897,7 +897,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 86:
   pattern:
   - feature: 2
@@ -909,7 +909,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 87:
   pattern:
   - feature: 2
@@ -918,7 +918,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 88:
   pattern:
   - feature: 2
@@ -930,7 +930,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 89:
   pattern:
   - feature: 2
@@ -942,7 +942,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 90:
   pattern:
   - feature: 2
@@ -957,7 +957,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 91:
   pattern:
   - feature: 2
@@ -966,7 +966,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 92:
   pattern:
   - feature: 1
@@ -975,7 +975,7 @@
   - feature: 2
     leq_threshold: true
     threshold: 16.5
-  weight: 2
+  weight: 0.2857142857142857
 93:
   pattern:
   - feature: 1
@@ -987,7 +987,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 94:
   pattern:
   - feature: 2
@@ -996,7 +996,7 @@
   - feature: 2
     leq_threshold: false
     threshold: 14.5
-  weight: 2
+  weight: 0.2857142857142857
 95:
   pattern:
   - feature: 2
@@ -1005,7 +1005,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 96:
   pattern:
   - feature: 2
@@ -1017,7 +1017,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 97:
   pattern:
   - feature: 2
@@ -1026,7 +1026,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 98:
   pattern:
   - feature: 2
@@ -1038,7 +1038,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 99:
   pattern:
   - feature: 2
@@ -1050,7 +1050,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 100:
   pattern:
   - feature: 2
@@ -1065,7 +1065,7 @@
   - feature: 12
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 101:
   pattern:
   - feature: 2
@@ -1074,7 +1074,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 102:
   pattern:
   - feature: 2
@@ -1086,7 +1086,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 103:
   pattern:
   - feature: 2
@@ -1098,7 +1098,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 104:
   pattern:
   - feature: 2
@@ -1110,7 +1110,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 105:
   pattern:
   - feature: 2
@@ -1125,7 +1125,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 106:
   pattern:
   - feature: 2
@@ -1140,7 +1140,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 107:
   pattern:
   - feature: 2
@@ -1155,7 +1155,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 108:
   pattern:
   - feature: 2
@@ -1173,7 +1173,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 109:
   pattern:
   - feature: 2
@@ -1182,7 +1182,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 2.5
-  weight: 2
+  weight: 0.2857142857142857
 110:
   pattern:
   - feature: 1
@@ -1191,7 +1191,7 @@
   - feature: 2
     leq_threshold: false
     threshold: 14.5
-  weight: 2
+  weight: 0.2857142857142857
 111:
   pattern:
   - feature: 0
@@ -1203,7 +1203,7 @@
   - feature: 2
     leq_threshold: false
     threshold: 14.5
-  weight: 2
+  weight: 0.2857142857142857
 112:
   pattern:
   - feature: 0
@@ -1215,7 +1215,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 2.5
-  weight: 2
+  weight: 0.2857142857142857
 113:
   pattern:
   - feature: 0
@@ -1227,7 +1227,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 114:
   pattern:
   - feature: 1
@@ -1239,7 +1239,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 115:
   pattern:
   - feature: 0
@@ -1254,7 +1254,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 116:
   pattern:
   - feature: 2
@@ -1266,7 +1266,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 117:
   pattern:
   - feature: 0
@@ -1281,7 +1281,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 118:
   pattern:
   - feature: 1
@@ -1293,7 +1293,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 119:
   pattern:
   - feature: 0
@@ -1305,7 +1305,7 @@
   - feature: 2
     leq_threshold: false
     threshold: 14.5
-  weight: 2
+  weight: 0.2857142857142857
 120:
   pattern:
   - feature: 0
@@ -1320,7 +1320,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 121:
   pattern:
   - feature: 1
@@ -1332,7 +1332,7 @@
   - feature: 2
     leq_threshold: false
     threshold: 14.5
-  weight: 2
+  weight: 0.2857142857142857
 122:
   pattern:
   - feature: 0
@@ -1347,7 +1347,7 @@
   - feature: 2
     leq_threshold: false
     threshold: 14.5
-  weight: 2
+  weight: 0.2857142857142857
 123:
   pattern:
   - feature: 1
@@ -1362,7 +1362,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 124:
   pattern:
   - feature: 0
@@ -1380,7 +1380,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 125:
   pattern:
   - feature: 1
@@ -1392,7 +1392,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 2.5
-  weight: 2
+  weight: 0.2857142857142857
 126:
   pattern:
   - feature: 0
@@ -1407,7 +1407,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 2.5
-  weight: 2
+  weight: 0.2857142857142857
 127:
   pattern:
   - feature: 1
@@ -1422,7 +1422,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 128:
   pattern:
   - feature: 0
@@ -1440,7 +1440,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 129:
   pattern:
   - feature: 0
@@ -1449,7 +1449,7 @@
   - feature: 1
     leq_threshold: true
     threshold: 4.5
-  weight: 2
+  weight: 0.2857142857142857
 130:
   pattern:
   - feature: 0
@@ -1461,7 +1461,7 @@
   - feature: 1
     leq_threshold: true
     threshold: 4.5
-  weight: 2
+  weight: 0.2857142857142857
 131:
   pattern:
   - feature: 1
@@ -1470,7 +1470,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 132:
   pattern:
   - feature: 1
@@ -1482,7 +1482,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 133:
   pattern:
   - feature: 1
@@ -1491,7 +1491,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 134:
   pattern:
   - feature: 0
@@ -1503,7 +1503,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 135:
   pattern:
   - feature: 1
@@ -1515,7 +1515,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 136:
   pattern:
   - feature: 0
@@ -1530,7 +1530,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 137:
   pattern:
   - feature: 1
@@ -1539,7 +1539,7 @@
   - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 138:
   pattern:
   - feature: 1
@@ -1551,7 +1551,7 @@
   - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 139:
   pattern:
   - feature: 1
@@ -1560,7 +1560,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 140:
   pattern:
   - feature: 1
@@ -1572,7 +1572,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 141:
   pattern:
   - feature: 1
@@ -1584,7 +1584,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 142:
   pattern:
   - feature: 1
@@ -1599,7 +1599,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 143:
   pattern:
   - feature: 1
@@ -1608,7 +1608,7 @@
   - feature: 1
     leq_threshold: true
     threshold: 4.5
-  weight: 3
+  weight: 0.3714285714285714
 144:
   pattern:
   - feature: 8
@@ -1617,7 +1617,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 145:
   pattern:
   - feature: 1
@@ -1626,7 +1626,7 @@
   - feature: 8
     leq_threshold: true
     threshold: 8.5
-  weight: 2
+  weight: 0.2857142857142857
 146:
   pattern:
   - feature: 1
@@ -1638,7 +1638,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 147:
   pattern:
   - feature: 8
@@ -1647,7 +1647,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 148:
   pattern:
   - feature: 4
@@ -1656,7 +1656,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 149:
   pattern:
   - feature: 1
@@ -1668,7 +1668,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 150:
   pattern:
   - feature: 4
@@ -1680,7 +1680,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 151:
   pattern:
   - feature: 1
@@ -1695,7 +1695,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 152:
   pattern:
   - feature: 0
@@ -1704,7 +1704,7 @@
   - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 153:
   pattern:
   - feature: 0
@@ -1716,7 +1716,7 @@
   - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 154:
   pattern:
   - feature: 0
@@ -1728,7 +1728,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 155:
   pattern:
   - feature: 0
@@ -1743,7 +1743,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 156:
   pattern:
   - feature: 3
@@ -1752,7 +1752,7 @@
   - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 157:
   pattern:
   - feature: 0
@@ -1764,7 +1764,7 @@
   - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 158:
   pattern:
   - feature: 1
@@ -1776,7 +1776,7 @@
   - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 159:
   pattern:
   - feature: 3
@@ -1788,7 +1788,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 160:
   pattern:
   - feature: 0
@@ -1803,7 +1803,7 @@
   - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 161:
   pattern:
   - feature: 0
@@ -1818,7 +1818,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 162:
   pattern:
   - feature: 1
@@ -1833,7 +1833,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 163:
   pattern:
   - feature: 0
@@ -1851,7 +1851,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 164:
   pattern:
   - feature: 4
@@ -1860,7 +1860,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 165:
   pattern:
   - feature: 3
@@ -1872,7 +1872,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 166:
   pattern:
   - feature: 0
@@ -1884,7 +1884,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 167:
   pattern:
   - feature: 1
@@ -1896,7 +1896,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 168:
   pattern:
   - feature: 4
@@ -1908,7 +1908,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 169:
   pattern:
   - feature: 0
@@ -1923,7 +1923,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 170:
   pattern:
   - feature: 1
@@ -1938,7 +1938,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 171:
   pattern:
   - feature: 3
@@ -1953,7 +1953,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 172:
   pattern:
   - feature: 0
@@ -1968,7 +1968,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 173:
   pattern:
   - feature: 0
@@ -1983,7 +1983,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 174:
   pattern:
   - feature: 1
@@ -1998,7 +1998,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 175:
   pattern:
   - feature: 0
@@ -2016,7 +2016,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 176:
   pattern:
   - feature: 0
@@ -2034,7 +2034,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 177:
   pattern:
   - feature: 1
@@ -2052,7 +2052,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 178:
   pattern:
   - feature: 0
@@ -2070,7 +2070,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 179:
   pattern:
   - feature: 0
@@ -2091,7 +2091,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 180:
   pattern:
   - feature: 4
@@ -2100,7 +2100,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 181:
   pattern:
   - feature: 1
@@ -2109,7 +2109,7 @@
   - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 182:
   pattern:
   - feature: 1
@@ -2121,7 +2121,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 183:
   pattern:
   - feature: 0
@@ -2130,7 +2130,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 184:
   pattern:
   - feature: 0
@@ -2139,7 +2139,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 185:
   pattern:
   - feature: 0
@@ -2148,7 +2148,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 186:
   pattern:
   - feature: 0
@@ -2160,7 +2160,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 187:
   pattern:
   - feature: 0
@@ -2169,7 +2169,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 188:
   pattern:
   - feature: 0
@@ -2181,7 +2181,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 189:
   pattern:
   - feature: 0
@@ -2190,7 +2190,7 @@
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  weight: 3
+  weight: 0.3714285714285714
 190:
   pattern:
   - feature: 9
@@ -2199,7 +2199,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 191:
   pattern:
   - feature: 7
@@ -2211,7 +2211,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 192:
   pattern:
   - feature: 1
@@ -2223,7 +2223,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 193:
   pattern:
   - feature: 1
@@ -2238,7 +2238,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 194:
   pattern:
   - feature: 9
@@ -2247,7 +2247,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 195:
   pattern:
   - feature: 1
@@ -2259,7 +2259,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 196:
   pattern:
   - feature: 7
@@ -2268,7 +2268,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 197:
   pattern:
   - feature: 1
@@ -2280,7 +2280,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 198:
   pattern:
   - feature: 1
@@ -2289,7 +2289,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 4
+  weight: 0.45714285714285713
 199:
   pattern:
   - feature: 0
@@ -2298,7 +2298,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 200:
   pattern:
   - feature: 0
@@ -2310,7 +2310,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 201:
   pattern:
   - feature: 0
@@ -2322,7 +2322,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 202:
   pattern:
   - feature: 0
@@ -2334,7 +2334,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 203:
   pattern:
   - feature: 0
@@ -2349,7 +2349,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 204:
   pattern:
   - feature: 0
@@ -2364,7 +2364,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 205:
   pattern:
   - feature: 0
@@ -2379,7 +2379,7 @@
   - feature: 9
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 206:
   pattern:
   - feature: 0
@@ -2397,7 +2397,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 207:
   pattern:
   - feature: 0
@@ -2406,7 +2406,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 208:
   pattern:
   - feature: 0
@@ -2418,7 +2418,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 209:
   pattern:
   - feature: 0
@@ -2430,7 +2430,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 1.5
-  weight: 2
+  weight: 0.2857142857142857
 210:
   pattern:
   - feature: 0
@@ -2442,7 +2442,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 211:
   pattern:
   - feature: 0
@@ -2457,7 +2457,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 212:
   pattern:
   - feature: 0
@@ -2472,7 +2472,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 213:
   pattern:
   - feature: 0
@@ -2487,7 +2487,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 214:
   pattern:
   - feature: 0
@@ -2505,7 +2505,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 215:
   pattern:
   - feature: 0
@@ -2514,7 +2514,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 216:
   pattern:
   - feature: 0
@@ -2526,7 +2526,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 217:
   pattern:
   - feature: 0
@@ -2538,7 +2538,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 218:
   pattern:
   - feature: 0
@@ -2553,7 +2553,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 219:
   pattern:
   - feature: 0
@@ -2562,7 +2562,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 220:
   pattern:
   - feature: 0
@@ -2574,7 +2574,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 221:
   pattern:
   - feature: 0
@@ -2586,7 +2586,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 222:
   pattern:
   - feature: 0
@@ -2598,7 +2598,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 223:
   pattern:
   - feature: 0
@@ -2613,7 +2613,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 224:
   pattern:
   - feature: 0
@@ -2628,7 +2628,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 225:
   pattern:
   - feature: 0
@@ -2643,7 +2643,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 226:
   pattern:
   - feature: 0
@@ -2661,7 +2661,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 227:
   pattern:
   - feature: 0
@@ -2670,7 +2670,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 4
+  weight: 0.45714285714285713
 228:
   pattern:
   - feature: 0
@@ -2679,7 +2679,7 @@
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  weight: 4
+  weight: 0.45714285714285713
 229:
   pattern:
   - feature: 0
@@ -2691,7 +2691,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 4
+  weight: 0.45714285714285713
 230:
   pattern:
   - feature: 3
@@ -2700,7 +2700,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 231:
   pattern:
   - feature: 1
@@ -2712,7 +2712,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 232:
   pattern:
   - feature: 3
@@ -2724,7 +2724,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 233:
   pattern:
   - feature: 1
@@ -2739,7 +2739,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 234:
   pattern:
   - feature: 3
@@ -2748,7 +2748,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 235:
   pattern:
   - feature: 3
@@ -2760,7 +2760,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 236:
   pattern:
   - feature: 1
@@ -2769,7 +2769,7 @@
   - feature: 3
     leq_threshold: true
     threshold: 1.5
-  weight: 3
+  weight: 0.3714285714285714
 237:
   pattern:
   - feature: 1
@@ -2781,7 +2781,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 238:
   pattern:
   - feature: 1
@@ -2793,7 +2793,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 239:
   pattern:
   - feature: 1
@@ -2808,7 +2808,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 240:
   pattern:
   - feature: 3
@@ -2817,7 +2817,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 4
+  weight: 0.45714285714285713
 241:
   pattern:
   - feature: 11
@@ -2826,7 +2826,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 242:
   pattern:
   - feature: 1
@@ -2838,7 +2838,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 243:
   pattern:
   - feature: 7
@@ -2850,7 +2850,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 244:
   pattern:
   - feature: 1
@@ -2865,7 +2865,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 2
+  weight: 0.2857142857142857
 245:
   pattern:
   - feature: 7
@@ -2874,7 +2874,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 246:
   pattern:
   - feature: 1
@@ -2886,7 +2886,7 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 247:
   pattern:
   - feature: 1
@@ -2895,13 +2895,13 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 4
+  weight: 0.45714285714285713
 248:
   pattern:
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 6
+  weight: 0.6285714285714286
 249:
   pattern:
   - feature: 1
@@ -2910,7 +2910,7 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 5
+  weight: 0.5428571428571429
 250:
   pattern:
   - feature: 7
@@ -2919,7 +2919,7 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 251:
   pattern:
   - feature: 1
@@ -2931,13 +2931,13 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 3
+  weight: 0.3714285714285714
 252:
   pattern:
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 6
+  weight: 0.6285714285714286
 253:
   pattern:
   - feature: 1
@@ -2946,10 +2946,10 @@
   - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 5
+  weight: 0.5428571428571429
 254:
   pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  weight: 7
+  weight: 0.7142857142857142

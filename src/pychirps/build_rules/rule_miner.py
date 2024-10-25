@@ -1,5 +1,7 @@
 from pychirps.build_rules.pattern_miner import PatternMiner
 import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+from functools import cached_property
 
 
 class RuleMiner:
@@ -14,12 +16,30 @@ class RuleMiner:
     def patterns(self):
         return self._pattern_miner.pattern_set.patterns
 
-    @property
+    @cached_property
     def weights(self):
-        return self._pattern_miner.pattern_set.weights
+        min_weight = min(self._pattern_miner.pattern_set.weights)
+        max_weight = max(self._pattern_miner.pattern_set.weights)
+        if min_weight == max_weight:
+            return np.ones(len(self._pattern_miner.pattern_set.weights))
+        elif min_weight >= 1.0:
+            feature_limit = min_weight / max_weight
+            scaler = MinMaxScaler(feature_range=(feature_limit, 1 - feature_limit))
+            return scaler.fit_transform(
+                np.array(self._pattern_miner.pattern_set.weights).reshape(-1, 1)
+            ).flatten()
+        else:
+            return np.array(self._pattern_miner.pattern_set.weights)
 
     def hill_climb(self):
         # hill climbing algorithm to find the best combination of patterns
+        # start with the patterns sorted by their weights
+        # for each pattern, add it to the rule set and evaluate the rule set
+        # if the rule set is better than the previous rule set, keep the pattern
+        # otherwise, remove the pattern from the rule set
+        sorted_patterns = sorted(
+            zip(self.patterns, self.weights), key=lambda x: x[1], reverse=True
+        )
         pass
 
     def dynamic_programming(self):

@@ -1,7 +1,7 @@
 import os
 import yaml
 import numpy as np
-from typing import Optional, Any
+from typing import Optional, Any, Union
 
 fixture_path = os.path.realpath(
     f"{os.path.dirname(os.path.realpath(__file__))}/file_fixtures"
@@ -15,9 +15,14 @@ def convert_value_primitive(val):
     return val
 
 
-def convert_native(data: dict[str, Any]) -> dict[str, Any]:
+def convert_native(data: Union[dict[str, Any], Any]) -> dict[str, Any]:
     # Convert each value in each dictionary in the list
-    return {key: convert_value_primitive(val) for key, val in data.items()}
+    if isinstance(data, list):
+        return [convert_value_primitive(val) for val in data]
+    elif isinstance(data, dict):
+        return {key: convert_value_primitive(val) for key, val in data.items()}
+    else:
+        return convert_value_primitive(data)
 
 
 def _fixture_file_path(fixture: str, file_extension: str = "yaml") -> str:

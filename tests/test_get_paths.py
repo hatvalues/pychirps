@@ -6,13 +6,14 @@ from tests.forest_paths_helper import rf_paths, weighted_paths  # noqa # mypy ca
 
 
 def test_instance_tree_factory(cervicalb_enc, cervicalb_rf):
-
     instance = cervicalb_enc.features[0, :]
     instance32 = instance.astype(np.float32).reshape(1, -1)
     tree = cervicalb_rf.estimators_[0]
     feature_names = {
         i: v
-        for i, v in enumerate(cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist())
+        for i, v in enumerate(
+            cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist()
+        )
     }
     tree_path = instance_tree_factory(
         tree=tree, feature_names=feature_names, instance=instance32
