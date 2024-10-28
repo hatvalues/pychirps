@@ -30,3 +30,21 @@ def cervicalb_rf(cervicalb_enc):
     model = RandomForestClassifier(n_estimators=10, random_state=42)
     model.fit(cervicalb_enc.features, cervicalb_enc.target)
     return model
+
+
+@pytest.fixture(scope="session")
+def nursery_enc():
+    encoder = PandasEncoder(
+        dp.nursery_pd.features.iloc[:600,], dp.nursery_pd.target.iloc[:600]
+    )
+    encoder.fit()
+    transformed_features, transformed_target = encoder.transform()
+    return PreparedData(
+        features=transformed_features, target=transformed_target, encoder=encoder
+    )
+
+@pytest.fixture(scope="session")
+def nursery_rf(nursery_enc):
+    model = RandomForestClassifier(n_estimators=10, random_state=42)
+    model.fit(nursery_enc.features, nursery_enc.target)
+    return model

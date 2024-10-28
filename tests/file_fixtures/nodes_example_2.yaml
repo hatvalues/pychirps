@@ -1,0 +1,10 @@
+nodes:
+- feature: 5
+  leq_threshold: true
+  threshold: 0.5
+- feature: 11
+  leq_threshold: true
+  threshold: 0.5
+- feature: 1
+  leq_threshold: false
+  threshold: 0.5

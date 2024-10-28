@@ -40,7 +40,7 @@ class RuleMiner:
         sorted_patterns = sorted(
             zip(self.patterns, self.weights), key=lambda x: x[1], reverse=True
         )
-        pass
+        # print(sorted_patterns)
 
     def dynamic_programming(self):
         # dynamic programming algorithm to find the best combination of patterns

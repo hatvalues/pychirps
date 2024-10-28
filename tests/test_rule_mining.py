@@ -2,7 +2,6 @@ from tests.forest_paths_helper import rf_paths, weighted_paths  # noqa # mypy ca
 from pychirps.build_rules.pattern_miner import PatternMiner
 from src.pychirps.build_rules.rule_miner import RuleMiner
 from dataclasses import asdict
-import numpy as np
 from tests.fixture_helper import assert_dict_matches_fixture, convert_native
 
 
@@ -22,3 +21,9 @@ def test_rule_miner_init_patterns(cervicalb_enc, rf_paths):  # noqa # mypy can't
         },
         "rule_miner_patterns",
     )
+
+def test_rule_miner_hill_climb(rf_paths, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
+    pattern_miner = PatternMiner(forest_path=rf_paths)
+    rule_miner = RuleMiner(pattern_miner, cervicalb_enc.features, cervicalb_enc.target)
+    rule_miner.hill_climb()
+    assert False  # TODO: implement your test here
