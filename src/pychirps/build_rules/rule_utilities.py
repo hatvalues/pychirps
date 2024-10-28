@@ -40,7 +40,6 @@ def stability(y_pred: int, z_pred: np.ndarray, Z: np.ndarray, pattern: tuple[Nod
     # K should be the number of classes. 1/K <= stability < 1, and we exclude the instance itself from the neighbours
 
     rule_applies_indices = apply_rule(rule=pattern, Z=Z)
-    print(len(rule_applies_indices))
 
     y_pred_indices = np.where(y_pred == z_pred)[0]
 
@@ -57,17 +56,17 @@ def true_negative_rate(y_pred: int, z_pred: np.ndarray, Z: np.ndarray, pattern: 
     # numerator = not covered by rule and predicted with other class,
     # denominator = all instance (except instance itself) predicted with other class
     rule_applies_indices = apply_rule(rule=pattern, Z=Z)
-
-    rule_not_apply_indices = set(np.indices(Z)) - set(rule_applies_indices)
-
+    rule_does_not_apply_indices = set(range(len(Z))) - set(rule_applies_indices)
     other_pred_indices = np.where(y_pred != z_pred)[0]
-
-    return len(set(rule_not_apply_indices).intersection(set(other_pred_indices))) / len(other_pred_indices)
+    return len(set(rule_does_not_apply_indices).intersection(set(other_pred_indices))) / len(other_pred_indices)
 
 
 def exclusive_coverage(y_pred: int, z_pred: np.ndarray, Z: np.ndarray, pattern: tuple[NodePattern], K: int) -> float:
     # Exclusive coverage is the Lplace corrected proportion of instances in Z that are covered by the rule, excluding the instance itself from its neighbours...
     # ... multiplied by the True Negative Rate (TNR) of the rule
     rule_applies_indices = apply_rule(rule=pattern, Z=Z)
+    print(len(rule_applies_indices) + 1)
+    print(len(Z) + K)
+    print(true_negative_rate(y_pred=y_pred, z_pred=z_pred, Z=Z, pattern=pattern))
     # ASSUMPTION: x, the instance we are trying to explain is not in the set Z. If x is in Z, we would not + 1 the numerator
     return len(rule_applies_indices + 1) / (len(Z) + K) * true_negative_rate(y_pred=y_pred, z_pred=z_pred, Z=Z, pattern=pattern)

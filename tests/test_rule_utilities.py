@@ -1,4 +1,4 @@
-from src.pychirps.build_rules.rule_utilities import NodePattern, apply_rule, stability
+from src.pychirps.build_rules.rule_utilities import NodePattern, apply_rule, stability, true_negative_rate, exclusive_coverage
 from tests.fixture_helper import load_yaml_fixture_file, assert_dict_matches_fixture
 import numpy as np
 
@@ -54,3 +54,65 @@ def test_stability_nursery(nursery_enc, nursery_rf):
         K = 4
     )
     assert stability_score == 0.25
+
+def test_true_negative_rate_cervical(cervicalb_enc, cervicalb_rf):
+    sample_features = cervicalb_enc.features[1:101]
+    pred_labels = cervicalb_rf.predict(sample_features)
+
+    explain_instance = cervicalb_enc.features[0, :]
+    explain_label = cervicalb_rf.predict(explain_instance.reshape(1, -1))
+
+    tnr = true_negative_rate(
+        y_pred = explain_label,
+        z_pred = pred_labels,
+        Z = sample_features,
+        pattern= tuple(NodePattern(**node) for node in load_yaml_fixture_file("nodes_example_1")["nodes"])
+    )
+    assert tnr == 0.6
+
+def test_true_negative_rate_nursery(nursery_enc, nursery_rf):
+    sample_features = nursery_enc.features[1:101]
+    pred_labels = nursery_rf.predict(sample_features)
+
+    explain_instance = nursery_enc.features[0, :]
+    explain_label = nursery_rf.predict(explain_instance.reshape(1, -1))
+
+    tnr = true_negative_rate(
+        y_pred = explain_label,
+        z_pred = pred_labels,
+        Z = sample_features,
+        pattern= tuple(NodePattern(**node) for node in load_yaml_fixture_file("nodes_example_2")["nodes"])
+    )
+    assert tnr == 0.7307692307692307
+
+def test_exclusive_coverage_cervical(cervicalb_enc, cervicalb_rf):
+    sample_features = cervicalb_enc.features[1:101]
+    pred_labels = cervicalb_rf.predict(sample_features)
+
+    explain_instance = cervicalb_enc.features[0, :]
+    explain_label = cervicalb_rf.predict(explain_instance.reshape(1, -1))
+
+    ec = exclusive_coverage(
+        y_pred = explain_label,
+        z_pred = pred_labels,
+        Z = sample_features,
+        pattern= tuple(NodePattern(**node) for node in load_yaml_fixture_file("nodes_example_1")["nodes"]),
+        K = 2
+    )
+    assert ec == 0.4294117647058823
+
+def test_exclusive_coverage_nursery(nursery_enc, nursery_rf):
+    sample_features = nursery_enc.features[1:101]
+    pred_labels = nursery_rf.predict(sample_features)
+
+    explain_instance = nursery_enc.features[0, :]
+    explain_label = nursery_rf.predict(explain_instance.reshape(1, -1))
+
+    ec = exclusive_coverage(
+        y_pred = explain_label,
+        z_pred = pred_labels,
+        Z = sample_features,
+        pattern= tuple(NodePattern(**node) for node in load_yaml_fixture_file("nodes_example_2")["nodes"]),
+        K = 4
+    )
+    assert ec == 0.21782544378698224
