@@ -6,10 +6,15 @@ from functools import cached_property
 from collections import Counter
 
 
-
 class RuleMiner:
     def __init__(
-        self, pattern_miner: PatternMiner, y_pred: np.uint8, features: np.ndarray, preds: np.ndarray, classes=np.array([0, 1], dtype=np.uint8), cardinality_regularizing_weight: float = 0.5
+        self,
+        pattern_miner: PatternMiner,
+        y_pred: np.uint8,
+        features: np.ndarray,
+        preds: np.ndarray,
+        classes=np.array([0, 1], dtype=np.uint8),
+        cardinality_regularizing_weight: float = 0.5,
     ):
         self._pattern_miner = pattern_miner
         self.y_pred = y_pred
@@ -36,7 +41,7 @@ class RuleMiner:
             ).flatten()
         else:
             return np.array(self._pattern_miner.pattern_set.weights)
-        
+
     @cached_property
     def custom_sorted_patterns(self):
         entropy_regularizing_weights = np.zeros(len(self.weights))
@@ -45,9 +50,9 @@ class RuleMiner:
             rule_applies_preds = self.preds[rule_applies_indices]
             pred_count = Counter(rule_applies_preds)
             pred_count.update({k: 0 for k in self.classes if k not in pred_count})
-            entropy_regularizing_weights[p] = None # TODO: add the counts in class order
-
-
+            entropy_regularizing_weights[p] = (
+                None  # TODO: add the counts in class order
+            )
 
         sorted_pattern_weights = sorted(
             zip(self.patterns, self.weights),
@@ -56,7 +61,7 @@ class RuleMiner:
                 support_regularizing_weight=x[1],
                 cardinality_regularizing_weight=self.cardinality_regularizing_weight,
             ),
-            reverse=True
+            reverse=True,
         )
         return tuple(pattern for pattern, _ in sorted_pattern_weights)
 

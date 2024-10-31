@@ -26,13 +26,15 @@ def cervicalb_enc():
     )
     encoder.fit()
     transformed_features, transformed_target = encoder.transform()
-    unseen_instance_features, unseen_instance_target = encoder.transform(dp.cervicalb_pd.features.iloc[600:601,], dp.cervicalb_pd.target.iloc[600:601])
+    unseen_instance_features, unseen_instance_target = encoder.transform(
+        dp.cervicalb_pd.features.iloc[600:601,], dp.cervicalb_pd.target.iloc[600:601]
+    )
     return PreparedData(
         features=transformed_features,
         target=transformed_target,
         unseen_instance_features=unseen_instance_features,
         unseen_instance_target=unseen_instance_target,
-        encoder=encoder
+        encoder=encoder,
     )
 
 
@@ -72,13 +74,15 @@ def nursery_enc():
     )
     encoder.fit()
     transformed_features, transformed_target = encoder.transform()
-    unseen_instance_features, unseen_instance_target = encoder.transform(dp.nursery_pd.features.iloc[600:601,], dp.nursery_pd.target.iloc[600:601])
+    unseen_instance_features, unseen_instance_target = encoder.transform(
+        dp.nursery_pd.features.iloc[600:601,], dp.nursery_pd.target.iloc[600:601]
+    )
     return PreparedData(
         features=transformed_features,
-        target=transformed_target,        
+        target=transformed_target,
         unseen_instance_features=unseen_instance_features,
         unseen_instance_target=unseen_instance_target,
-        encoder=encoder
+        encoder=encoder,
     )
 
 

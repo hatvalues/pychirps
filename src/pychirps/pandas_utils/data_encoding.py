@@ -30,25 +30,32 @@ class PandasEncoder:
         )
         self.label_encoder = LabelEncoder()
 
-
     def fit(self) -> None:
         self.preprocessor.fit(self.features)
         self.label_encoder.fit(self.target)
 
-
-    def transform(self, features: Optional[np.ndarray] = None, target: Optional[np.ndarray] = None) -> tuple[np.ndarray, np.ndarray]:
-        if (features is None) ^ (target is None): # ^ is XOR
+    def transform(
+        self, features: Optional[np.ndarray] = None, target: Optional[np.ndarray] = None
+    ) -> tuple[np.ndarray, np.ndarray]:
+        if (features is None) ^ (target is None):  # ^ is XOR
             raise ValueError("Features and target must both be given, or neither.")
         if features is None:
-            return self.preprocessor.transform(self.features), self.label_encoder.transform(self.target)
+            return self.preprocessor.transform(
+                self.features
+            ), self.label_encoder.transform(self.target)
         print(features)
         print(len(features.shape))
         print(features.shape[0])
         print(len(target))
-        if (len(features.shape) == 1 and len(target) == 1) or (features.shape[0] == len(target)):
-            return self.preprocessor.transform(features), self.label_encoder.transform(target)
-        raise ValueError("Target must be the same length as the number of rows in features")
-
+        if (len(features.shape) == 1 and len(target) == 1) or (
+            features.shape[0] == len(target)
+        ):
+            return self.preprocessor.transform(features), self.label_encoder.transform(
+                target
+            )
+        raise ValueError(
+            "Target must be the same length as the number of rows in features"
+        )
 
     def fit_transform(
         self, features: pd.DataFrame, target: pd.Series
