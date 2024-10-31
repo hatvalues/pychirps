@@ -1,5 +1,7 @@
 from sklearn.ensemble import RandomForestClassifier
 from src.pychirps.pandas_utils.data_encoding import PandasEncoder
+from pychirps.extract_paths.forest_explorer import ForestExplorer
+from src.pychirps.extract_paths.classification_trees import random_forest_paths_factory
 import data_preprocs.data_providers as dp
 from dataclasses import dataclass
 import numpy as np
@@ -48,3 +50,11 @@ def nursery_rf(nursery_enc):
     model = RandomForestClassifier(n_estimators=10, random_state=42)
     model.fit(nursery_enc.features, nursery_enc.target)
     return model
+
+
+@pytest.fixture
+def cervical_rf_paths(cervicalb_enc, cervicalb_rf):
+    forest_explorer = ForestExplorer(cervicalb_rf, cervicalb_enc.encoder)
+    instance = dp.cervicalh_pd.features.iloc[0]
+    instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
+    return random_forest_paths_factory(forest_explorer, instance32)

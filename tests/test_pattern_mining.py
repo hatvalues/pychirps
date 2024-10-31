@@ -1,21 +1,21 @@
-from tests.forest_paths_helper import rf_paths, weighted_paths  # noqa # mypy can't cope with pytest fixtures
+from tests.forest_paths_helper import weighted_paths  # noqa # mypy can't cope with pytest fixtures
 from pychirps.build_rules.pattern_miner import PatternMiner
 from tests.fixture_helper import assert_dict_matches_fixture, convert_native
 from dataclasses import asdict
 
 
-def test_pattern_miner(rf_paths):  # noqa # mypy can't cope with pytest fixtures
-    pattern_miner = PatternMiner(forest_path=rf_paths)
+def test_pattern_miner(cervical_rf_paths):  # noqa # mypy can't cope with pytest fixtures
+    pattern_miner = PatternMiner(forest_path=cervical_rf_paths)
     assert len(pattern_miner.paths) == 10
 
 
-def test_pattern_miner_prediction(rf_paths):  # noqa # mypy can't cope with pytest fixtures
-    pattern_miner = PatternMiner(forest_path=rf_paths, prediction=0)
+def test_pattern_miner_prediction(cervical_rf_paths):  # noqa # mypy can't cope with pytest fixtures
+    pattern_miner = PatternMiner(forest_path=cervical_rf_paths, prediction=0)
     assert len(pattern_miner.paths) == 10
 
 
-def test_pattern_miner_alt_prediction(rf_paths):  # noqa # mypy can't cope with pytest fixtures
-    pattern_miner = PatternMiner(forest_path=rf_paths, prediction=1)
+def test_pattern_miner_alt_prediction(cervical_rf_paths):  # noqa # mypy can't cope with pytest fixtures
+    pattern_miner = PatternMiner(forest_path=cervical_rf_paths, prediction=1)
     assert len(pattern_miner.paths) == 0
 
 

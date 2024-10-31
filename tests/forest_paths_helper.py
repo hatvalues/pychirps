@@ -1,21 +1,11 @@
 from src.pychirps.extract_paths.classification_trees import (
-    random_forest_paths_factory,
     ForestPath,
     TreePath,
     TreeNode,
 )
-from pychirps.extract_paths.forest_explorer import ForestExplorer
 import data_preprocs.data_providers as dp
 import numpy as np
 import pytest
-
-
-@pytest.fixture
-def rf_paths(cervicalb_enc, cervicalb_rf):
-    forest_explorer = ForestExplorer(cervicalb_rf, cervicalb_enc.encoder)
-    instance = dp.cervicalh_pd.features.iloc[0]
-    instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
-    return random_forest_paths_factory(forest_explorer, instance32)
 
 
 @pytest.fixture
