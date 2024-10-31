@@ -89,12 +89,16 @@ def pattern_importance_score(cardinality: np.uint8, support_regularizing_weight:
 def entropy(p: np.ndarray):
     return scipy_entropy(p)
 
+
+def count_data_check(arr):
+    if np.issubdtype(arr.dtype, np.floating):
+        warnings.warn("kl_div will work with probability distributions but if you're seeing this warning then you haven't implemented something properly for generalizing to other distance functions.")
+
 # TODO: in most use cases in this package, we should be testing KL-div only on distributions where the pred class has a higher probability in Q than P. May need some guard rails for this.
-def kldiv(p: np.ndarray, q: np.ndarray) -> np.float64:
+def kl_div(p: np.ndarray, q: np.ndarray) -> np.float64:
     """Convenience wrapper for kl-div calculation, handling zero and smoothing so we never always get a valid value, never np.inf
     """
-    if np.issubdtype(p.dtype, np.floating):
-        warnings.warn("kldiv will work with probability distributions but if you're seeing this warning then you haven't implemented something properly for generalizing to other distance functions.")
+    count_data_check(p)
     alpha = np.finfo(dtype='float16').eps
     p_smooth = np.random.uniform(size=len(p))
     q_smooth = np.random.uniform(size=len(p)) # convex smooth idea https://mathoverflow.net/questions/72668/how-to-compute-kl-divergence-when-pmf-contains-0s
@@ -104,5 +108,7 @@ def kldiv(p: np.ndarray, q: np.ndarray) -> np.float64:
     return scipy_entropy(p_smoothed, q_smoothed)
 
 
-def wsdis(p: np.ndarray, q: np.ndarray) -> np.float64:
-    return wasserstein_distance(p, q)
+def ws_dis(p: np.ndarray, q: np.ndarray) -> np.float64:
+    """Adjusted Wasserstein Distance, normalized by total count."""
+    count_data_check(p)
+    return wasserstein_distance(p, q) / p.sum()
