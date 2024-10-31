@@ -1,6 +1,8 @@
 from sklearn.ensemble import RandomForestClassifier
 from src.pychirps.pandas_utils.data_encoding import PandasEncoder
 from pychirps.extract_paths.forest_explorer import ForestExplorer
+from pychirps.build_rules.pattern_miner import PatternMiner
+from src.pychirps.build_rules.rule_miner import RuleMiner
 from src.pychirps.extract_paths.classification_trees import random_forest_paths_factory
 import data_preprocs.data_providers as dp
 from dataclasses import dataclass
@@ -12,6 +14,8 @@ import pytest
 class PreparedData:
     features: np.ndarray
     target: np.ndarray
+    unseen_instance_features: np.ndarray
+    unseen_instance_target: np.ndarray
     encoder: PandasEncoder
 
 
@@ -22,8 +26,13 @@ def cervicalb_enc():
     )
     encoder.fit()
     transformed_features, transformed_target = encoder.transform()
+    unseen_instance_features, unseen_instance_target = encoder.transform(dp.cervicalb_pd.features.iloc[600:601,], dp.cervicalb_pd.target.iloc[600:601])
     return PreparedData(
-        features=transformed_features, target=transformed_target, encoder=encoder
+        features=transformed_features,
+        target=transformed_target,
+        unseen_instance_features=unseen_instance_features,
+        unseen_instance_target=unseen_instance_target,
+        encoder=encoder
     )
 
 
@@ -34,6 +43,28 @@ def cervicalb_rf(cervicalb_enc):
     return model
 
 
+@pytest.fixture
+def cervicalb_rf_paths(cervicalb_enc, cervicalb_rf):
+    forest_explorer = ForestExplorer(cervicalb_rf, cervicalb_enc.encoder)
+    instance = dp.cervicalh_pd.features.iloc[0]
+    instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
+    return random_forest_paths_factory(forest_explorer, instance32)
+
+
+@pytest.fixture
+def cervicalb_rule_miner(cervicalb_rf_paths, cervicalb_rf, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
+    y_pred = cervicalb_rf.predict(cervicalb_enc.unseen_instance_features)[0]
+    preds = cervicalb_rf.predict(cervicalb_enc.features)
+    pattern_miner = PatternMiner(forest_path=cervicalb_rf_paths)
+    return RuleMiner(
+        pattern_miner=pattern_miner,
+        y_pred=y_pred,
+        features=cervicalb_enc.features,
+        preds=preds,
+        classes=np.unique(cervicalb_enc.target),
+    )
+
+
 @pytest.fixture(scope="session")
 def nursery_enc():
     encoder = PandasEncoder(
@@ -41,9 +72,15 @@ def nursery_enc():
     )
     encoder.fit()
     transformed_features, transformed_target = encoder.transform()
+    unseen_instance_features, unseen_instance_target = encoder.transform(dp.nursery_pd.features.iloc[600:601,], dp.nursery_pd.target.iloc[600:601])
     return PreparedData(
-        features=transformed_features, target=transformed_target, encoder=encoder
+        features=transformed_features,
+        target=transformed_target,        
+        unseen_instance_features=unseen_instance_features,
+        unseen_instance_target=unseen_instance_target,
+        encoder=encoder
     )
+
 
 @pytest.fixture(scope="session")
 def nursery_rf(nursery_enc):
@@ -53,8 +90,22 @@ def nursery_rf(nursery_enc):
 
 
 @pytest.fixture
-def cervical_rf_paths(cervicalb_enc, cervicalb_rf):
-    forest_explorer = ForestExplorer(cervicalb_rf, cervicalb_enc.encoder)
-    instance = dp.cervicalh_pd.features.iloc[0]
+def nursery_rf_paths(nursery_enc, nurseryb_rf):
+    forest_explorer = ForestExplorer(nursery_rf, nursery_enc.encoder)
+    instance = dp.nursery_pd.features.iloc[0]
     instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
     return random_forest_paths_factory(forest_explorer, instance32)
+
+
+@pytest.fixture
+def nursery_rule_miner(nursery_rf_paths, nursery_rf, nursery_enc):  # noqa # mypy can't cope with pytest fixtures
+    y_pred = nursery_rf.predict(nursery_enc.unseen_instance_features)[0]
+    preds = nursery_rf.predict(nursery_enc.features)
+    pattern_miner = PatternMiner(forest_path=nursery_rf_paths)
+    return RuleMiner(
+        pattern_miner=pattern_miner,
+        y_pred=y_pred,
+        features=nursery_enc.features,
+        preds=preds,
+        classes=np.unique(nursery_enc.target),
+    )

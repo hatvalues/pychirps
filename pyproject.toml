@@ -22,6 +22,7 @@ numpy = "^2.1.1"
 pyfpgrowth = "^1.0"
 imblearn = "^0.0"
 scikit-learn = "^1.5.2"
+ordered-set = "^4.1.0"
 
 
 [tool.poetry.group.test.dependencies]

@@ -6,7 +6,7 @@ import numpy as np
 
 @dataclass(frozen=True)
 class TreeNode:
-    feature: int
+    feature: np.uint8
     feature_name: str
     value: float
     threshold: float
@@ -15,17 +15,17 @@ class TreeNode:
 
 @dataclass(frozen=True)
 class TreePath:
-    prediction: int
+    prediction: np.uint8
     nodes: tuple[TreeNode]
     weight: float = 1.0
 
 
 @dataclass(frozen=True)
 class ForestPath:
-    prediction: int
+    prediction: np.uint8
     paths: tuple[TreePath]
 
-    def get_for_prediction(self, prediction: int) -> list[TreePath]:
+    def get_for_prediction(self, prediction: np.uint8) -> list[TreePath]:
         return tuple(
             (path.nodes, path.weight)
             for path in self.paths

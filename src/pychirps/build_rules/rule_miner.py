@@ -1,16 +1,22 @@
 from pychirps.build_rules.pattern_miner import PatternMiner
+import pychirps.build_rules.rule_utilities as rutils
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from functools import cached_property
+from collections import Counter
+
 
 
 class RuleMiner:
     def __init__(
-        self, pattern_miner: PatternMiner, features: np.ndarray, preds: np.ndarray
+        self, pattern_miner: PatternMiner, y_pred: np.uint8, features: np.ndarray, preds: np.ndarray, classes=np.array([0, 1], dtype=np.uint8), cardinality_regularizing_weight: float = 0.5
     ):
         self._pattern_miner = pattern_miner
+        self.y_pred = y_pred
         self.features = features
         self.preds = preds
+        self.classes = classes
+        self.cardinality_regularizing_weight = cardinality_regularizing_weight
 
     @property
     def patterns(self):
@@ -30,17 +36,43 @@ class RuleMiner:
             ).flatten()
         else:
             return np.array(self._pattern_miner.pattern_set.weights)
+        
+    @cached_property
+    def custom_sorted_patterns(self):
+        entropy_regularizing_weights = np.zeros(len(self.weights))
+        for p, pattern in enumerate(self.patterns):
+            rule_applies_indices = rutils.apply_rule(pattern, self.features)
+            rule_applies_preds = self.preds[rule_applies_indices]
+            pred_count = Counter(rule_applies_preds)
+            pred_count.update({k: 0 for k in self.classes if k not in pred_count})
+            entropy_regularizing_weights[p] = None # TODO: add the counts in class order
+
+
+
+        sorted_pattern_weights = sorted(
+            zip(self.patterns, self.weights),
+            key=lambda x: rutils.pattern_importance_score(
+                cardinality=len(x[0]),
+                support_regularizing_weight=x[1],
+                cardinality_regularizing_weight=self.cardinality_regularizing_weight,
+            ),
+            reverse=True
+        )
+        return tuple(pattern for pattern, _ in sorted_pattern_weights)
 
     def hill_climb(self):
         # hill climbing algorithm to find the best combination of patterns
         # start with the patterns sorted by their weights
-        # for each pattern, add it to the rule set and evaluate the rule set
+        # pick the rule from the top and add it to the rule
+        # in the case of tied weights, pick the one with highest stability
+        # in the case of tied stability, pick the one with highest exclusive coverage
+        # compare current stability with previous stability
         # if the rule set is better than the previous rule set, keep the pattern
+        # prune duplicate nodes
         # otherwise, remove the pattern from the rule set
-        sorted_patterns = sorted(
-            zip(self.patterns, self.weights), key=lambda x: x[1], reverse=True
-        )
-        # print(sorted_patterns)
+        # loop until no more stability increase, no more patterns, or rule reaches max length
+        sorted_patterns = self.custom_sorted_patterns
+        print([len(p) for p in sorted_patterns])
 
     def dynamic_programming(self):
         # dynamic programming algorithm to find the best combination of patterns
