@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.stats import entropy as scipy_entropy
+from scipy.stats import wasserstein_distance
 from dataclasses import dataclass
 import warnings
 
@@ -92,11 +93,16 @@ def entropy(p: np.ndarray):
 def kldiv(p: np.ndarray, q: np.ndarray) -> np.float64:
     """Convenience wrapper for kl-div calculation, handling zero and smoothing so we never always get a valid value, never np.inf
     """
-    alpha = np.finfo(dtype='float32').eps
+    if np.issubdtype(p.dtype, np.floating):
+        warnings.warn("kldiv will work with probability distributions but if you're seeing this warning then you haven't implemented something properly for generalizing to other distance functions.")
+    alpha = np.finfo(dtype='float16').eps
     p_smooth = np.random.uniform(size=len(p))
     q_smooth = np.random.uniform(size=len(p)) # convex smooth idea https://mathoverflow.net/questions/72668/how-to-compute-kl-divergence-when-pmf-contains-0s
     p_smoothed = p_smooth * alpha + np.array(p) * (1-alpha)
     q_smoothed = q_smooth * alpha + np.array(q) * (1-alpha)
+    # NOTE: scipy_entropy normalizes inputs by default
     return scipy_entropy(p_smoothed, q_smoothed)
 
 
+def wsdis(p: np.ndarray, q: np.ndarray) -> np.float64:
+    return wasserstein_distance(p, q)

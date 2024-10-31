@@ -145,6 +145,8 @@ def test_entropy():
 
 def test_kl_div():
     seed(11211)    
-    assert rutils.kldiv(np.array([0.95, 0.05]), np.array([1.0, 0.0])) == 0.6007285646161459
-    assert rutils.kldiv(np.array([0.5, 0.5]), np.array([1.0, 0.0])) == 7.885167240071176
-    assert rutils.kldiv(np.array([1.0, 0.0]), np.array([0.5, 0.5])) == 0.693145654352761
+    assert rutils.kldiv(np.array([95, 5], dtype=np.uint64), np.array([100, 0], dtype=np.uint64)) == 0.38045537670753693
+    assert rutils.kldiv(np.array([5, 5], dtype=np.uint64), np.array([10, 0], dtype=np.uint64)) == 4.530273436644683
+    assert rutils.kldiv(np.array([10, 0], dtype=np.uint64), np.array([50, 50], dtype=np.uint64)) == 0.692374607169956
+    with pytest.warns(UserWarning):
+        rutils.kldiv(np.array([0.9, 0.1]), np.array([1.0, 0.0]))
