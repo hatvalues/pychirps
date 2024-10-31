@@ -4,8 +4,6 @@ from tests.fixture_helper import assert_dict_matches_fixture, convert_native
 
 
 def test_rule_miner_init_patterns(cervicalb_rule_miner):  # noqa # mypy can't cope with pytest fixtures
-    print(cervicalb_rule_miner.patterns[:10])
-    print(cervicalb_rule_miner.weights[:10])
     assert all(w < 1.0 for w in cervicalb_rule_miner.weights)
     assert_dict_matches_fixture(
         {
@@ -19,6 +17,9 @@ def test_rule_miner_init_patterns(cervicalb_rule_miner):  # noqa # mypy can't co
         },
         "rule_miner_patterns",
     )
+
+def test_entropy_reg_weights(cervicalb_rule_miner):
+    assert_dict_matches_fixture({"e_weights": convert_native(cervicalb_rule_miner.entropy_regularizing_weights)}, "entropy_weights_cervicalb")
 
 
 def test_rule_miner_hill_climb(cervicalb_rule_miner):  # noqa # mypy can't cope with pytest fixtures

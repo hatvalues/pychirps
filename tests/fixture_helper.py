@@ -17,6 +17,8 @@ def convert_value_primitive(val):
 
 def convert_native(data: Union[dict[str, Any], Any]) -> dict[str, Any]:
     # Convert each value in each dictionary in the list
+    if isinstance(data, np.ndarray):
+        data = data.tolist()
     if isinstance(data, list):
         return [convert_value_primitive(val) for val in data]
     elif isinstance(data, dict):

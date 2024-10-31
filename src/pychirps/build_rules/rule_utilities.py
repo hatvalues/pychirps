@@ -53,10 +53,7 @@ def stability(
     y_pred_indices = np.where(y_pred == z_pred)[0]
 
     same_pred = len(set(rule_applies_indices).intersection(set(y_pred_indices)))
-    print(same_pred)
     # ASSUMPTION: x, the instance we are trying to explain is not in the set Z. If x is in Z, we would not + 1 the numerator
-    print(same_pred + 1)
-    print(len(rule_applies_indices) + K)
     return (same_pred + 1) / (len(rule_applies_indices) + K)
 
 
@@ -84,9 +81,6 @@ def exclusive_coverage(
     # Exclusive coverage is the Lplace corrected proportion of instances in Z that are covered by the rule, excluding the instance itself from its neighbours...
     # ... multiplied by the True Negative Rate (TNR) of the rule
     rule_applies_indices = apply_rule(rule=pattern, Z=Z)
-    print(len(rule_applies_indices) + 1)
-    print(len(Z) + K)
-    print(true_negative_rate(y_pred=y_pred, z_pred=z_pred, Z=Z, pattern=pattern))
     # ASSUMPTION: x, the instance we are trying to explain is not in the set Z. If x is in Z, we would not + 1 the numerator
     return (
         len(rule_applies_indices + 1)

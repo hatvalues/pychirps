@@ -43,10 +43,6 @@ class PandasEncoder:
             return self.preprocessor.transform(
                 self.features
             ), self.label_encoder.transform(self.target)
-        print(features)
-        print(len(features.shape))
-        print(features.shape[0])
-        print(len(target))
         if (len(features.shape) == 1 and len(target) == 1) or (
             features.shape[0] == len(target)
         ):

@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from functools import cached_property
 from collections import Counter
+from typing import Callable
 
 
 class RuleMiner:
@@ -15,13 +16,15 @@ class RuleMiner:
         preds: np.ndarray,
         classes=np.array([0, 1], dtype=np.uint8),
         cardinality_regularizing_weight: float = 0.5,
+        entropy_function: Callable = rutils.entropy
     ):
         self._pattern_miner = pattern_miner
         self.y_pred = y_pred
         self.features = features
         self.preds = preds
-        self.classes = classes
+        self.classes = np.sort(classes)
         self.cardinality_regularizing_weight = cardinality_regularizing_weight
+        self.entropy_function = entropy_function
 
     @property
     def patterns(self):
@@ -43,7 +46,7 @@ class RuleMiner:
             return np.array(self._pattern_miner.pattern_set.weights)
 
     @cached_property
-    def custom_sorted_patterns(self):
+    def entropy_regularizing_weights(self):
         entropy_regularizing_weights = np.zeros(len(self.weights))
         for p, pattern in enumerate(self.patterns):
             rule_applies_indices = rutils.apply_rule(pattern, self.features)
@@ -51,14 +54,19 @@ class RuleMiner:
             pred_count = Counter(rule_applies_preds)
             pred_count.update({k: 0 for k in self.classes if k not in pred_count})
             entropy_regularizing_weights[p] = (
-                None  # TODO: add the counts in class order
+                # ensuring same order each time
+                self.entropy_function(np.array([pred_count[cla] for cla in self.classes]))
             )
+        return entropy_regularizing_weights
 
+    @cached_property
+    def custom_sorted_patterns(self):
         sorted_pattern_weights = sorted(
             zip(self.patterns, self.weights),
             key=lambda x: rutils.pattern_importance_score(
                 cardinality=len(x[0]),
                 support_regularizing_weight=x[1],
+                entropy_regularizing_weight=self.entropy_regularizing_weights,
                 cardinality_regularizing_weight=self.cardinality_regularizing_weight,
             ),
             reverse=True,
