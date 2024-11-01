@@ -1,5 +1,5 @@
 feature: 5
 feature_name: num__Smokes (years)
 leq_threshold: true
-threshold: 33.0
+threshold: 21.5
 value: 0.0

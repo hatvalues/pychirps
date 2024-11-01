@@ -83,7 +83,7 @@ def test_true_negative_rate_cervical(cervicalb_enc, cervicalb_rf):
             for node in load_yaml_fixture_file("nodes_example_1")["nodes"]
         ),
     )
-    assert tnr == 0.6
+    assert tnr == 0.5
 
 
 def test_true_negative_rate_nursery(nursery_enc, nursery_rf):
@@ -122,7 +122,7 @@ def test_exclusive_coverage_cervical(cervicalb_enc, cervicalb_rf):
         ),
         K=2,
     )
-    assert ec == 0.4294117647058823
+    assert ec == 0.35784313725490197
 
 
 def test_exclusive_coverage_nursery(nursery_enc, nursery_rf):

@@ -1,5 +1,5 @@
 feature: 0
 feature_name: num__Age
-leq_threshold: false
-threshold: 17.5
+leq_threshold: true
+threshold: 19.5
 value: 18.0

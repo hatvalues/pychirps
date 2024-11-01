@@ -1,12 +1,13 @@
-from sklearn.ensemble import RandomForestClassifier
+from src.pychirps.extract_paths.classification_trees import random_forest_paths_factory
 from src.pychirps.pandas_utils.data_encoding import PandasEncoder
 from pychirps.extract_paths.forest_explorer import ForestExplorer
 from pychirps.build_rules.pattern_miner import PatternMiner
 from src.pychirps.build_rules.rule_miner import RuleMiner
-from src.pychirps.extract_paths.classification_trees import random_forest_paths_factory
+from sklearn.ensemble import RandomForestClassifier
 import data_preprocs.data_providers as dp
 from dataclasses import dataclass
 import numpy as np
+from src.config import DEFAULT_RANDOM_SEED
 import pytest
 
 
@@ -40,7 +41,7 @@ def cervicalb_enc():
 
 @pytest.fixture(scope="session")
 def cervicalb_rf(cervicalb_enc):
-    model = RandomForestClassifier(n_estimators=10, random_state=42)
+    model = RandomForestClassifier(n_estimators=10, random_state=DEFAULT_RANDOM_SEED)
     model.fit(cervicalb_enc.features, cervicalb_enc.target)
     return model
 
@@ -88,7 +89,7 @@ def nursery_enc():
 
 @pytest.fixture(scope="session")
 def nursery_rf(nursery_enc):
-    model = RandomForestClassifier(n_estimators=10, random_state=42)
+    model = RandomForestClassifier(n_estimators=10, random_state=DEFAULT_RANDOM_SEED)
     model.fit(nursery_enc.features, nursery_enc.target)
     return model
 

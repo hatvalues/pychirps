@@ -1,1575 +1,1866 @@
 0:
   pattern:
-  - feature: 5
+  - feature: 8
     leq_threshold: true
-    threshold: 33.0
-  weight: 0.3333333333333333
+    threshold: 8.5
+  weight: 0.25
 1:
   pattern:
-  - feature: 3
+  - feature: 2
+    leq_threshold: false
+    threshold: 14.5
+  - feature: 8
     leq_threshold: true
-    threshold: 1.5
-  - feature: 5
-    leq_threshold: true
-    threshold: 33.0
-  weight: 0.3333333333333333
+    threshold: 8.5
+  weight: 0.25
 2:
   pattern:
-  - feature: 5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 8
     leq_threshold: true
-    threshold: 33.0
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+    threshold: 8.5
+  weight: 0.25
 3:
   pattern:
-  - feature: 3
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 2
+    leq_threshold: false
+    threshold: 14.5
+  - feature: 8
     leq_threshold: true
-    threshold: 1.5
-  - feature: 5
-    leq_threshold: true
-    threshold: 33.0
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+    threshold: 8.5
+  weight: 0.25
 4:
   pattern:
-  - feature: 2
+  - feature: 28
     leq_threshold: true
-    threshold: 28.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  weight: 0.25
 5:
   pattern:
-  - feature: 2
+  - feature: 12
     leq_threshold: true
-    threshold: 28.5
-  - feature: 5
+    threshold: 1.5
+  - feature: 28
     leq_threshold: true
-    threshold: 33.0
-  weight: 0.3333333333333333
+    threshold: 0.5
+  weight: 0.25
 6:
   pattern:
-  - feature: 2
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 28
     leq_threshold: true
-    threshold: 28.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  weight: 0.25
 7:
-  pattern:
-  - feature: 2
-    leq_threshold: true
-    threshold: 28.5
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-8:
-  pattern:
-  - feature: 2
-    leq_threshold: true
-    threshold: 28.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 5
-    leq_threshold: true
-    threshold: 33.0
-  weight: 0.3333333333333333
-9:
-  pattern:
-  - feature: 2
-    leq_threshold: true
-    threshold: 28.5
-  - feature: 5
-    leq_threshold: true
-    threshold: 33.0
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-10:
-  pattern:
-  - feature: 2
-    leq_threshold: true
-    threshold: 28.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-11:
-  pattern:
-  - feature: 2
-    leq_threshold: true
-    threshold: 28.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 5
-    leq_threshold: true
-    threshold: 33.0
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-12:
-  pattern:
-  - feature: 27
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-13:
-  pattern:
-  - feature: 25
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 27
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-14:
   pattern:
   - feature: 0
     leq_threshold: true
     threshold: 20.5
-  - feature: 27
+  - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
-15:
+  weight: 0.25
+8:
   pattern:
-  - feature: 3
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 12
     leq_threshold: true
     threshold: 1.5
-  - feature: 27
+  - feature: 28
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
+9:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 12
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 28
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+10:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 28
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+11:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 12
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 28
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+12:
+  pattern:
+  - feature: 9
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 12
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.25
+13:
+  pattern:
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 9
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+14:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 9
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+15:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 9
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 12
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.25
 16:
   pattern:
   - feature: 0
     leq_threshold: true
     threshold: 20.5
-  - feature: 25
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 9
     leq_threshold: true
     threshold: 0.5
-  - feature: 27
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 17:
   pattern:
-  - feature: 3
+  - feature: 0
     leq_threshold: true
-    threshold: 1.5
-  - feature: 25
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 27
+    threshold: 20.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 9
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 18:
   pattern:
   - feature: 0
     leq_threshold: true
     threshold: 20.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 27
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 9
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 19:
   pattern:
   - feature: 0
     leq_threshold: true
     threshold: 20.5
-  - feature: 3
+  - feature: 9
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 12
     leq_threshold: true
     threshold: 1.5
-  - feature: 25
+  weight: 0.25
+20:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 9
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 12
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.25
+21:
+  pattern:
+  - feature: 12
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+22:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 12
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+23:
+  pattern:
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  weight: 0.25
+24:
+  pattern:
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+25:
+  pattern:
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+26:
+  pattern:
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+27:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  weight: 0.25
+28:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  weight: 0.25
+29:
+  pattern:
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
   - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
-20:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 1.5
-  weight: 0.3333333333333333
-21:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 1.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 2.5
-  weight: 0.3333333333333333
-22:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 1.5
-  - feature: 26
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-23:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 1.5
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-24:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 1.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 2.5
-  - feature: 26
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-25:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 1.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 2.5
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-26:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 1.5
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 26
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-27:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 1.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 2.5
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 26
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-28:
-  pattern:
-  - feature: 0
-    leq_threshold: false
-    threshold: 17.5
-  - feature: 12
-    leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
-29:
-  pattern:
-  - feature: 0
-    leq_threshold: false
-    threshold: 17.5
-  - feature: 25
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 30:
-  pattern:
-  - feature: 0
-    leq_threshold: false
-    threshold: 17.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 25
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-31:
-  pattern:
-  - feature: 0
-    leq_threshold: false
-    threshold: 17.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 12
-    leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
-32:
   pattern:
   - feature: 2
     leq_threshold: true
     threshold: 15.5
-  weight: 0.3333333333333333
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+31:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+32:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 33:
   pattern:
   - feature: 2
     leq_threshold: true
     threshold: 15.5
-  - feature: 3
+  - feature: 11
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 34:
   pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
   - feature: 2
     leq_threshold: true
     threshold: 15.5
-  - feature: 11
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 35:
   pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
   - feature: 2
     leq_threshold: true
     threshold: 15.5
-  - feature: 28
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 36:
   pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
   - feature: 2
     leq_threshold: true
     threshold: 15.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 37:
   pattern:
-  - feature: 2
+  - feature: 0
     leq_threshold: true
-    threshold: 15.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-38:
-  pattern:
+    threshold: 20.5
   - feature: 2
     leq_threshold: true
     threshold: 15.5
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
+  weight: 0.25
+38:
+  pattern:
+  - feature: 0
     leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  weight: 0.25
 39:
   pattern:
   - feature: 2
     leq_threshold: true
     threshold: 15.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 40:
   pattern:
-  - feature: 0
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 2
     leq_threshold: true
-    threshold: 22.5
-  weight: 0.3333333333333333
+    threshold: 15.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 41:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 22.5
-  - feature: 28
+    threshold: 20.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 42:
   pattern:
   - feature: 1
     leq_threshold: false
-    threshold: 3.0
-  weight: 0.3333333333333333
+    threshold: 3.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 43:
   pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.0
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
   - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  weight: 0.3333333333333333
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 44:
   pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
   - feature: 1
     leq_threshold: false
-    threshold: 3.0
-  - feature: 3
+    threshold: 3.5
+  - feature: 2
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 15.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 45:
   pattern:
   - feature: 1
     leq_threshold: false
-    threshold: 3.0
-  - feature: 28
+    threshold: 3.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 46:
   pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.0
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 3
+  - feature: 0
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 20.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 47:
   pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
   - feature: 1
     leq_threshold: false
-    threshold: 3.0
+    threshold: 3.5
   - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 28
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 48:
   pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
   - feature: 1
     leq_threshold: false
-    threshold: 3.0
-  - feature: 3
+    threshold: 3.5
+  - feature: 2
     leq_threshold: true
-    threshold: 1.5
-  - feature: 28
+    threshold: 15.5
+  - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 49:
   pattern:
   - feature: 1
     leq_threshold: false
-    threshold: 3.0
+    threshold: 3.5
   - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 3
     leq_threshold: true
-    threshold: 1.5
-  - feature: 28
+    threshold: 15.5
+  - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 50:
   pattern:
-  - feature: 6
+  - feature: 0
     leq_threshold: true
-    threshold: 13.5
-  weight: 0.3333333333333333
+    threshold: 20.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 51:
   pattern:
   - feature: 0
     leq_threshold: true
     threshold: 20.5
-  - feature: 6
-    leq_threshold: true
-    threshold: 13.5
-  weight: 0.3333333333333333
-52:
-  pattern:
-  - feature: 6
-    leq_threshold: true
-    threshold: 13.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-53:
-  pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 6
+  - feature: 2
     leq_threshold: true
-    threshold: 13.5
-  weight: 0.3333333333333333
+    threshold: 15.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+52:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+53:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 15.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 54:
   pattern:
   - feature: 0
     leq_threshold: true
     threshold: 20.5
-  - feature: 6
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 2
     leq_threshold: true
-    threshold: 13.5
-  - feature: 9
+    threshold: 15.5
+  - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 55:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.5
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 6
-    leq_threshold: true
-    threshold: 13.5
-  weight: 0.3333333333333333
+    threshold: 22.5
+  weight: 0.25
 56:
   pattern:
-  - feature: 1
+  - feature: 0
+    leq_threshold: true
+    threshold: 22.5
+  - feature: 2
     leq_threshold: false
-    threshold: 3.5
-  - feature: 6
-    leq_threshold: true
-    threshold: 13.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+    threshold: 14.5
+  weight: 0.25
 57:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.5
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 6
-    leq_threshold: true
-    threshold: 13.5
-  - feature: 9
+    threshold: 22.5
+  - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 58:
-  pattern:
-  - feature: 19
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-59:
-  pattern:
-  - feature: 8
-    leq_threshold: true
-    threshold: 8.5
-  - feature: 19
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-60:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 19
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-61:
-  pattern:
-  - feature: 19
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-62:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 8
-    leq_threshold: true
-    threshold: 8.5
-  - feature: 19
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-63:
-  pattern:
-  - feature: 8
-    leq_threshold: true
-    threshold: 8.5
-  - feature: 19
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-64:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 19
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-65:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 8
-    leq_threshold: true
-    threshold: 8.5
-  - feature: 19
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-66:
-  pattern:
-  - feature: 4
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-67:
-  pattern:
-  - feature: 1
-    leq_threshold: true
-    threshold: 4.5
-  - feature: 4
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-68:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 4
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-69:
-  pattern:
-  - feature: 4
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-70:
-  pattern:
-  - feature: 1
-    leq_threshold: true
-    threshold: 4.5
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 4
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-71:
-  pattern:
-  - feature: 1
-    leq_threshold: true
-    threshold: 4.5
-  - feature: 4
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-72:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 4
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-73:
-  pattern:
-  - feature: 1
-    leq_threshold: true
-    threshold: 4.5
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 4
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-74:
   pattern:
   - feature: 0
     leq_threshold: true
     threshold: 20.5
+  - feature: 0
+    leq_threshold: true
+    threshold: 22.5
+  weight: 0.25
+59:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 22.5
+  - feature: 2
+    leq_threshold: false
+    threshold: 14.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+60:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 0
+    leq_threshold: true
+    threshold: 22.5
+  - feature: 2
+    leq_threshold: false
+    threshold: 14.5
+  weight: 0.25
+61:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 0
+    leq_threshold: true
+    threshold: 22.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+62:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 0
+    leq_threshold: true
+    threshold: 22.5
+  - feature: 2
+    leq_threshold: false
+    threshold: 14.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+63:
+  pattern:
+  - feature: 2
+    leq_threshold: false
+    threshold: 11.5
+  weight: 0.25
+64:
+  pattern:
+  - feature: 2
+    leq_threshold: false
+    threshold: 11.5
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
+65:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 2
+    leq_threshold: false
+    threshold: 11.5
+  weight: 0.25
+66:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 2
+    leq_threshold: false
+    threshold: 11.5
+  weight: 0.25
+67:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 2
+    leq_threshold: false
+    threshold: 11.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+68:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 2
+    leq_threshold: false
+    threshold: 11.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+69:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 2
+    leq_threshold: false
+    threshold: 11.5
+  weight: 0.25
+70:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 2
+    leq_threshold: false
+    threshold: 11.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+71:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 17.5
+  weight: 0.25
+72:
+  pattern:
+  - feature: 2
+    leq_threshold: true
+    threshold: 17.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+73:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 17.5
+  weight: 0.25
+74:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 17.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 75:
   pattern:
   - feature: 0
     leq_threshold: true
     threshold: 20.5
-  - feature: 7
+  - feature: 2
     leq_threshold: true
-    threshold: 0.5
-  - feature: 26
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+    threshold: 17.5
+  weight: 0.25
 76:
   pattern:
-  - feature: 9
+  - feature: 0
     leq_threshold: true
-    threshold: 0.5
-  - feature: 26
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-77:
-  pattern:
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 26
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-78:
-  pattern:
+    threshold: 20.5
   - feature: 1
     leq_threshold: false
-    threshold: 3.5
-  - feature: 26
+    threshold: 2.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 17.5
+  weight: 0.25
+77:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 17.5
+  - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
+78:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 2
+    leq_threshold: true
+    threshold: 17.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 79:
   pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 26
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 2
+    leq_threshold: false
+    threshold: 14.5
+  weight: 0.25
 80:
   pattern:
-  - feature: 1
+  - feature: 2
     leq_threshold: false
-    threshold: 3.5
-  - feature: 7
+    threshold: 14.5
+  - feature: 27
     leq_threshold: true
     threshold: 0.5
-  - feature: 26
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 81:
   pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 2
+    leq_threshold: false
+    threshold: 14.5
+  weight: 0.25
+82:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 2
+    leq_threshold: false
+    threshold: 14.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+83:
+  pattern:
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.33333333333333337
+84:
+  pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 7
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 26
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-82:
-  pattern:
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 26
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.41666666666666663
-83:
-  pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.5
-  - feature: 25
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-84:
-  pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 25
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.33333333333333337
 85:
   pattern:
-  - feature: 25
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.33333333333333337
 86:
   pattern:
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 25
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 87:
   pattern:
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 25
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.41666666666666663
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 88:
   pattern:
-  - feature: 7
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  - feature: 12
-    leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+  weight: 0.25
 89:
   pattern:
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 7
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  - feature: 12
-    leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+  weight: 0.25
 90:
   pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 12
+  - feature: 0
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.33333333333333337
 91:
   pattern:
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 3
+    threshold: 3.5
+  - feature: 4
     leq_threshold: true
-    threshold: 1.5
-  - feature: 12
+    threshold: 0.5
+  - feature: 26
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  weight: 0.25
 92:
   pattern:
-  - feature: 12
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 28
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 93:
   pattern:
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 12
+    threshold: 3.5
+  - feature: 1
     leq_threshold: true
-    threshold: 1.5
-  - feature: 28
+    threshold: 4.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 94:
   pattern:
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 12
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 28
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 95:
   pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 3
+  - feature: 0
     leq_threshold: true
-    threshold: 1.5
-  - feature: 12
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 28
+    threshold: 20.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 96:
   pattern:
-  - feature: 3
+  - feature: 0
     leq_threshold: true
-    threshold: 1.5
-  - feature: 12
+    threshold: 20.5
+  - feature: 4
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.41666666666666663
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 97:
   pattern:
-  - feature: 3
+  - feature: 0
     leq_threshold: true
-    threshold: 2.5
-  - feature: 12
+    threshold: 20.5
+  - feature: 1
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 4.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 98:
   pattern:
-  - feature: 3
+  - feature: 0
     leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
     threshold: 2.5
-  - feature: 7
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  - feature: 12
-    leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+  weight: 0.25
 99:
   pattern:
-  - feature: 3
+  - feature: 4
     leq_threshold: true
-    threshold: 2.5
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 100:
   pattern:
-  - feature: 3
+  - feature: 1
     leq_threshold: true
-    threshold: 2.5
-  - feature: 7
+    threshold: 4.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
   - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 101:
   pattern:
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 3
-    leq_threshold: true
+  - feature: 1
+    leq_threshold: false
     threshold: 2.5
-  weight: 0.3333333333333333
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 102:
   pattern:
-  - feature: 3
+  - feature: 1
     leq_threshold: true
-    threshold: 1.5
-  - feature: 3
+    threshold: 4.5
+  - feature: 4
     leq_threshold: true
-    threshold: 2.5
-  - feature: 12
+    threshold: 0.5
+  - feature: 19
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  weight: 0.25
 103:
   pattern:
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 3
-    leq_threshold: true
+  - feature: 1
+    leq_threshold: false
     threshold: 2.5
-  - feature: 7
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 104:
   pattern:
-  - feature: 3
+  - feature: 1
     leq_threshold: true
-    threshold: 1.5
-  - feature: 3
-    leq_threshold: true
+    threshold: 4.5
+  - feature: 1
+    leq_threshold: false
     threshold: 2.5
-  - feature: 7
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  - feature: 12
-    leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+  weight: 0.25
 105:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 3
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 4
     leq_threshold: true
-    threshold: 2.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 106:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 3
-    leq_threshold: true
-    threshold: 2.5
-  - feature: 7
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 107:
   pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 3
+  - feature: 0
     leq_threshold: true
-    threshold: 2.5
-  weight: 0.3333333333333333
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 108:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 2
+    threshold: 20.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 3
-    leq_threshold: true
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
     threshold: 2.5
-  weight: 0.3333333333333333
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 109:
   pattern:
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 2.5
-  - feature: 7
+    threshold: 3.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 110:
   pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.0
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 3
+    threshold: 3.5
+  - feature: 1
     leq_threshold: true
-    threshold: 2.5
-  - feature: 7
+    threshold: 4.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 111:
   pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 3
-    leq_threshold: true
+  - feature: 1
+    leq_threshold: false
     threshold: 2.5
-  weight: 0.3333333333333333
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 112:
   pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 3
+  - feature: 1
     leq_threshold: true
-    threshold: 2.5
-  weight: 0.3333333333333333
+    threshold: 4.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 113:
   pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.0
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 3
-    leq_threshold: true
+  - feature: 1
+    leq_threshold: false
     threshold: 2.5
-  weight: 0.3333333333333333
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 114:
   pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 3
+  - feature: 1
     leq_threshold: true
+    threshold: 4.5
+  - feature: 1
+    leq_threshold: false
     threshold: 2.5
-  - feature: 7
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 115:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 2.5
-  weight: 0.3333333333333333
-116:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 2.5
-  - feature: 7
+    threshold: 20.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+116:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 117:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
+    threshold: 20.5
   - feature: 1
     leq_threshold: false
-    threshold: 3.5
-  - feature: 3
-    leq_threshold: true
     threshold: 2.5
-  - feature: 7
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 118:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
+    threshold: 20.5
   - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 3
     leq_threshold: true
-    threshold: 2.5
-  - feature: 7
+    threshold: 4.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 119:
   pattern:
-  - feature: 3
+  - feature: 0
     leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
     threshold: 2.5
-  - feature: 7
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.41666666666666663
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 120:
   pattern:
-  - feature: 2
+  - feature: 0
     leq_threshold: true
-    threshold: 16.5
-  - feature: 12
+    threshold: 20.5
+  - feature: 1
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 4.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 121:
   pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 2
+  - feature: 1
     leq_threshold: true
-    threshold: 16.5
-  weight: 0.3333333333333333
+    threshold: 4.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 122:
   pattern:
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 2
+    threshold: 2.5
+  - feature: 4
     leq_threshold: true
-    threshold: 16.5
-  - feature: 12
+    threshold: 0.5
+  - feature: 19
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 123:
   pattern:
-  - feature: 2
+  - feature: 1
     leq_threshold: true
-    threshold: 16.5
-  - feature: 3
+    threshold: 4.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 124:
   pattern:
-  - feature: 2
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 2
+    threshold: 2.5
+  - feature: 4
     leq_threshold: true
-    threshold: 16.5
-  - feature: 3
+    threshold: 0.5
+  - feature: 19
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  weight: 0.25
 125:
   pattern:
-  - feature: 2
+  - feature: 0
     leq_threshold: true
-    threshold: 16.5
-  - feature: 3
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 4
     leq_threshold: true
-    threshold: 1.5
-  - feature: 12
+    threshold: 0.5
+  - feature: 19
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 126:
   pattern:
-  - feature: 2
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 2
+    threshold: 3.5
+  - feature: 1
     leq_threshold: true
-    threshold: 16.5
-  - feature: 3
+    threshold: 4.5
+  - feature: 4
     leq_threshold: true
-    threshold: 1.5
-  - feature: 12
+    threshold: 0.5
+  - feature: 26
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  weight: 0.25
 127:
   pattern:
-  - feature: 2
+  - feature: 0
     leq_threshold: true
-    threshold: 16.5
-  - feature: 28
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 128:
   pattern:
-  - feature: 2
+  - feature: 0
     leq_threshold: true
-    threshold: 16.5
-  - feature: 3
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
     leq_threshold: true
-    threshold: 1.5
-  - feature: 28
+    threshold: 4.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 129:
   pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 2
+  - feature: 0
     leq_threshold: true
-    threshold: 16.5
-  - feature: 28
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 130:
   pattern:
-  - feature: 2
+  - feature: 0
     leq_threshold: true
-    threshold: 16.5
-  - feature: 12
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
     leq_threshold: true
-    threshold: 1.5
-  - feature: 28
+    threshold: 4.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 131:
-  pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 2
-    leq_threshold: true
-    threshold: 16.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-132:
-  pattern:
-  - feature: 2
-    leq_threshold: true
-    threshold: 16.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 12
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-133:
-  pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 2
-    leq_threshold: true
-    threshold: 16.5
-  - feature: 12
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-134:
-  pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 2
-    leq_threshold: true
-    threshold: 16.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 12
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-135:
   pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 2
+  - feature: 1
     leq_threshold: true
-    threshold: 16.5
-  weight: 0.3333333333333333
-136:
-  pattern:
-  - feature: 2
-    leq_threshold: true
-    threshold: 16.5
-  - feature: 7
+    threshold: 4.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+132:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+133:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+134:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+135:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+136:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 137:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
+    threshold: 20.5
   - feature: 1
     leq_threshold: true
     threshold: 4.5
-  weight: 0.3333333333333333
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 138:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
+    threshold: 20.5
   - feature: 1
     leq_threshold: true
     threshold: 4.5
-  weight: 0.3333333333333333
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 139:
   pattern:
   - feature: 1
     leq_threshold: true
     threshold: 4.5
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  weight: 0.3333333333333333
+    threshold: 2.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 140:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 1
-    leq_threshold: true
-    threshold: 4.5
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  weight: 0.3333333333333333
-141:
-  pattern:
+    threshold: 20.5
   - feature: 1
     leq_threshold: false
     threshold: 3.5
   - feature: 1
     leq_threshold: true
     threshold: 4.5
-  - feature: 2
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+141:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  weight: 0.3333333333333333
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 142:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
+    threshold: 20.5
   - feature: 1
     leq_threshold: false
     threshold: 3.5
   - feature: 1
     leq_threshold: true
     threshold: 4.5
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  weight: 0.3333333333333333
+    threshold: 2.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 143:
   pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
   - feature: 1
     leq_threshold: true
     threshold: 4.5
-  - feature: 9
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 144:
   pattern:
   - feature: 1
@@ -1578,197 +1869,188 @@
   - feature: 1
     leq_threshold: true
     threshold: 4.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-145:
-  pattern:
   - feature: 1
-    leq_threshold: true
-    threshold: 4.5
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-146:
-  pattern:
-  - feature: 1
-    leq_threshold: true
-    threshold: 4.5
-  - feature: 2
     leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+    threshold: 2.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
-147:
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+145:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
+    threshold: 20.5
   - feature: 1
     leq_threshold: true
     threshold: 4.5
-  - feature: 7
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+146:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+147:
+  pattern:
+  - feature: 12
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.33333333333333337
 148:
   pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 1
+  - feature: 12
     leq_threshold: true
-    threshold: 4.5
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+    threshold: 1.5
+  weight: 0.33333333333333337
 149:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 1
+    threshold: 20.5
+  - feature: 12
     leq_threshold: true
-    threshold: 4.5
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+    threshold: 1.5
+  weight: 0.33333333333333337
 150:
   pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 1
+  - feature: 12
     leq_threshold: true
-    threshold: 4.5
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+    threshold: 1.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 151:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
+    threshold: 20.5
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 1
+  - feature: 12
     leq_threshold: true
-    threshold: 4.5
-  - feature: 7
+    threshold: 1.5
+  weight: 0.33333333333333337
+152:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 12
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
-152:
+  weight: 0.25
+153:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
+    threshold: 20.5
+  - feature: 12
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+154:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 1
+  - feature: 12
     leq_threshold: true
-    threshold: 4.5
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
+    threshold: 1.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+155:
+  pattern:
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
-153:
-  pattern:
-  - feature: 1
-    leq_threshold: true
-    threshold: 4.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-154:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 1
-    leq_threshold: true
-    threshold: 4.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-155:
-  pattern:
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 1
-    leq_threshold: true
-    threshold: 4.5
-  weight: 0.41666666666666663
+  weight: 0.25
 156:
   pattern:
+  - feature: 7
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 29
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+157:
+  pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 8
-    leq_threshold: true
-    threshold: 8.5
-  weight: 0.3333333333333333
-157:
-  pattern:
-  - feature: 8
-    leq_threshold: true
-    threshold: 8.5
-  - feature: 28
+  - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 158:
   pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 8
-    leq_threshold: true
-    threshold: 8.5
-  - feature: 28
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 7
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 159:
-  pattern:
-  - feature: 8
-    leq_threshold: true
-    threshold: 8.5
-  - feature: 11
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-160:
-  pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
-161:
   pattern:
   - feature: 0
     leq_threshold: true
@@ -1776,17 +2058,8 @@
   - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
-162:
-  pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-163:
+  weight: 0.25
+160:
   pattern:
   - feature: 0
     leq_threshold: true
@@ -1794,32 +2067,80 @@
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 28
+  - feature: 7
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
-164:
+  weight: 0.25
+161:
   pattern:
   - feature: 0
     leq_threshold: true
     threshold: 20.5
-  - feature: 9
+  - feature: 4
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 7
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+162:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 4
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 7
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+163:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 7
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+164:
+  pattern:
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 165:
   pattern:
   - feature: 0
     leq_threshold: true
     threshold: 20.5
   - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 9
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 166:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+167:
   pattern:
   - feature: 0
     leq_threshold: true
@@ -1827,761 +2148,767 @@
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  weight: 0.41666666666666663
-167:
-  pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 9
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 168:
   pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+  - feature: 11
     leq_threshold: true
     threshold: 0.5
-  - feature: 9
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 169:
   pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 170:
   pattern:
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
+    threshold: 3.5
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 171:
   pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+  - feature: 0
     leq_threshold: true
-    threshold: 0.5
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 172:
   pattern:
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+    threshold: 2.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 11
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 173:
   pattern:
   - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 1
     leq_threshold: false
-    threshold: 3.5
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  weight: 0.3333333333333333
+    threshold: 2.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 174:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+175:
   pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+    threshold: 2.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
-175:
-  pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  weight: 0.41666666666666663
+  weight: 0.25
 176:
   pattern:
-  - feature: 2
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 28
+    threshold: 2.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.41666666666666663
+  weight: 0.25
 177:
   pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 3
+  - feature: 1
     leq_threshold: true
-    threshold: 1.5
-  - feature: 28
+    threshold: 4.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.41666666666666663
+  weight: 0.25
 178:
   pattern:
-  - feature: 2
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 179:
   pattern:
-  - feature: 2
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 28
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 180:
   pattern:
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+    threshold: 3.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.41666666666666663
+  weight: 0.33333333333333337
 181:
   pattern:
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 3
+  - feature: 0
     leq_threshold: true
-    threshold: 1.5
-  - feature: 7
+    threshold: 20.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.33333333333333337
 182:
   pattern:
-  - feature: 9
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  - feature: 11
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.33333333333333337
 183:
   pattern:
-  - feature: 7
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 11
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.33333333333333337
 184:
   pattern:
-  - feature: 9
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 185:
   pattern:
   - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 9
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.41666666666666663
+  weight: 0.25
 186:
   pattern:
-  - feature: 7
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.41666666666666663
+  weight: 0.25
 187:
   pattern:
   - feature: 1
     leq_threshold: false
-    threshold: 3.5
-  - feature: 7
+    threshold: 2.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.33333333333333337
 188:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 9
+    threshold: 20.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.33333333333333337
 189:
   pattern:
-  - feature: 0
+  - feature: 1
     leq_threshold: true
-    threshold: 20.0
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 11
+    threshold: 4.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 190:
   pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.0
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 9
+    threshold: 3.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 191:
   pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.0
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 9
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 192:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 9
+    threshold: 20.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  - feature: 11
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 193:
   pattern:
-  - feature: 0
+  - feature: 1
     leq_threshold: true
-    threshold: 20.0
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 11
+    threshold: 4.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 194:
   pattern:
-  - feature: 0
+  - feature: 1
     leq_threshold: true
-    threshold: 20.0
-  - feature: 2
+    threshold: 4.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+    threshold: 2.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 195:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  - feature: 9
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 11
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 196:
   pattern:
-  - feature: 0
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 26
     leq_threshold: true
-    threshold: 20.0
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  weight: 0.25
 197:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 28
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 198:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 2
+    threshold: 20.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 3
+    threshold: 2.5
+  - feature: 26
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  weight: 0.33333333333333337
 199:
   pattern:
-  - feature: 0
+  - feature: 1
     leq_threshold: true
-    threshold: 20.0
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 7
+    threshold: 4.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 200:
   pattern:
-  - feature: 0
+  - feature: 1
     leq_threshold: true
-    threshold: 20.0
-  - feature: 2
+    threshold: 4.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 28
+    threshold: 2.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 201:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 3
+    threshold: 20.5
+  - feature: 1
     leq_threshold: true
-    threshold: 1.5
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 28
+    threshold: 4.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 202:
   pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.0
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 7
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 203:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 2
+    threshold: 20.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 7
+    threshold: 3.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 204:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 2
+    threshold: 20.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  weight: 0.41666666666666663
-205:
-  pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.0
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+    threshold: 2.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.41666666666666663
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+205:
+  pattern:
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 206:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 11
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.41666666666666663
+  weight: 0.25
 207:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 2
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 11
+    threshold: 2.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 208:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 7
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  - feature: 11
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.41666666666666663
+  weight: 0.25
 209:
   pattern:
-  - feature: 0
+  - feature: 1
     leq_threshold: true
-    threshold: 20.0
-  - feature: 2
+    threshold: 4.5
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  - feature: 11
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 210:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 11
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 211:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
   - feature: 1
     leq_threshold: false
-    threshold: 3.5
-  - feature: 7
+    threshold: 2.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  - feature: 11
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 212:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
+    threshold: 20.5
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  weight: 0.3333333333333333
+    threshold: 2.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 213:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 2
+  - feature: 1
     leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+    threshold: 2.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 214:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 7
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.41666666666666663
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 215:
   pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.0
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 28
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 216:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 1
-    leq_threshold: false
-    threshold: 3.5
-  - feature: 7
+    threshold: 20.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
+  - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 217:
   pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.0
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 28
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 218:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 2
-    leq_threshold: false
-    threshold: 14.5
-  - feature: 7
+    threshold: 20.5
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
+  - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 219:
   pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.0
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
+  - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 220:
   pattern:
-  - feature: 0
-    leq_threshold: true
-    threshold: 20.0
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
+  - feature: 19
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 221:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 7
+    threshold: 20.5
+  - feature: 11
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
+  - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 0.41666666666666663
+  weight: 0.25
 222:
   pattern:
   - feature: 0
     leq_threshold: true
-    threshold: 20.0
-  - feature: 7
+    threshold: 20.5
+  - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 223:
   pattern:
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 11
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 224:
   pattern:
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
+  - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 225:
   pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 3
+  - feature: 19
     leq_threshold: true
-    threshold: 1.5
-  weight: 0.3333333333333333
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 226:
   pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 28
+  - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 227:
-  pattern:
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.41666666666666663
-228:
-  pattern:
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-229:
-  pattern:
-  - feature: 3
-    leq_threshold: true
-    threshold: 1.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.5
-230:
   pattern:
   - feature: 1
     leq_threshold: false
@@ -2589,88 +2916,661 @@
   - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 0.41666666666666663
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+228:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+229:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+230:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 19
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 231:
   pattern:
   - feature: 1
     leq_threshold: false
-    threshold: 3.5
-  - feature: 11
+    threshold: 2.5
+  - feature: 27
     leq_threshold: true
     threshold: 0.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
 232:
-  pattern:
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 11
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 28
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.3333333333333333
-233:
-  pattern:
-  - feature: 7
-    leq_threshold: true
-    threshold: 0.5
-  - feature: 11
-    leq_threshold: true
-    threshold: 0.5
-  weight: 0.41666666666666663
-234:
   pattern:
   - feature: 1
     leq_threshold: false
-    threshold: 3.5
-  - feature: 7
+    threshold: 2.5
+  - feature: 26
     leq_threshold: true
     threshold: 0.5
-  - feature: 11
+  - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 0.3333333333333333
+  weight: 0.25
+233:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+234:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  - feature: 27
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
 235:
   pattern:
-  - feature: 7
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 27
     leq_threshold: true
     threshold: 0.5
-  weight: 0.6666666666666667
+  weight: 0.33333333333333337
 236:
   pattern:
-  - feature: 7
+  - feature: 1
     leq_threshold: true
-    threshold: 0.5
-  - feature: 28
+    threshold: 4.5
+  - feature: 3
     leq_threshold: true
-    threshold: 0.5
-  weight: 0.41666666666666663
+    threshold: 1.5
+  weight: 0.25
 237:
   pattern:
-  - feature: 28
+  - feature: 0
     leq_threshold: true
-    threshold: 0.5
-  weight: 0.6666666666666667
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.25
 238:
   pattern:
   - feature: 1
     leq_threshold: false
-    threshold: 3.5
-  - feature: 7
+    threshold: 2.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.25
+239:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.25
+240:
+  pattern:
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 11
     leq_threshold: true
     threshold: 0.5
-  weight: 0.41666666666666663
-239:
+  weight: 0.25
+241:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+242:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+243:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+244:
   pattern:
   - feature: 1
     leq_threshold: false
     threshold: 3.5
-  - feature: 28
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.25
+245:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 11
     leq_threshold: true
     threshold: 0.5
+  weight: 0.25
+246:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.25
+247:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.25
+248:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+249:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+250:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.25
+251:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+252:
+  pattern:
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 29
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+253:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 29
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+254:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 29
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+255:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  - feature: 29
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+256:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.33333333333333337
+257:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.33333333333333337
+258:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 3
+    leq_threshold: true
+    threshold: 1.5
+  weight: 0.33333333333333337
+259:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  weight: 0.33333333333333337
+260:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  weight: 0.33333333333333337
+261:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  weight: 0.25
+262:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  weight: 0.33333333333333337
+263:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  weight: 0.33333333333333337
+264:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  weight: 0.25
+265:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: true
+    threshold: 4.5
+  weight: 0.25
+266:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 29
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+267:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 29
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+268:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 29
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.33333333333333337
+269:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 29
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+270:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 29
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.33333333333333337
+271:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.33333333333333337
+272:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.33333333333333337
+273:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.33333333333333337
+274:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+275:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.33333333333333337
+276:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.25
+277:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 11
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.41666666666666663
+278:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  weight: 0.5833333333333334
+279:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
   weight: 0.5
+280:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  weight: 0.33333333333333337
+281:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 3.5
+  weight: 0.33333333333333337
+282:
+  pattern:
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  weight: 0.6666666666666666
+283:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  - feature: 1
+    leq_threshold: false
+    threshold: 2.5
+  weight: 0.5833333333333334
+284:
+  pattern:
+  - feature: 0
+    leq_threshold: true
+    threshold: 20.5
+  weight: 0.75

@@ -1,5 +1,5 @@
-feature: 26
-feature_name: num__Dx:Cancer
+feature: 8
+feature_name: num__Hormonal Contraceptives (years)
 leq_threshold: true
-threshold: 0.5
+threshold: 8.5
 value: 0.0

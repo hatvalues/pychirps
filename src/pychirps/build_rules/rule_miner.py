@@ -1,5 +1,5 @@
-from pychirps.build_rules.pattern_miner import PatternMiner
-import pychirps.build_rules.rule_utilities as rutils
+from src.pychirps.build_rules.pattern_miner import PatternMiner
+import src.pychirps.build_rules.rule_utilities as rutils
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from functools import cached_property
