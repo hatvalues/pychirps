@@ -55,12 +55,19 @@ def cervicalb_rf_paths(cervicalb_enc, cervicalb_rf):
 
 
 @pytest.fixture
-def cervicalb_rule_miner(cervicalb_rf_paths, cervicalb_rf, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
+def cervicalb_pattern_miner(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
+    return PatternMiner(
+        forest_path=cervicalb_rf_paths,
+        feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
+    )
+
+
+@pytest.fixture
+def cervicalb_rule_miner(cervicalb_rf, cervicalb_enc, cervicalb_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
     y_pred = cervicalb_rf.predict(cervicalb_enc.unseen_instance_features)[0]
     preds = cervicalb_rf.predict(cervicalb_enc.features)
-    pattern_miner = PatternMiner(forest_path=cervicalb_rf_paths)
     return RuleMiner(
-        pattern_miner=pattern_miner,
+        pattern_miner=cervicalb_pattern_miner,
         y_pred=y_pred,
         features=cervicalb_enc.features,
         preds=preds,
@@ -103,12 +110,19 @@ def nursery_rf_paths(nursery_enc, nurseryb_rf):
 
 
 @pytest.fixture
-def nursery_rule_miner(nursery_rf_paths, nursery_rf, nursery_enc):  # noqa # mypy can't cope with pytest fixtures
+def nursery_pattern_miner(nursery_rf_paths, nursery_enc):  # noqa # mypy can't cope with pytest fixtures
+    return PatternMiner(
+        forest_path=nursery_rf_paths,
+        feature_names=nursery_enc.encoder.preprocessor.get_feature_names_out().tolist(),
+    )
+
+
+@pytest.fixture
+def nursery_rule_miner(nursery_rf, nursery_enc, nursery_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
     y_pred = nursery_rf.predict(nursery_enc.unseen_instance_features)[0]
     preds = nursery_rf.predict(nursery_enc.features)
-    pattern_miner = PatternMiner(forest_path=nursery_rf_paths)
     return RuleMiner(
-        pattern_miner=pattern_miner,
+        pattern_miner=nursery_pattern_miner,
         y_pred=y_pred,
         features=nursery_enc.features,
         preds=preds,

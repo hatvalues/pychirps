@@ -11,21 +11,21 @@ import pytest
 @pytest.fixture
 def weighted_paths():
     tree_node_1 = TreeNode(
-        feature=np.int64(27),
+        feature=np.int64(0),
         feature_name="num__Dx:CIN",
         value=np.float32(0.0),
         threshold=np.float64(0.5),
         leq_threshold=np.True_,
     )
     tree_node_2 = TreeNode(
-        feature=np.int64(11),
+        feature=np.int64(1),
         feature_name="num__STDs",
         value=np.float32(0.0),
         threshold=np.float64(0.5),
         leq_threshold=np.True_,
     )
     tree_node_3 = TreeNode(
-        feature=np.int64(1),
+        feature=np.int64(2),
         feature_name="num__Number of sexual partners",
         value=np.float32(4.0),
         threshold=np.float64(1.5),
