@@ -62,16 +62,20 @@ class RuleMiner:
     @cached_property
     def custom_sorted_patterns(self):
         sorted_pattern_weights = sorted(
-            zip(self.patterns, self.weights),
+            zip(self.patterns, self.weights, self.entropy_regularizing_weights),
             key=lambda x: rutils.pattern_importance_score(
                 cardinality=len(x[0]),
                 support_regularizing_weight=x[1],
-                entropy_regularizing_weight=self.entropy_regularizing_weights,
+                entropy_regularizing_weight=x[2],
                 cardinality_regularizing_weight=self.cardinality_regularizing_weight,
             ),
             reverse=True,
         )
-        return tuple(pattern for pattern, _ in sorted_pattern_weights)
+        # these are now sorted by how they perform:
+        # A. on the data set individually increasing entropy (higher is better)
+        # B. how much support they receive (more frequent is better) 
+        # C. the cardinality of the pattern, (longer is better, more interaction terms)
+        return tuple(pattern for pattern, _, _ in sorted_pattern_weights)
 
     def hill_climb(self):
         # hill climbing algorithm to find the best combination of patterns
