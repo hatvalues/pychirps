@@ -7,7 +7,10 @@ from src.config import DEFAULT_RANDOM_SEED
 
 def test_model_harness():
     X_train, X_test, y_train, y_test = train_test_split(
-        dp.cervicalb_pd.features, dp.cervicalb_pd.target, test_size=0.2, random_state=DEFAULT_RANDOM_SEED
+        dp.cervicalb_pd.features,
+        dp.cervicalb_pd.target,
+        test_size=0.2,
+        random_state=DEFAULT_RANDOM_SEED,
     )
     model = RandomForestClassifier(n_estimators=100, random_state=DEFAULT_RANDOM_SEED)
     model.fit(X_train, y_train)

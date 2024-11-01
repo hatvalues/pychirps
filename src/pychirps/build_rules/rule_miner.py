@@ -16,7 +16,7 @@ class RuleMiner:
         preds: np.ndarray,
         classes=np.array([0, 1], dtype=np.uint8),
         cardinality_regularizing_weight: float = 0.5,
-        entropy_function: Callable = rutils.entropy
+        entropy_function: Callable = rutils.entropy,
     ):
         self._pattern_miner = pattern_miner
         self.y_pred = y_pred
@@ -55,7 +55,9 @@ class RuleMiner:
             pred_count.update({k: 0 for k in self.classes if k not in pred_count})
             entropy_regularizing_weights[p] = (
                 # ensuring same order each time
-                self.entropy_function(np.array([pred_count[cla] for cla in self.classes]))
+                self.entropy_function(
+                    np.array([pred_count[cla] for cla in self.classes])
+                )
             )
         return entropy_regularizing_weights
 
@@ -73,7 +75,7 @@ class RuleMiner:
         )
         # these are now sorted by how they perform:
         # A. on the data set individually increasing entropy (higher is better)
-        # B. how much support they receive (more frequent is better) 
+        # B. how much support they receive (more frequent is better)
         # C. the cardinality of the pattern, (longer is better, more interaction terms)
         return tuple(pattern for pattern, _, _ in sorted_pattern_weights)
 
