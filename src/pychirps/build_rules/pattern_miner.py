@@ -57,16 +57,18 @@ class PatternMiner:
     def descretize_continuous_thresholds(self):
         feature_values_leq = defaultdict(list)
         feature_values_gt = defaultdict(list)
-        for pattern in self.pattern_set:
+        for pattern in self.pattern_set.patterns:
             for node in pattern:
                 # this is the prefix applied by our feature encoder
                 if self.feature_names[node.feature].startswith("num__"):
                     if node.leq_threshold:
-                        feature_values_leq[node.feature].append(node.value)
+                        feature_values_leq[node.feature].append(node.threshold)
                     else:
-                        feature_values_gt[node.feature].append(node.value)
+                        feature_values_gt[node.feature].append(node.threshold)
 
         return feature_values_leq, feature_values_gt
+
+
 
         # organise the NodePatterns together by feature
         # collect a list of feature values (above, below?)
@@ -86,38 +88,8 @@ class PatternMiner:
     #         def hist_func(x, bins, weights=None):
     #             return(np.histogram(x, bins, weights=weights))
 
-    #     cont_vars = [vn for vn in var_dict if var_dict[vn]['data_type'] == 'continuous' and var_dict[vn]['class_col'] == False]
-    #     for feature in cont_vars:
 
-    #         # lower bound, greater than
-    #         lowers = [item[2] for nodes in self.paths for item in nodes if item[0] == feature and item[1] == False]
 
-    #         # upper bound, less than
-    #         uppers = [item[2] for nodes in self.paths for item in nodes if item[0] == feature and item[1] == True]
-
-    #         if uppers:
-    #             upper_bins = hist_func(uppers, bins=bins)[1]
-    #         else:
-    #             upper_bins = np.zeros(bins)
-
-    #         if lowers:
-    #             lower_bins = hist_func(lowers, bins=bins)[1]
-    #         else:
-    #             lower_bins = np.zeros(bins)
-
-    #         upper_bin_midpoints = Series(upper_bins).rolling(window=2, center=False).mean().values[1:]
-    #         upper_bin_means = (np.histogram(uppers, upper_bins, weights=uppers)[0] /
-    #                             np.histogram(uppers, upper_bins)[0]).round(5) # can result in nans if no value falls into bin
-    #         upper_bin_mids = [i if not np.isnan(i) else j for i, j in zip(upper_bin_means, upper_bin_midpoints)]
-
-    #         lower_bin_midpoints = Series(lower_bins).rolling(window=2, center=False).mean().values[1:]
-    #         lower_bin_means = (np.histogram(lowers, lower_bins, weights=lowers)[0] /
-    #                             np.histogram(lowers, lower_bins)[0]).round(5) # can result in nans
-    #         lower_bin_mids = [i if not np.isnan(i) else j for i, j in zip(lower_bin_means, lower_bin_midpoints)]
-
-    #         # discretize functions from histogram means
-    #         upper_discretize = lambda x: upper_bin_mids[np.max([np.min([np.digitize(x, upper_bins), len(upper_bin_mids)]), 1]) - 1]
-    #         lower_discretize = lambda x: lower_bin_mids[np.max([np.min([np.digitize(x, lower_bins, right= True), len(upper_bin_mids)]), 1]) - 1]
 
     #         paths_discretized = []
     #         for nodes in self.paths:

@@ -1,7 +1,10 @@
 import numpy as np
 from scipy.stats import entropy as scipy_entropy
 from scipy.stats import wasserstein_distance
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 from dataclasses import dataclass
+from src.config import DEFAULT_RANDOM_SEED
 import warnings
 
 
@@ -116,11 +119,11 @@ def pattern_importance_score(
 
 
 # For the avoidance of confusion elsewhere in code, I'm separating the overloading of the scipy.entropy function
-def entropy(p: np.ndarray):
+def entropy(p: np.ndarray) -> np.float64:
     return scipy_entropy(p)
 
 
-def count_data_check(arr):
+def count_data_check(arr: np.ndarray) -> None:
     if np.issubdtype(arr.dtype, np.floating):
         warnings.warn(
             "kl_div will work with probability distributions but if you're seeing this warning then you haven't implemented something properly for generalizing to other distance functions."
@@ -146,3 +149,50 @@ def ws_dis(p: np.ndarray, q: np.ndarray) -> np.float64:
     """Adjusted Wasserstein Distance, normalized by total count."""
     count_data_check(p)
     return wasserstein_distance(p, q) / p.sum()
+
+
+def bin_centering(arr: np.ndarray) -> np.ndarray:
+    bin_counts, auto_edges = np.histogram(arr, bins='auto')
+    bin_sum_totals, bin_edges = np.histogram(arr, bins=len(auto_edges) - 1, weights=arr) # weight each point by it's own value
+    assert np.array_equal(auto_edges, bin_edges)
+    bin_means = bin_sum_totals / bin_counts
+    bin_midpoints = (bin_edges[:-1] + bin_edges[1:]) / 2
+    assert len(bin_means) == len(bin_midpoints)
+    bin_centres = np.where(np.isnan(bin_means), bin_midpoints, bin_means)
+    distances = np.abs(arr[:, None] - bin_centres)  
+    nearest_midpoint_indices = np.argmin(distances, axis=1)
+    centred = bin_midpoints[nearest_midpoint_indices]
+    assert len(centred) == len(arr) 
+    return centred
+
+
+    #         upper_bin_means = (np.histogram(uppers, upper_bins, weights=uppers)[0] /
+    #                             np.histogram(uppers, upper_bins)[0]).round(5) # can result in nans if no value falls into bin
+    #         upper_bin_mids = [i if not np.isnan(i) else j for i, j in zip(upper_bin_means, upper_bin_midpoints)]
+
+    #         lower_bin_midpoints = Series(lower_bins).rolling(window=2, center=False).mean().values[1:]
+    #         lower_bin_means = (np.histogram(lowers, lower_bins, weights=lowers)[0] /
+    #                             np.histogram(lowers, lower_bins)[0]).round(5) # can result in nans
+    #         lower_bin_mids = [i if not np.isnan(i) else j for i, j in zip(lower_bin_means, lower_bin_midpoints)]
+
+    #         # discretize functions from histogram means
+    #         upper_discretize = lambda x: upper_bin_mids[np.max([np.min([np.digitize(x, upper_bins), len(upper_bin_mids)]), 1]) - 1]
+    #         lower_discretize = lambda x: lower_bin_mids[np.max([np.min([np.digitize(x, lower_bins, right= True), len(upper_bin_mids)]), 1]) - 1]
+
+
+def optimal_clusters(arr: np.ndarray, min_clusters: np.uint8 = 2, max_clusters: np.uint8 = 8) -> np.ndarray:
+    best_score = -1
+    collected_k_means = {}
+    best_k = min_clusters
+    for k in range(min_clusters, max_clusters + 1):
+        collected_k_means[k] = KMeans(n_clusters=k, random_state=DEFAULT_RANDOM_SEED).fit(arr.reshape(-1, 1))
+        score = silhouette_score(arr.reshape(-1, 1), collected_k_means[k].labels_)
+        if score > best_score:
+            best_score = score
+            best_k = k
+    clusters = collected_k_means[best_k].labels_
+    cluster_centers = collected_k_means[best_k].cluster_centers_
+    centred = np.array([cluster_centers[cluster][0] for cluster in clusters])
+    
+    return centred
+    

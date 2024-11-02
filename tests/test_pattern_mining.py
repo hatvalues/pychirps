@@ -49,3 +49,10 @@ def test_fp_paths(weighted_paths):
         },
         "frequent_patterns",
     )
+
+
+def test_pattern_miner_discretize(cervicalb_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
+    print(cervicalb_pattern_miner.descretize_continuous_thresholds()[0])
+    print()
+    print(cervicalb_pattern_miner.descretize_continuous_thresholds()[1])
+    assert False

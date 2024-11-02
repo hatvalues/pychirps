@@ -1,8 +1,8 @@
-import src.pychirps.build_rules.rule_utilities as rutils
-from tests.fixture_helper import load_yaml_fixture_file, assert_dict_matches_fixture
+import pytest
 import numpy as np
 from numpy.random import seed
-import pytest
+import src.pychirps.build_rules.rule_utilities as rutils
+from tests.fixture_helper import load_yaml_fixture_file, assert_dict_matches_fixture, convert_native
 
 
 def test_apply_rule(cervicalb_enc):
@@ -220,3 +220,8 @@ def test_ws_dist():
     )
     with pytest.warns(UserWarning):
         rutils.ws_dis(np.array([0.9, 0.1]), np.array([1.0, 0.0]))
+
+
+def test_bin_centering():
+    arr_1 = np.array([1, 2, 3, 4, 20, 21, 22, 23, 30, 31, 32, 33, 50, 60, 61, 62, 63])
+    assert_dict_matches_fixture({"bin_centred": convert_native(rutils.bin_centering(arr_1))}, "bin_centres_1")
