@@ -229,7 +229,8 @@ def test_ws_dist():
 arr_1 = np.array([1, 2, 3, 4, 20, 21, 22, 23, 30, 31, 32, 33, 50, 60, 61, 62, 63])
 arr_2 = np.array([1, 1, 1, 1, 20, 20, 20, 20, 33, 33, 33, 33, 50, 62, 62, 62, 62])
 arr_3 = np.array([])
-
+arr_4 = np.ones(20)
+arr_5 = np.concatenate((arr_4, arr_4 + 1.5))
 
 @pytest.mark.parametrize(
     "input_array,centering_function,fixture_name",
@@ -264,6 +265,26 @@ arr_3 = np.array([])
             rutils.cluster_centering,
             "cluster_centres_3",
         ),
+        (
+            arr_4,
+            rutils.bin_centering,
+            "bin_centres_4",
+        ),
+        (
+            arr_4,
+            rutils.cluster_centering,
+            "cluster_centres_4",
+        ),
+        (
+            arr_5,
+            rutils.bin_centering,
+            "bin_centres_5",
+        ),
+        (
+            arr_5,
+            rutils.cluster_centering,
+            "cluster_centres_5",
+        ),        
     ],
 )
 def test_centering(input_array, centering_function, fixture_name):

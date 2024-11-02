@@ -175,6 +175,8 @@ def cluster_centering(
 ) -> np.ndarray:
     if arr.size == 0:
         return np.array([])
+    if np.allclose(arr, arr[0]):
+        return arr
     best_score = -1
     collected_k_means = {}
     best_k = min_clusters
