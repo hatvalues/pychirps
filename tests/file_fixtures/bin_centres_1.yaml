@@ -1,18 +1,51 @@
-bin_centred:
-- 6.166666666666667
-- 6.166666666666667
-- 6.166666666666667
-- 6.166666666666667
-- 16.5
-- 16.5
-- 16.5
-- 16.5
-- 37.16666666666667
-- 37.16666666666667
-- 37.16666666666667
-- 37.16666666666667
-- 47.5
-- 57.833333333333336
-- 57.833333333333336
-- 57.833333333333336
-- 57.833333333333336
+0:
+  bin_centred: 6.166666666666667
+  original: 1
+1:
+  bin_centred: 6.166666666666667
+  original: 2
+2:
+  bin_centred: 6.166666666666667
+  original: 3
+3:
+  bin_centred: 6.166666666666667
+  original: 4
+4:
+  bin_centred: 16.5
+  original: 20
+5:
+  bin_centred: 16.5
+  original: 21
+6:
+  bin_centred: 16.5
+  original: 22
+7:
+  bin_centred: 16.5
+  original: 23
+8:
+  bin_centred: 37.16666666666667
+  original: 30
+9:
+  bin_centred: 37.16666666666667
+  original: 31
+10:
+  bin_centred: 37.16666666666667
+  original: 32
+11:
+  bin_centred: 37.16666666666667
+  original: 33
+12:
+  bin_centred: 47.5
+  original: 50
+13:
+  bin_centred: 57.833333333333336
+  original: 60
+14:
+  bin_centred: 57.833333333333336
+  original: 61
+15:
+  bin_centred: 57.833333333333336
+  original: 62
+16:
+  bin_centred: 57.833333333333336
+  original: 63

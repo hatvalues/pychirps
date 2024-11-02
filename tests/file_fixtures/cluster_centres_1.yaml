@@ -1,0 +1,51 @@
+0:
+  bin_centred: 2.5
+  original: 1
+1:
+  bin_centred: 2.5
+  original: 2
+2:
+  bin_centred: 2.5
+  original: 3
+3:
+  bin_centred: 2.5
+  original: 4
+4:
+  bin_centred: 21.5
+  original: 20
+5:
+  bin_centred: 21.5
+  original: 21
+6:
+  bin_centred: 21.5
+  original: 22
+7:
+  bin_centred: 21.5
+  original: 23
+8:
+  bin_centred: 31.5
+  original: 30
+9:
+  bin_centred: 31.5
+  original: 31
+10:
+  bin_centred: 31.5
+  original: 32
+11:
+  bin_centred: 31.5
+  original: 33
+12:
+  bin_centred: 59.2
+  original: 50
+13:
+  bin_centred: 59.2
+  original: 60
+14:
+  bin_centred: 59.2
+  original: 61
+15:
+  bin_centred: 59.2
+  original: 62
+16:
+  bin_centred: 59.2
+  original: 63

@@ -2,7 +2,11 @@ import pytest
 import numpy as np
 from numpy.random import seed
 import src.pychirps.build_rules.rule_utilities as rutils
-from tests.fixture_helper import load_yaml_fixture_file, assert_dict_matches_fixture, convert_native
+from tests.fixture_helper import (
+    load_yaml_fixture_file,
+    assert_dict_matches_fixture,
+    convert_native,
+)
 
 
 def test_apply_rule(cervicalb_enc):
@@ -222,6 +226,59 @@ def test_ws_dist():
         rutils.ws_dis(np.array([0.9, 0.1]), np.array([1.0, 0.0]))
 
 
-def test_bin_centering():
-    arr_1 = np.array([1, 2, 3, 4, 20, 21, 22, 23, 30, 31, 32, 33, 50, 60, 61, 62, 63])
-    assert_dict_matches_fixture({"bin_centred": convert_native(rutils.bin_centering(arr_1))}, "bin_centres_1")
+arr_1 = np.array([1, 2, 3, 4, 20, 21, 22, 23, 30, 31, 32, 33, 50, 60, 61, 62, 63])
+arr_2 = np.array([1, 1, 1, 1, 20, 20, 20, 20, 33, 33, 33, 33, 50, 62, 62, 62, 62])
+arr_3 = np.array([])
+
+
+@pytest.mark.parametrize(
+    "input_array,centering_function,fixture_name",
+    [
+        (
+            arr_1,
+            rutils.bin_centering,
+            "bin_centres_1",
+        ),
+        (
+            arr_1,
+            rutils.cluster_centering,
+            "cluster_centres_1",
+        ),
+        (
+            arr_2,
+            rutils.bin_centering,
+            "bin_centres_2",
+        ),
+        (
+            arr_2,
+            rutils.cluster_centering,
+            "cluster_centres_2",
+        ),
+        (
+            arr_3,
+            rutils.bin_centering,
+            "bin_centres_3",
+        ),
+        (
+            arr_3,
+            rutils.cluster_centering,
+            "cluster_centres_3",
+        ),
+    ],
+)
+def test_centering(input_array, centering_function, fixture_name):
+    assert_dict_matches_fixture(
+        {
+            a: {
+                "original": o,
+                "bin_centred": c,
+            }
+            for a, (o, c) in enumerate(
+                zip(
+                    convert_native(input_array),
+                    convert_native(centering_function(input_array)),
+                )
+            )
+        },
+        fixture_name,
+    )

@@ -68,8 +68,6 @@ class PatternMiner:
 
         return feature_values_leq, feature_values_gt
 
-
-
         # organise the NodePatterns together by feature
         # collect a list of feature values (above, below?)
         # apply a histogram to each list
@@ -87,9 +85,6 @@ class PatternMiner:
     #     else:
     #         def hist_func(x, bins, weights=None):
     #             return(np.histogram(x, bins, weights=weights))
-
-
-
 
     #         paths_discretized = []
     #         for nodes in self.paths:
