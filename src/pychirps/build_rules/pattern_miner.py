@@ -21,7 +21,7 @@ class PatternMiner:
         feature_names: Optional[list[str]],
         prediction: Optional[int] = None,
         min_support: Optional[float] = 0.2,
-        discretizing_function: Callable = cluster_centering
+        discretizing_function: Callable = cluster_centering,
     ):
         if min_support > 1:
             raise ValueError("Set min_support using a fraction")
@@ -66,8 +66,9 @@ class PatternMiner:
                     else:
                         feature_values_gt[node.feature].append(node.threshold)
 
-        return {k: cluster_centering(np.array(v)) for k, v in feature_values_leq.items()}, {k: cluster_centering(np.array(v)) for k, v in feature_values_gt.items()}
-
+        return {
+            k: cluster_centering(np.array(v)) for k, v in feature_values_leq.items()
+        }, {k: cluster_centering(np.array(v)) for k, v in feature_values_gt.items()}
 
     # def discretize_paths(self, bins=4, equal_counts=False, var_dict=None):
     #     # check if bins is not numeric or can't be cast, then force equal width (equal_counts = False)

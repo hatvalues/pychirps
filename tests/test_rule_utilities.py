@@ -235,6 +235,7 @@ arr_6 = np.copy(arr_1)
 seed(11211)
 np.random.shuffle(arr_6)
 
+
 @pytest.mark.parametrize(
     "input_array,centering_function,fixture_name",
     [
@@ -297,7 +298,7 @@ np.random.shuffle(arr_6)
             arr_6,
             rutils.cluster_centering,
             "cluster_centres_6",
-        ),      
+        ),
     ],
 )
 def test_centering(input_array, centering_function, fixture_name):
@@ -317,8 +318,10 @@ def test_centering(input_array, centering_function, fixture_name):
         fixture_name,
     )
 
+
 def sum_bin_centres(bin_centres):
     sum(v["bin_centred"] for v in bin_centres.values())
+
 
 def test_centering_order_dont_matter():
     arr_1_bin = load_yaml_fixture_file("bin_centres_1")
