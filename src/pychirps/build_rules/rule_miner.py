@@ -99,7 +99,9 @@ class RuleMiner:
             K=len(self.classes),
         )
 
-    def hill_climb(self, blending_weight: float = 1.0, cardinality_regularizing_weight: float = 0.0):
+    def hill_climb(
+        self, blending_weight: float = 1.0, cardinality_regularizing_weight: float = 0.0
+    ):
         # default input use naive hill climb with only stability as the objective function
         # hill climbing algorithm to find the best combination of patterns
         # start with the patterns sorted by their weights
@@ -124,7 +126,7 @@ class RuleMiner:
                 excl_cov_score=try_excl_cov,
                 cardinality=len(try_pattern),
                 blending_weight=blending_weight,
-                cardinality_regularizing_weight=cardinality_regularizing_weight
+                cardinality_regularizing_weight=cardinality_regularizing_weight,
             )
             if try_score > best_score:
                 best_pattern = try_pattern
