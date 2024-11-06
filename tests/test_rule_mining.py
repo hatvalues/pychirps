@@ -40,6 +40,6 @@ def test_custom_sorted_patterns(cervicalb_rule_miner):
     )
 
 
-def test_rule_miner_hill_climb(cervicalb_rule_miner):  # noqa # mypy can't cope with pytest fixtures
-    cervicalb_rule_miner.hill_climb()
-    assert False  # TODO: implement your test here
+# def test_rule_miner_hill_climb(cervicalb_rule_miner):  # noqa # mypy can't cope with pytest fixtures
+#     cervicalb_rule_miner.hill_climb()
+#     assert False  # TODO: implement your test here

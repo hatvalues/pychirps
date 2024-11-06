@@ -3,8 +3,8 @@ from pyfpgrowth import find_frequent_patterns
 from src.pychirps.build_rules.rule_utilities import NodePattern
 from collections import defaultdict
 from dataclasses import dataclass
-from typing import Optional, Callable
-from src.pychirps.build_rules.rule_utilities import cluster_centering
+from typing import Optional, Generator
+import src.pychirps.build_rules.rule_utilities as rutils
 import numpy as np
 
 
@@ -21,7 +21,6 @@ class PatternMiner:
         feature_names: Optional[list[str]],
         prediction: Optional[int] = None,
         min_support: Optional[float] = 0.2,
-        discretizing_function: Callable = cluster_centering,
     ):
         if min_support > 1:
             raise ValueError("Set min_support using a fraction")
@@ -47,56 +46,71 @@ class PatternMiner:
             for _ in range(int(weight))
         )
 
-        frequent_patterns = find_frequent_patterns(self.paths, self.support)
+        feature_values_leq, feature_values_gt = self.discretize_continuous_thresholds()
+        discretized_paths = []
+        for path in self.paths:
+            nodes = []
+            for node in path:
+                if self.feature_names[node.feature].startswith("num__") and node.leq_threshold:
+                    nodes.append(NodePattern(
+                        feature=node.feature,
+                        threshold=next(feature_values_leq[node.feature]),
+                        leq_threshold=True
+                        )
+                    )
+                elif self.feature_names[node.feature].startswith("num__") and not node.leq_threshold:
+                    nodes.append(NodePattern(
+                        feature=node.feature,
+                        threshold=next(feature_values_gt[node.feature]),
+                        leq_threshold=False
+                        )
+                    )
+                else:
+                    nodes.append(node)
+            discretized_paths.append(nodes)
+
+        self.discretized_paths = tuple(
+            tuple(
+                node for node in nodes
+            ) for nodes in discretized_paths
+        )
+
+        frequent_patterns = find_frequent_patterns(self.discretized_paths, self.support)
         if frequent_patterns:
             patterns, weights = zip(*frequent_patterns.items())
         else:
             patterns, weights = [], []
         self.pattern_set = PatternSet(patterns=patterns, weights=weights)
 
-    def descretize_continuous_thresholds(self):
+    @staticmethod
+    def feature_value_generator(feature_values: dict[np.generic, np.ndarray]) -> dict[np.generic, Generator]:
+        return {feature: (v for v in values) for feature, values in feature_values.items()}
+
+    @staticmethod
+    def centering(arr: np.ndarray) -> np.ndarray:
+        unique_values = len(set(arr))
+        if unique_values < len(arr):
+            return rutils.cluster_centering(arr, max_clusters=unique_values)
+        return rutils.bin_centering(arr)
+
+    def group_continuous_thresholds(self):
         feature_values_leq = defaultdict(list)
         feature_values_gt = defaultdict(list)
-        for pattern in self.pattern_set.patterns:
-            for node in pattern:
+        for path in self.paths:
+            for node in path:
                 # this is the prefix applied by our feature encoder
                 if self.feature_names[node.feature].startswith("num__"):
                     if node.leq_threshold:
                         feature_values_leq[node.feature].append(node.threshold)
                     else:
                         feature_values_gt[node.feature].append(node.threshold)
-
-        return {
-            k: cluster_centering(np.array(v)) for k, v in feature_values_leq.items()
-        }, {k: cluster_centering(np.array(v)) for k, v in feature_values_gt.items()}
-
-    # def discretize_paths(self, bins=4, equal_counts=False, var_dict=None):
-    #     # check if bins is not numeric or can't be cast, then force equal width (equal_counts = False)
-    #     var_dict, _ = self.init_dicts(var_dict=var_dict)
-
-    #     if equal_counts:
-    #         def hist_func(x, bins, weights=None):
-    #             npt = len(x)
-    #             bns = np.quantile(x, [0.0, .25, .5, .75, 1.0])
-    #             return(np.histogram(x, bns, weights=weights))
-    #     else:
-    #         def hist_func(x, bins, weights=None):
-    #             return(np.histogram(x, bins, weights=weights))
-
-    #         paths_discretized = []
-    #         for nodes in self.paths:
-    #             nodes_discretized = []
-    #             for f, t, v in nodes:
-    #                 if f == feature:
-    #                     if t == False: # greater than, lower bound
-    #                         v = lower_discretize(v)
-    #                     else:
-    #                         v = upper_discretize(v)
-    #                 nodes_discretized.append((f, t, v))
-    #             paths_discretized.append(nodes_discretized)
-    #         # at the end of each loop, update the instance variable
-
-    #         # descretised paths can result in duplicates items, which results in redundancy in the FP
-    #         self.paths = [[]] * len(paths_discretized)
-    #         for p, path in enumerate(paths_discretized):
-    #             self.paths[p] = [i for i in set(path)]
+    
+        return feature_values_leq, feature_values_gt
+    
+    def discretize_continuous_thresholds(self):
+        feature_values_leq, feature_values_gt = self.group_continuous_thresholds()
+        return self.feature_value_generator({
+            k: self.centering(np.array(v)) for k, v in feature_values_leq.items()
+        }), self.feature_value_generator({
+            k: self.centering(np.array(v)) for k, v in feature_values_gt.items()
+        })
