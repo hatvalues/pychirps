@@ -99,7 +99,8 @@ class RuleMiner:
             K=len(self.classes),
         )
 
-    def hill_climb(self):
+    def hill_climb(self, blending_weight: float = 1.0, cardinality_regularizing_weight: float = 0.0):
+        # default input use naive hill climb with only stability as the objective function
         # hill climbing algorithm to find the best combination of patterns
         # start with the patterns sorted by their weights
         # pick the rule from the top and add it to the rule
@@ -112,17 +113,25 @@ class RuleMiner:
         # loop until no more stability increase, no more patterns, or rule reaches max length
         sorted_patterns = [pattern for pattern in self.custom_sorted_patterns]
         best_pattern = tuple()
-        best_stability = 0.0
+        best_score = -np.inf
         while sorted_patterns:
             add_pattern = sorted_patterns.pop(0)
             try_pattern = rutils.merge_patterns(best_pattern, add_pattern)
             try_stability = self.stability_score(try_pattern)
-            if try_stability > best_stability:
+            try_excl_cov = self.exclusive_coverage_score(try_pattern)
+            try_score = rutils.objective_function(
+                stability_score=try_stability,
+                excl_cov_score=try_excl_cov,
+                cardinality=len(try_pattern),
+                blending_weight=blending_weight,
+                cardinality_regularizing_weight=cardinality_regularizing_weight
+            )
+            if try_score > best_score:
                 best_pattern = try_pattern
-                best_stability = try_stability
+                best_score = try_score
 
         self.best_pattern = best_pattern
-        self.best_stability = best_stability
+        self.best_stability = self.stability_score(best_pattern)
         self.best_excl_cov = self.exclusive_coverage_score(best_pattern)
 
     def dynamic_programming(self):
@@ -135,10 +144,6 @@ class RuleMiner:
 
     def beam_search(self):
         # beam search algorithm to find the best combination of patterns
-        pass
-
-    def objective_function(self):
-        # objective function to evaluate the quality of the rules
         pass
 
     def tabu_search(self):

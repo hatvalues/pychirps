@@ -103,6 +103,13 @@ def adjusted_cardinality_weight(
     return (cardinality - cardinality_regularizing_weight) / cardinality
 
 
+def objective_function(stability_score: float, excl_cov_score: float, cardinality: int, blending_weight: float, cardinality_regularizing_weight) -> float:
+    # objective function to evaluate the quality of the rules
+    return ( blending_weight * stability_score ) + \
+    ( (1 - blending_weight) * excl_cov_score ) - \
+    adjusted_cardinality_weight(cardinality, cardinality_regularizing_weight)
+
+
 def pattern_importance_score(
     cardinality: np.uint8,
     support_regularizing_weight: float = 1.0,
