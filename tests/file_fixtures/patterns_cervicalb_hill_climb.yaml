@@ -1,0 +1,12 @@
+0:
+  feature: 0
+  leq_threshold: true
+  threshold: 22.0
+1:
+  feature: 2
+  leq_threshold: true
+  threshold: 16.666666666666668
+2:
+  feature: 8
+  leq_threshold: true
+  threshold: 0.3330200195312498

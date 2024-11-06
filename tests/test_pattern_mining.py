@@ -91,3 +91,5 @@ def test_pattern_miner_discretize(cervicalb_pattern_miner):  # noqa # mypy can't
         },
         "discretized_centred_gt",
     )
+
+    assert_dict_matches_fixture({p: [convert_native(asdict(node)) for node in path] for p, path in enumerate(cervicalb_pattern_miner.discretized_paths)}, "discretized_paths")

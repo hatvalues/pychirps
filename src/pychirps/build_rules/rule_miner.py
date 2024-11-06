@@ -1,10 +1,11 @@
 from src.pychirps.build_rules.pattern_miner import PatternMiner
+from src.pychirps.build_rules.rule_utilities import NodePattern
 import src.pychirps.build_rules.rule_utilities as rutils
-import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from functools import cached_property
 from collections import Counter
 from typing import Callable
+import numpy as np
 
 
 class RuleMiner:
@@ -45,20 +46,21 @@ class RuleMiner:
         else:
             return np.array(self._pattern_miner.pattern_set.weights)
 
+    def entropy_score(self, pattern: tuple[NodePattern]) -> float:
+        rule_applies_indices = rutils.apply_rule(pattern, self.features)
+        rule_applies_preds = self.preds[rule_applies_indices]
+        pred_count = Counter(rule_applies_preds)
+        # ensuring same order each time
+        pred_count.update({k: 0 for k in self.classes if k not in pred_count})
+        return self.entropy_function(
+            np.array([pred_count[cla] for cla in self.classes])
+        )
+
     @cached_property
     def entropy_regularizing_weights(self):
         entropy_regularizing_weights = np.zeros(len(self.weights))
         for p, pattern in enumerate(self.patterns):
-            rule_applies_indices = rutils.apply_rule(pattern, self.features)
-            rule_applies_preds = self.preds[rule_applies_indices]
-            pred_count = Counter(rule_applies_preds)
-            pred_count.update({k: 0 for k in self.classes if k not in pred_count})
-            entropy_regularizing_weights[p] = (
-                # ensuring same order each time
-                self.entropy_function(
-                    np.array([pred_count[cla] for cla in self.classes])
-                )
-            )
+            entropy_regularizing_weights[p] = 1 - self.entropy_score(pattern)
         return entropy_regularizing_weights
 
     @cached_property
@@ -79,6 +81,24 @@ class RuleMiner:
         # C. the cardinality of the pattern, (longer is better, more interaction terms)
         return tuple(pattern for pattern, _, _ in sorted_pattern_weights)
 
+    def stability_score(self, pattern: tuple[NodePattern]) -> float:
+        return rutils.stability(
+            y_pred=self.y_pred,
+            z_pred=self.preds,
+            Z=self.features,
+            pattern=pattern,
+            K=len(self.classes)
+        )
+
+    def exclusive_coverage_score(self, pattern: tuple[NodePattern]) -> float:
+        return rutils.exclusive_coverage(
+            y_pred=self.y_pred,
+            z_pred=self.preds,
+            Z=self.features,
+            pattern=pattern,
+            K=len(self.classes)   
+        )
+
     def hill_climb(self):
         # hill climbing algorithm to find the best combination of patterns
         # start with the patterns sorted by their weights
@@ -90,8 +110,21 @@ class RuleMiner:
         # prune duplicate nodes
         # otherwise, remove the pattern from the rule set
         # loop until no more stability increase, no more patterns, or rule reaches max length
-        sorted_patterns = self.custom_sorted_patterns
-        print([len(p) for p in sorted_patterns])
+        sorted_patterns = [pattern for pattern in self.custom_sorted_patterns]
+        best_pattern = tuple()
+        best_stability = 0.0
+        while sorted_patterns:
+            add_pattern = sorted_patterns.pop(0)
+            try_pattern = rutils.merge_patterns(best_pattern, add_pattern)
+            try_stability = self.stability_score(try_pattern)
+            if try_stability > best_stability:
+                best_pattern = try_pattern
+                best_stability = try_stability
+
+        self.best_pattern = best_pattern
+        self.best_stability = best_stability
+        self.best_excl_cov = self.exclusive_coverage_score(best_pattern)
+
 
     def dynamic_programming(self):
         # dynamic programming algorithm to find the best combination of patterns

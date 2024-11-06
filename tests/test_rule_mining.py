@@ -33,13 +33,21 @@ def test_entropy_reg_weights(cervicalb_rule_miner):
 def test_custom_sorted_patterns(cervicalb_rule_miner):
     assert_dict_matches_fixture(
         {
-            p: [convert_native(asdict(patt)) for patt in pattern]
+            p: [convert_native(asdict(node)) for node in pattern]
             for p, pattern in enumerate(cervicalb_rule_miner.custom_sorted_patterns)
         },
         "custom_sorted_patterns_cervicalb",
     )
 
 
-# def test_rule_miner_hill_climb(cervicalb_rule_miner):  # noqa # mypy can't cope with pytest fixtures
-#     cervicalb_rule_miner.hill_climb()
-#     assert False  # TODO: implement your test here
+def test_rule_miner_hill_climb(cervicalb_rule_miner):  # noqa # mypy can't cope with pytest fixtures
+    cervicalb_rule_miner.hill_climb()
+    assert cervicalb_rule_miner.best_stability == 0.9620253164556962
+    assert cervicalb_rule_miner.best_excl_cov == 0.11843238587424634
+    assert_dict_matches_fixture(
+        {
+            p: convert_native(asdict(node)) for p, node in enumerate(cervicalb_rule_miner.best_pattern)
+        },
+        "patterns_cervicalb_hill_climb",
+    )
+    

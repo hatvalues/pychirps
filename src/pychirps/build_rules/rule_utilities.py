@@ -1,11 +1,12 @@
+import warnings
 import numpy as np
+from dataclasses import dataclass
+from sklearn.cluster import KMeans
 from scipy.stats import entropy as scipy_entropy
 from scipy.stats import wasserstein_distance
-from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
-from dataclasses import dataclass
 from src.config import DEFAULT_RANDOM_SEED
-import warnings
+from ordered_set import OrderedSet
 
 
 @dataclass(frozen=True)
@@ -193,3 +194,7 @@ def cluster_centering(
     centred = np.array([cluster_centers[cluster][0] for cluster in clusters])
 
     return centred
+
+
+def merge_patterns(base_pattern: tuple[NodePattern], add_pattern: tuple[NodePattern]) -> tuple[NodePattern]:
+    return tuple(node for node in OrderedSet(base_pattern) | OrderedSet(add_pattern))
