@@ -231,6 +231,8 @@ arr_2 = np.array([1, 1, 1, 1, 20, 20, 20, 20, 33, 33, 33, 33, 50, 62, 62, 62, 62
 arr_3 = np.array([])
 arr_4 = np.ones(20)
 arr_5 = np.concatenate((arr_4, arr_4 + 1.5))
+arr_6 = np.copy(arr_1)
+np.random.shuffle(arr_6)
 
 @pytest.mark.parametrize(
     "input_array,centering_function,fixture_name",
@@ -284,7 +286,17 @@ arr_5 = np.concatenate((arr_4, arr_4 + 1.5))
             arr_5,
             rutils.cluster_centering,
             "cluster_centres_5",
-        ),        
+        ),
+        (
+            arr_6,
+            rutils.bin_centering,
+            "bin_centres_6",
+        ),
+        (
+            arr_6,
+            rutils.cluster_centering,
+            "cluster_centres_6",
+        ),      
     ],
 )
 def test_centering(input_array, centering_function, fixture_name):
@@ -303,3 +315,17 @@ def test_centering(input_array, centering_function, fixture_name):
         },
         fixture_name,
     )
+
+def sum_bin_centres(bin_centres):
+    sum(v["bin_centred"] for v in bin_centres.values())
+
+def test_centering_order_dont_matter():
+    arr_1_bin = load_yaml_fixture_file("bin_centres_1")
+    arr_6_bin = load_yaml_fixture_file("bin_centres_6")
+
+    assert sum_bin_centres(arr_1_bin) == sum_bin_centres(arr_6_bin)
+
+    arr_1_clusters = load_yaml_fixture_file("cluster_centres_1")
+    arr_6_clusters = load_yaml_fixture_file("cluster_centres_6")
+
+    assert sum_bin_centres(arr_1_clusters) == sum_bin_centres(arr_6_clusters)
