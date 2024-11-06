@@ -333,3 +333,22 @@ def test_centering_order_dont_matter():
     arr_6_clusters = load_yaml_fixture_file("cluster_centres_6")
 
     assert sum_bin_centres(arr_1_clusters) == sum_bin_centres(arr_6_clusters)
+
+@pytest.mark.parametrize(
+    "stability_score,excl_cov_score,cardinality,blending_weight,cardinality_regularizing_weight,expected",
+    [
+        (0.8, 0.2, 1, 1.0, 1.0, 0.8),
+        (0.8, 0.2, 1, 0.0, 1.0, 0.2),
+        (0.8, 0.2, 1, 0.5, 1.0, 0.5),
+        (0.8, 0.2, 2, 0.5, 1.0, 0.0),
+        (0.8, 0.2, 5, 0.5, 1.0, -0.3),
+    ]
+)
+def test_objective_function(stability_score, excl_cov_score, cardinality, blending_weight, cardinality_regularizing_weight, expected):
+    assert rutils.objective_function(
+        stability_score=stability_score,
+        excl_cov_score=excl_cov_score,
+        cardinality=cardinality,
+        blending_weight=blending_weight,
+        cardinality_regularizing_weight=cardinality_regularizing_weight
+    ) == pytest.approx(expected)

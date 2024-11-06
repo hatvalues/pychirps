@@ -51,3 +51,14 @@ def test_rule_miner_hill_climb(cervicalb_rule_miner):  # noqa # mypy can't cope 
         },
         "patterns_cervicalb_hill_climb",
     )
+
+    cervicalb_rule_miner.hill_climb(blending_weight=0.0)
+    assert cervicalb_rule_miner.best_stability == 0.9554140127388535
+    assert cervicalb_rule_miner.best_excl_cov == 0.20025839793281655
+    assert_dict_matches_fixture(
+        {
+            p: convert_native(asdict(node))
+            for p, node in enumerate(cervicalb_rule_miner.best_pattern)
+        },
+        "patterns_cervicalb_hill_climb_excl_cov_weighted",
+    )
