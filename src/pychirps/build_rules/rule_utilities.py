@@ -196,5 +196,7 @@ def cluster_centering(
     return centred
 
 
-def merge_patterns(base_pattern: tuple[NodePattern], add_pattern: tuple[NodePattern]) -> tuple[NodePattern]:
+def merge_patterns(
+    base_pattern: tuple[NodePattern], add_pattern: tuple[NodePattern]
+) -> tuple[NodePattern]:
     return tuple(node for node in OrderedSet(base_pattern) | OrderedSet(add_pattern))

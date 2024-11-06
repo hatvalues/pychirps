@@ -87,7 +87,7 @@ class RuleMiner:
             z_pred=self.preds,
             Z=self.features,
             pattern=pattern,
-            K=len(self.classes)
+            K=len(self.classes),
         )
 
     def exclusive_coverage_score(self, pattern: tuple[NodePattern]) -> float:
@@ -96,7 +96,7 @@ class RuleMiner:
             z_pred=self.preds,
             Z=self.features,
             pattern=pattern,
-            K=len(self.classes)   
+            K=len(self.classes),
         )
 
     def hill_climb(self):
@@ -124,7 +124,6 @@ class RuleMiner:
         self.best_pattern = best_pattern
         self.best_stability = best_stability
         self.best_excl_cov = self.exclusive_coverage_score(best_pattern)
-
 
     def dynamic_programming(self):
         # dynamic programming algorithm to find the best combination of patterns

@@ -46,8 +46,8 @@ def test_rule_miner_hill_climb(cervicalb_rule_miner):  # noqa # mypy can't cope 
     assert cervicalb_rule_miner.best_excl_cov == 0.11843238587424634
     assert_dict_matches_fixture(
         {
-            p: convert_native(asdict(node)) for p, node in enumerate(cervicalb_rule_miner.best_pattern)
+            p: convert_native(asdict(node))
+            for p, node in enumerate(cervicalb_rule_miner.best_pattern)
         },
         "patterns_cervicalb_hill_climb",
     )
-    
