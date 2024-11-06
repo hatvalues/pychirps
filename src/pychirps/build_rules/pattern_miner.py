@@ -51,18 +51,26 @@ class PatternMiner:
         for path in self.paths:
             nodes = []
             for node in path:
-                if self.feature_names[node.feature].startswith("num__") and node.leq_threshold:
-                    nodes.append(NodePattern(
-                        feature=node.feature,
-                        threshold=next(feature_values_leq[node.feature]),
-                        leq_threshold=True
+                if (
+                    self.feature_names[node.feature].startswith("num__")
+                    and node.leq_threshold
+                ):
+                    nodes.append(
+                        NodePattern(
+                            feature=node.feature,
+                            threshold=next(feature_values_leq[node.feature]),
+                            leq_threshold=True,
                         )
                     )
-                elif self.feature_names[node.feature].startswith("num__") and not node.leq_threshold:
-                    nodes.append(NodePattern(
-                        feature=node.feature,
-                        threshold=next(feature_values_gt[node.feature]),
-                        leq_threshold=False
+                elif (
+                    self.feature_names[node.feature].startswith("num__")
+                    and not node.leq_threshold
+                ):
+                    nodes.append(
+                        NodePattern(
+                            feature=node.feature,
+                            threshold=next(feature_values_gt[node.feature]),
+                            leq_threshold=False,
                         )
                     )
                 else:
@@ -70,9 +78,7 @@ class PatternMiner:
             discretized_paths.append(nodes)
 
         self.discretized_paths = tuple(
-            tuple(
-                node for node in nodes
-            ) for nodes in discretized_paths
+            tuple(node for node in nodes) for nodes in discretized_paths
         )
 
         frequent_patterns = find_frequent_patterns(self.discretized_paths, self.support)
@@ -83,8 +89,12 @@ class PatternMiner:
         self.pattern_set = PatternSet(patterns=patterns, weights=weights)
 
     @staticmethod
-    def feature_value_generator(feature_values: dict[np.generic, np.ndarray]) -> dict[np.generic, Generator]:
-        return {feature: (v for v in values) for feature, values in feature_values.items()}
+    def feature_value_generator(
+        feature_values: dict[np.generic, np.ndarray],
+    ) -> dict[np.generic, Generator]:
+        return {
+            feature: (v for v in values) for feature, values in feature_values.items()
+        }
 
     @staticmethod
     def centering(arr: np.ndarray) -> np.ndarray:
@@ -104,13 +114,13 @@ class PatternMiner:
                         feature_values_leq[node.feature].append(node.threshold)
                     else:
                         feature_values_gt[node.feature].append(node.threshold)
-    
+
         return feature_values_leq, feature_values_gt
-    
+
     def discretize_continuous_thresholds(self):
         feature_values_leq, feature_values_gt = self.group_continuous_thresholds()
-        return self.feature_value_generator({
-            k: self.centering(np.array(v)) for k, v in feature_values_leq.items()
-        }), self.feature_value_generator({
-            k: self.centering(np.array(v)) for k, v in feature_values_gt.items()
-        })
+        return self.feature_value_generator(
+            {k: self.centering(np.array(v)) for k, v in feature_values_leq.items()}
+        ), self.feature_value_generator(
+            {k: self.centering(np.array(v)) for k, v in feature_values_gt.items()}
+        )

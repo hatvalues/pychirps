@@ -54,8 +54,13 @@ def test_fp_paths(weighted_paths):
 
 
 def test_feature_value_generator(cervicalb_pattern_miner):
-    feature_values = {np.int64(0): [3.4, 4.5, 6.7, 8.9], np.int64(4): [1.2, 2.3, 3.4, 4.5, 5.6, 6.7]}
-    feature_value_generator = cervicalb_pattern_miner.feature_value_generator(feature_values)
+    feature_values = {
+        np.int64(0): [3.4, 4.5, 6.7, 8.9],
+        np.int64(4): [1.2, 2.3, 3.4, 4.5, 5.6, 6.7],
+    }
+    feature_value_generator = cervicalb_pattern_miner.feature_value_generator(
+        feature_values
+    )
     alternator = cycle([0, 4])
     current_values = {0: np.inf, 4: np.inf}
     final_return_values = {0: np.inf, 4: np.inf}
@@ -68,16 +73,21 @@ def test_feature_value_generator(cervicalb_pattern_miner):
         current_values[key] = next(feature_value_generator[key], None)
 
     assert final_return_values == {0: 8.9, 4: 6.7}
-        
 
 
-# def test_pattern_miner_discretize(cervicalb_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
-#     discretized_centred = cervicalb_pattern_miner.descretize_continuous_thresholds()
-#     assert_dict_matches_fixture(
-#         {k.item(): {c.item(): convert_native(v) for c, v in counted_values.items()} for k, counted_values in discretized_centred[0].items()},
-#         "discretized_centred_leq",
-#     )
-#     assert_dict_matches_fixture(
-#         {k.item(): {c.item(): convert_native(v) for c, v in counted_values.items()} for k, counted_values in discretized_centred[1].items()},
-#         "discretized_centred_gt",
-#     )
+def test_pattern_miner_discretize(cervicalb_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
+    discretized_centred = cervicalb_pattern_miner.discretize_continuous_thresholds()
+    assert_dict_matches_fixture(
+        {
+            feature.item(): [value.item() for value in values]
+            for feature, values in discretized_centred[0].items()
+        },
+        "discretized_centred_leq",
+    )
+    assert_dict_matches_fixture(
+        {
+            feature.item(): [value.item() for value in values]
+            for feature, values in discretized_centred[0].items()
+        },
+        "discretized_centred_gt",
+    )
