@@ -232,6 +232,7 @@ arr_3 = np.array([])
 arr_4 = np.ones(20)
 arr_5 = np.concatenate((arr_4, arr_4 + 1.5))
 arr_6 = np.copy(arr_1)
+seed(11211)
 np.random.shuffle(arr_6)
 
 @pytest.mark.parametrize(

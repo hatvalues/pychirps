@@ -3,7 +3,8 @@ from pyfpgrowth import find_frequent_patterns
 from src.pychirps.build_rules.rule_utilities import NodePattern
 from collections import defaultdict
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, Callable
+from src.pychirps.build_rules.rule_utilities import cluster_centering
 import numpy as np
 
 
@@ -20,7 +21,7 @@ class PatternMiner:
         feature_names: Optional[list[str]],
         prediction: Optional[int] = None,
         min_support: Optional[float] = 0.2,
-        discretizing_bins: np.uint8 = 4,
+        discretizing_function: Callable = cluster_centering
     ):
         if min_support > 1:
             raise ValueError("Set min_support using a fraction")
@@ -31,7 +32,6 @@ class PatternMiner:
         else:
             self.prediction = forest_path.prediction
         self.feature_names = feature_names
-        self.discretizing_bins = discretizing_bins
         self.paths = tuple(
             tuple(
                 NodePattern(
@@ -66,12 +66,8 @@ class PatternMiner:
                     else:
                         feature_values_gt[node.feature].append(node.threshold)
 
-        return feature_values_leq, feature_values_gt
+        return {k: cluster_centering(np.array(v)) for k, v in feature_values_leq.items()}, {k: cluster_centering(np.array(v)) for k, v in feature_values_gt.items()}
 
-        # organise the NodePatterns together by feature
-        # collect a list of feature values (above, below?)
-        # apply a histogram to each list
-        # move each node pattern to the nearest histogram bin centre
 
     # def discretize_paths(self, bins=4, equal_counts=False, var_dict=None):
     #     # check if bins is not numeric or can't be cast, then force equal width (equal_counts = False)

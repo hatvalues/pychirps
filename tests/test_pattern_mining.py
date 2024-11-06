@@ -52,7 +52,6 @@ def test_fp_paths(weighted_paths):
 
 
 def test_pattern_miner_discretize(cervicalb_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
-    print(cervicalb_pattern_miner.descretize_continuous_thresholds()[0])
-    print()
-    print(cervicalb_pattern_miner.descretize_continuous_thresholds()[1])
-    assert False
+    discretized_centred = cervicalb_pattern_miner.descretize_continuous_thresholds()
+    assert_dict_matches_fixture({k.item(): convert_native(v) for k, v in discretized_centred[0].items()}, "discretized_centred_leq")
+    assert_dict_matches_fixture({k.item(): convert_native(v) for k, v in discretized_centred[1].items()}, "discretized_centred_gt")
