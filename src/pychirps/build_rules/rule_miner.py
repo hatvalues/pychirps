@@ -17,7 +17,6 @@ class RuleMiner:
         preds: np.ndarray,
         classes=np.array([0, 1], dtype=np.uint8),
         cardinality_regularizing_weight: float = 0.5,
-        entropy_function: Callable = rutils.entropy,
     ):
         self._pattern_miner = pattern_miner
         self.y_pred = y_pred
@@ -25,7 +24,6 @@ class RuleMiner:
         self.preds = preds
         self.classes = np.sort(classes)
         self.cardinality_regularizing_weight = cardinality_regularizing_weight
-        self.entropy_function = entropy_function
 
     @property
     def patterns(self):
@@ -52,9 +50,7 @@ class RuleMiner:
         pred_count = Counter(rule_applies_preds)
         # ensuring same order each time
         pred_count.update({k: 0 for k in self.classes if k not in pred_count})
-        return self.entropy_function(
-            np.array([pred_count[cla] for cla in self.classes])
-        )
+        return rutils.entropy(np.array([pred_count[cla] for cla in self.classes]))
 
     @cached_property
     def entropy_regularizing_weights(self):
@@ -102,17 +98,12 @@ class RuleMiner:
     def hill_climb(
         self, blending_weight: float = 1.0, cardinality_regularizing_weight: float = 0.0
     ):
-        # default input use naive hill climb with only stability as the objective function
+        # default input use naive hill climb with the objective function
         # hill climbing algorithm to find the best combination of patterns
         # start with the patterns sorted by their weights
         # pick the rule from the top and add it to the rule
-        # in the case of tied weights, pick the one with highest stability
-        # in the case of tied stability, pick the one with highest exclusive coverage
-        # compare current stability with previous stability
         # if the rule set is better than the previous rule set, keep the pattern
-        # prune duplicate nodes
-        # otherwise, remove the pattern from the rule set
-        # loop until no more stability increase, no more patterns, or rule reaches max length
+        # loop until no more increase in objective functtion, no more patterns
         sorted_patterns = [pattern for pattern in self.custom_sorted_patterns]
         best_pattern = tuple()
         best_score = -np.inf

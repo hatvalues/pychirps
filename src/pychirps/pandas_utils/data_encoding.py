@@ -24,8 +24,12 @@ class PandasEncoder:
                     "num",
                     "passthrough",
                     numerical_cols,
-                ),  # Numerical features can pass as is
-                ("cat", self.onehot_encoder, categorical_cols),
+                ),
+                (
+                    "cat",
+                    self.onehot_encoder,
+                    categorical_cols
+                ),
             ]
         )
         self.label_encoder = LabelEncoder()
