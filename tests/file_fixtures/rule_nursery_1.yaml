@@ -1,0 +1,5 @@
+rule:
+- parents is not usual
+- has_nurs is proper
+- housing is not convenient
+- housing is critical

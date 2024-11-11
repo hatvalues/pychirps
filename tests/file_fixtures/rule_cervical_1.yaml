@@ -1,0 +1,5 @@
+rule:
+- Age <= 3.0
+- Number of sexual partners > 3.5
+- IUD <= 2.7
+- IUD (years) > 22.1
