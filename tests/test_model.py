@@ -2,7 +2,7 @@ import data_preprocs.data_providers as dp
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-from src.config import DEFAULT_RANDOM_SEED
+from app.config import DEFAULT_RANDOM_SEED
 
 
 def test_model_harness():

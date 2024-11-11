@@ -1,10 +1,10 @@
-from src.pychirps.extract_paths.classification_trees import ForestPath
+from app.pychirps.extract_paths.classification_trees import ForestPath
 from pyfpgrowth import find_frequent_patterns
-from src.pychirps.build_rules.rule_utilities import NodePattern
+from app.pychirps.build_rules.rule_utilities import NodePattern
 from collections import defaultdict
 from dataclasses import dataclass
 from typing import Optional, Generator
-import src.pychirps.build_rules.rule_utilities as rutils
+import app.pychirps.build_rules.rule_utilities as rutils
 import numpy as np
 
 

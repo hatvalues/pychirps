@@ -5,7 +5,7 @@ from sklearn.cluster import KMeans
 from scipy.stats import entropy as scipy_entropy
 from scipy.stats import wasserstein_distance
 from sklearn.metrics import silhouette_score
-from src.config import DEFAULT_RANDOM_SEED
+from app.config import DEFAULT_RANDOM_SEED
 from ordered_set import OrderedSet
 
 

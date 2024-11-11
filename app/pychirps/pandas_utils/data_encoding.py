@@ -25,11 +25,7 @@ class PandasEncoder:
                     "passthrough",
                     numerical_cols,
                 ),
-                (
-                    "cat",
-                    self.onehot_encoder,
-                    categorical_cols
-                ),
+                ("cat", self.onehot_encoder, categorical_cols),
             ]
         )
         self.label_encoder = LabelEncoder()

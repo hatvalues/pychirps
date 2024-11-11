@@ -4,7 +4,7 @@ from sklearn.ensemble import (
     GradientBoostingClassifier,
 )
 import numpy as np
-from src.config import DEFAULT_RANDOM_SEED
+from app.config import DEFAULT_RANDOM_SEED
 
 
 def fit_random_forest(

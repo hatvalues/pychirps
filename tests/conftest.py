@@ -1,13 +1,13 @@
-from src.pychirps.extract_paths.classification_trees import random_forest_paths_factory
-from src.pychirps.pandas_utils.data_encoding import PandasEncoder
-from pychirps.extract_paths.forest_explorer import ForestExplorer
-from pychirps.build_rules.pattern_miner import PatternMiner
-from src.pychirps.build_rules.rule_miner import RuleMiner
+from app.pychirps.extract_paths.classification_trees import random_forest_paths_factory
+from app.pychirps.pandas_utils.data_encoding import PandasEncoder
+from app.pychirps.extract_paths.forest_explorer import ForestExplorer
+from app.pychirps.build_rules.pattern_miner import PatternMiner
+from app.pychirps.build_rules.rule_miner import RuleMiner
 from sklearn.ensemble import RandomForestClassifier
 import data_preprocs.data_providers as dp
 from dataclasses import dataclass
 import numpy as np
-from src.config import DEFAULT_RANDOM_SEED
+from app.config import DEFAULT_RANDOM_SEED
 import pytest
 
 

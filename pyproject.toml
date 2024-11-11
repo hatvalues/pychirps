@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["hatvalues <julian@hatvalues.org>"]
 readme = "README.md"
-packages = [{include = "pychirps", from = "src"}]
+packages = [{include = "pychirps", from = "app"}]
 
 [tool.mypy]
 warn_return_any = true  # Make certain errors into warnings
@@ -23,6 +23,7 @@ pyfpgrowth = "^1.0"
 imblearn = "^0.0"
 scikit-learn = "^1.5.2"
 ordered-set = "^4.1.0"
+streamlit = "^1.40.1"
 
 
 [tool.poetry.group.test.dependencies]

@@ -1,4 +1,4 @@
-from src.pychirps.extract_paths.classification_trees import (
+from app.pychirps.extract_paths.classification_trees import (
     ForestPath,
     TreePath,
     TreeNode,
