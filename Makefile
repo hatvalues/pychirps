@@ -21,3 +21,6 @@ clean:
 	find . -name __pycache__ | xargs rm -rf
 
 all: clean install lint format test
+
+app:
+	poetry run streamlit run app/main.py
