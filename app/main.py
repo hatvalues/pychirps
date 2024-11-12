@@ -1,7 +1,13 @@
+from app.ui.demos import cervicalb
 import streamlit as st
 
-st.title("Simple Classification App")
+# DEVELOPMENT VERSION - HARDCODED DEMO
+st.title("Cervical Demo")
+st.write(cervicalb.spiel)
 
-if st.button("Classify"):
+st.sidebar.write(cervicalb.column_names)
+
+if st.button("Classify and Explain"):
     st.write(f"Prediction: 1")
     st.write("Explanation:", "rule ...")
+

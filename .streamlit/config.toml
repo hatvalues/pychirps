@@ -1,2 +1,8 @@
 [server]
 port = 8501
+
+[server]
+enableCORS = false
+
+[runner]
+env = "PYTHONPATH=app"
