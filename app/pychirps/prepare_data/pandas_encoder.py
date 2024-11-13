@@ -1,9 +1,9 @@
 import numpy as np
 import pandas as pd
 from typing import Optional
+from dataclasses import dataclass
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer
-
 
 class PandasEncoder:
     def __init__(self, features: pd.DataFrame, target: pd.Series):

@@ -5,11 +5,10 @@ from app.pychirps.build_rules.pattern_miner import PatternMiner
 from app.pychirps.build_rules.rule_miner import RuleMiner
 from sklearn.ensemble import RandomForestClassifier
 import data_preprocs.data_providers as dp
-from dataclasses import dataclass
 import numpy as np
+from dataclasses import dataclass
 from app.config import DEFAULT_RANDOM_SEED
 import pytest
-
 
 @dataclass
 class PreparedData:
@@ -18,7 +17,6 @@ class PreparedData:
     unseen_instance_features: np.ndarray
     unseen_instance_target: np.ndarray
     encoder: PandasEncoder
-
 
 @pytest.fixture(scope="session")
 def cervicalb_enc():
