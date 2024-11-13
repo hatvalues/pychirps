@@ -1,4 +1,4 @@
-from pychirps.pandas_utils.data_encoding import PandasEncoder
+from app.pychirps.prepare_data.pandas_encoder import PandasEncoder
 from data_preprocs.data_providers import cervicalb_pd, nursery_pd
 import numpy as np
 import pandas as pd

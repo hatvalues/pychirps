@@ -1,5 +1,5 @@
 from app.pychirps.extract_paths.classification_trees import random_forest_paths_factory
-from app.pychirps.pandas_utils.data_encoding import PandasEncoder
+from app.pychirps.prepare_data.pandas_encoder import PandasEncoder
 from app.pychirps.extract_paths.forest_explorer import ForestExplorer
 from app.pychirps.build_rules.pattern_miner import PatternMiner
 from app.pychirps.build_rules.rule_miner import RuleMiner

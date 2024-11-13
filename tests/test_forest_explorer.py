@@ -1,6 +1,6 @@
 from pychirps.extract_paths.forest_explorer import ForestExplorer
 from sklearn.ensemble import RandomForestClassifier
-from app.pychirps.pandas_utils.data_encoding import PandasEncoder
+from app.pychirps.prepare_data.pandas_encoder import PandasEncoder
 import data_preprocs.data_providers as dp
 import numpy as np
 

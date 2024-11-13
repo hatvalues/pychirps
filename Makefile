@@ -8,7 +8,7 @@ install:
 	poetry install
 
 lint:
-	poetry run pylint --disable=R,C .
+	poetry run pylint --disable=R,C app
 
 check:
 	poetry run mypy .
@@ -23,4 +23,4 @@ clean:
 all: clean install lint format test
 
 viewer:
-	PYTHONPATH="app:../data_preprocs" poetry run streamlit run app/main.py
+	PYTHONPATH=".:app:../data_preprocs" poetry run streamlit run app/main.py
