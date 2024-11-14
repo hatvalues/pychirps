@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from typing import Optional
 from dataclasses import dataclass
+from data_preprocs.data_providers import DataProvider
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 
@@ -60,3 +61,9 @@ class PandasEncoder:
         self.target = target.copy()
         self.fit()
         return self.transform()
+    
+def get_fitted_encoder_pd(data_provider_pd: DataProvider, n: Optional[int] = None) -> PandasEncoder:
+    slc = slice(n)
+    encoder = PandasEncoder(data_provider_pd.features.iloc[slc,], data_provider_pd.target.iloc[slc])
+    encoder.fit()
+    return encoder

@@ -1,8 +1,8 @@
 # Just for dev - map out how the app will work with hard-coded data and model
 # In due time - it will be adaptable based on uploaded data, and we'd have a model repository
-from data_preprocs.data_providers import cervicalb_pd as cvb
+from data_preprocs.data_providers import cervicalb_pd
 from app.pychirps.path_mining.classification_trees import random_forest_paths_factory, ForestPath, ForestExplorer
-from app.pychirps.data_prep.pandas_encoder import PandasEncoder
+from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasEncoder
 from sklearn.ensemble import RandomForestClassifier
 from app.config import DEFAULT_RANDOM_SEED
 import numpy as np
@@ -10,9 +10,7 @@ import streamlit as st
 
 @st.cache_resource
 def fetch_clean_data(reset: bool = False):
-    encoder = PandasEncoder(cvb.features, cvb.target)
-    encoder.fit()
-    return encoder
+    return get_fitted_encoder_pd(cervicalb_pd)
 
 @st.cache_data
 def transform_data(_encoder: PandasEncoder, reset: bool = False):

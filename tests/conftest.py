@@ -1,5 +1,5 @@
 from app.pychirps.path_mining.classification_trees import random_forest_paths_factory
-from app.pychirps.data_prep.pandas_encoder import PandasEncoder
+from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasEncoder
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
 from app.pychirps.rule_mining.pattern_miner import PatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner
@@ -20,13 +20,12 @@ class PreparedData:
 
 @pytest.fixture(scope="session")
 def cervicalb_enc():
-    encoder = PandasEncoder(
-        dp.cervicalb_pd.features.iloc[:600,], dp.cervicalb_pd.target.iloc[:600]
-    )
-    encoder.fit()
+    num_instances = 600
+    slc = slice(num_instances, num_instances + 1)
+    encoder = get_fitted_encoder_pd(dp.cervicalb_pd, n=num_instances)
     transformed_features, transformed_target = encoder.transform()
     unseen_instance_features, unseen_instance_target = encoder.transform(
-        dp.cervicalb_pd.features.iloc[600:601,], dp.cervicalb_pd.target.iloc[600:601]
+        dp.cervicalb_pd.features.iloc[slc,], dp.cervicalb_pd.target.iloc[slc]
     )
     return PreparedData(
         features=transformed_features,
