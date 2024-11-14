@@ -1,4 +1,4 @@
-from app.pychirps.prepare_data.pandas_encoder import PandasEncoder
+from app.pychirps.data_prep.pandas_encoder import PandasEncoder
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
 

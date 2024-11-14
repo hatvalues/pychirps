@@ -2,7 +2,7 @@
 # In due time - it will be adaptable based on uploaded data, and we'd have a model repository
 from data_preprocs.data_providers import cervicalb_pd as cvb
 from app.pychirps.path_mining.classification_trees import random_forest_paths_factory, ForestPath, ForestExplorer
-from app.pychirps.prepare_data.pandas_encoder import PandasEncoder
+from app.pychirps.data_prep.pandas_encoder import PandasEncoder
 from sklearn.ensemble import RandomForestClassifier
 from app.config import DEFAULT_RANDOM_SEED
 import numpy as np
