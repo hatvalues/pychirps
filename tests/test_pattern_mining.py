@@ -1,5 +1,5 @@
 from tests.forest_paths_helper import weighted_paths  # noqa # mypy can't cope with pytest fixtures
-from app.pychirps.build_rules.pattern_miner import PatternMiner
+from app.pychirps.rule_mining.pattern_miner import PatternMiner
 from tests.fixture_helper import assert_dict_matches_fixture, convert_native
 from dataclasses import asdict
 from itertools import cycle

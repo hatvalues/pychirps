@@ -1,4 +1,4 @@
-from app.pychirps.build_rules.rule_utilities import NodePattern
+from app.pychirps.rule_mining.rule_utilities import NodePattern
 from functools import cached_property
 
 

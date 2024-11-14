@@ -1,7 +1,7 @@
 import pytest
 import numpy as np
 from numpy.random import seed
-import app.pychirps.build_rules.rule_utilities as rutils
+import app.pychirps.rule_mining.rule_utilities as rutils
 from tests.fixture_helper import (
     load_yaml_fixture_file,
     assert_dict_matches_fixture,

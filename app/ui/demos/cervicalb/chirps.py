@@ -1,6 +1,7 @@
 # Just for dev - map out how the app will work with hard-coded data and model
 # In due time - it will be adaptable based on uploaded data, and we'd have a model repository
 from data_preprocs.data_providers import cervicalb_pd as cvb
+from app.pychirps.extract_paths.classification_trees import random_forest_paths_factory, ForestPath, ForestExplorer
 from app.pychirps.prepare_data.pandas_encoder import PandasEncoder
 from sklearn.ensemble import RandomForestClassifier
 from app.config import DEFAULT_RANDOM_SEED
@@ -35,3 +36,8 @@ def fit_model(features: np.ndarray, target: np.ndarray, reset: bool = False, **k
 model = fit_model(features=transformed_features, target=transformed_target)
 
 st.sidebar.metric(label="Fitted RF Model OOB Score:", value=round(model.oob_score_, 4))
+
+@st.cache_resource
+def fit_forest_explorer(encoder: PandasEncoder, model: RandomForestClassifier) -> ForestPath:
+    return ForestExplorer(model, encoder)
+    
