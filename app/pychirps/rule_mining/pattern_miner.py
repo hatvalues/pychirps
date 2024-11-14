@@ -1,4 +1,4 @@
-from app.pychirps.extract_paths.classification_trees import ForestPath
+from app.pychirps.path_mining.classification_trees import ForestPath
 from pyfpgrowth import find_frequent_patterns
 from app.pychirps.rule_mining.rule_utilities import NodePattern
 from collections import defaultdict

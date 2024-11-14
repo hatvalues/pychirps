@@ -1,4 +1,4 @@
-from app.pychirps.extract_paths.classification_trees import instance_tree_factory
+from app.pychirps.path_mining.classification_trees import instance_tree_factory
 import numpy as np
 from dataclasses import asdict
 from tests.fixture_helper import assert_dict_matches_fixture, convert_native
