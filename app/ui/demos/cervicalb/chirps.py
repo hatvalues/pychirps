@@ -3,17 +3,17 @@
 from data_preprocs.data_providers import cervicalb_pd
 from app.pychirps.path_mining.classification_trees import random_forest_paths_factory, ForestPath, ForestExplorer
 from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasEncoder
-from sklearn.ensemble import RandomForestClassifier
+from app.pychirps.model_prep.model_building import fit_random_forest, RandomForestClassifier
 from app.config import DEFAULT_RANDOM_SEED
 import numpy as np
 import streamlit as st
 
 @st.cache_resource
-def fetch_clean_data(reset: bool = False):
+def fetch_clean_data(reset: bool = False) -> PandasEncoder:
     return get_fitted_encoder_pd(cervicalb_pd)
 
 @st.cache_data
-def transform_data(_encoder: PandasEncoder, reset: bool = False):
+def transform_data(_encoder: PandasEncoder, reset: bool = False) -> tuple[np.ndarray, np.ndarray]:
     return _encoder.transform()
 
 encoder = fetch_clean_data()
@@ -21,17 +21,9 @@ transformed_features, transformed_target = transform_data(_encoder=encoder)
 
 @st.cache_resource
 def fit_model(features: np.ndarray, target: np.ndarray, reset: bool = False, **kwargs) -> RandomForestClassifier:
-    hyper_parameter_defaults = {
-        "n_estimators": 1000,
-        "min_samples_leaf": 1,
-        "max_features": "sqrt",
-        "oob_score": True,
-    } | kwargs
-    model = RandomForestClassifier(random_state=DEFAULT_RANDOM_SEED, **hyper_parameter_defaults)
-    model.fit(features, target)
-    return model
+    return fit_random_forest(X=transformed_features, y=transformed_target, **kwargs)
 
-model = fit_model(features=transformed_features, target=transformed_target)
+model = fit_model(features=transformed_features, target=transformed_target, n_estimators=1000)
 
 st.sidebar.metric(label="Fitted RF Model OOB Score:", value=round(model.oob_score_, 4))
 

@@ -8,9 +8,15 @@ from app.config import DEFAULT_RANDOM_SEED
 
 
 def fit_random_forest(
-    X: np.ndarray, y: np.ndarray, random_state=DEFAULT_RANDOM_SEED
+    X: np.ndarray, y: np.ndarray, random_state=DEFAULT_RANDOM_SEED, **kwargs
 ) -> RandomForestClassifier:
-    model = RandomForestClassifier(n_estimators=100, random_state=random_state)
+    hyper_parameter_defaults = {
+        "n_estimators": 100,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt",
+        "oob_score": True,
+    } | kwargs
+    model = RandomForestClassifier(random_state=DEFAULT_RANDOM_SEED, **hyper_parameter_defaults)
     model.fit(X, y)
     return model
 

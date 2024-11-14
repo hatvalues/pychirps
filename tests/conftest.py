@@ -3,7 +3,7 @@ from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasE
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
 from app.pychirps.rule_mining.pattern_miner import PatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner
-from sklearn.ensemble import RandomForestClassifier
+from app.pychirps.model_prep.model_building import fit_random_forest, RandomForestClassifier
 import data_preprocs.data_providers as dp
 import numpy as np
 from dataclasses import dataclass
@@ -38,9 +38,7 @@ def cervicalb_enc():
 
 @pytest.fixture(scope="session")
 def cervicalb_rf(cervicalb_enc):
-    model = RandomForestClassifier(n_estimators=10, random_state=DEFAULT_RANDOM_SEED)
-    model.fit(cervicalb_enc.features, cervicalb_enc.target)
-    return model
+    return fit_random_forest(X=cervicalb_enc.features, y=cervicalb_enc.target, n_estimators=10)
 
 
 @pytest.fixture
