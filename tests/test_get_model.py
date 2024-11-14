@@ -3,7 +3,7 @@ from sklearn.ensemble import (
     AdaBoostClassifier,
     GradientBoostingClassifier,
 )
-from app.pychirps.model_building import (
+from app.pychirps.model_prep.model_building import (
     fit_random_forest,
     fit_adaboost,
     fit_gradient_boosting,

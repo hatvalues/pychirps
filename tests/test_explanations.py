@@ -1,4 +1,4 @@
-from app.pychirps.explanations import RuleParser
+from app.pychirps.explain.explanations import RuleParser
 from app.pychirps.rule_mining.rule_utilities import NodePattern
 from tests.fixture_helper import assert_dict_matches_fixture
 
