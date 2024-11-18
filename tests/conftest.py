@@ -4,7 +4,7 @@ from app.pychirps.path_mining.forest_explorer import ForestExplorer
 from app.pychirps.rule_mining.pattern_miner import PatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner
 from app.pychirps.model_prep.model_building import fit_random_forest, RandomForestClassifier
-import data_preprocs.data_providers as dp
+from data_preprocs.data_providers import cervicalb_pd as cervicalb_pandas_provider, nursery_pd as nursery_pandas_provider
 import numpy as np
 from dataclasses import dataclass
 from app.config import DEFAULT_RANDOM_SEED
@@ -19,13 +19,17 @@ class PreparedData:
     encoder: PandasEncoder
 
 @pytest.fixture(scope="session")
-def cervicalb_enc():
+def cervicalb_pd():
+    return cervicalb_pandas_provider
+
+@pytest.fixture(scope="session")
+def cervicalb_enc(cervicalb_pd):
     num_instances = 600
     slc = slice(num_instances, num_instances + 1)
-    encoder = get_fitted_encoder_pd(dp.cervicalb_pd, n=num_instances)
+    encoder = get_fitted_encoder_pd(cervicalb_pd, n=num_instances)
     transformed_features, transformed_target = encoder.transform()
     unseen_instance_features, unseen_instance_target = encoder.transform(
-        dp.cervicalb_pd.features.iloc[slc,], dp.cervicalb_pd.target.iloc[slc]
+        cervicalb_pd.features.iloc[slc,], cervicalb_pd.target.iloc[slc]
     )
     return PreparedData(
         features=transformed_features,
@@ -42,9 +46,9 @@ def cervicalb_rf(cervicalb_enc):
 
 
 @pytest.fixture
-def cervicalb_rf_paths(cervicalb_enc, cervicalb_rf):
+def cervicalb_rf_paths(cervicalb_pd, cervicalb_enc, cervicalb_rf):
     forest_explorer = ForestExplorer(cervicalb_rf, cervicalb_enc.encoder)
-    instance = dp.cervicalh_pd.features.iloc[0]
+    instance = cervicalb_pd.features.iloc[0]
     instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
     return random_forest_paths_factory(forest_explorer, instance32)
 
@@ -69,15 +73,19 @@ def cervicalb_rule_miner(cervicalb_rf, cervicalb_enc, cervicalb_pattern_miner): 
         classes=np.unique(cervicalb_enc.target),
     )
 
+@pytest.fixture(scope="session")
+def nursery_pd():
+    return nursery_pandas_provider
+
 
 @pytest.fixture(scope="session")
-def nursery_enc():
+def nursery_enc(nursery_pd):
     num_instances = 600
     slc = slice(num_instances, num_instances + 1)
-    encoder = get_fitted_encoder_pd(dp.nursery_pd, n=num_instances)
+    encoder = get_fitted_encoder_pd(nursery_pd, n=num_instances)
     transformed_features, transformed_target = encoder.transform()
     unseen_instance_features, unseen_instance_target = encoder.transform(
-        dp.nursery_pd.features.iloc[slc,], dp.nursery_pd.target.iloc[slc]
+        nursery_pd.features.iloc[slc,], nursery_pd.target.iloc[slc]
     )
     return PreparedData(
         features=transformed_features,
@@ -93,9 +101,9 @@ def nursery_rf(nursery_enc):
 
 
 @pytest.fixture
-def nursery_rf_paths(nursery_enc, nursery_rf):
+def nursery_rf_paths(nursery_pd, nursery_enc, nursery_rf):
     forest_explorer = ForestExplorer(nursery_rf, nursery_enc.encoder)
-    instance = dp.nursery_pd.features.iloc[0]
+    instance = nursery_pd.features.iloc[0]
     instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
     return random_forest_paths_factory(forest_explorer, instance32)
 

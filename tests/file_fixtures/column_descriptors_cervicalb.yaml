@@ -1,0 +1,242 @@
+Age:
+  dtype: float64
+  max: 84.0
+  min: 13.0
+  otype: numeric
+  unique_values: []
+Citology:
+  dtype: object
+  max: null
+  min: null
+  otype: categorical
+  unique_values:
+  - F
+  - T
+Dx:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+Dx:CIN:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+Dx:Cancer:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+Dx:HPV:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+First sexual intercourse:
+  dtype: float64
+  max: 32.0
+  min: 10.0
+  otype: numeric
+  unique_values: []
+Hinselmann:
+  dtype: object
+  max: null
+  min: null
+  otype: categorical
+  unique_values:
+  - F
+  - T
+Hormonal Contraceptives:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+Hormonal Contraceptives (years):
+  dtype: float64
+  max: 30.0
+  min: 0.0
+  otype: numeric
+  unique_values: []
+IUD:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+IUD (years):
+  dtype: float64
+  max: 19.0
+  min: 0.0
+  otype: numeric
+  unique_values: []
+Num of pregnancies:
+  dtype: float64
+  max: 11.0
+  min: 0.0
+  otype: numeric
+  unique_values: []
+Number of sexual partners:
+  dtype: float64
+  max: 28.0
+  min: 1.0
+  otype: numeric
+  unique_values: []
+STDs:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+STDs (number):
+  dtype: float64
+  max: 4.0
+  min: 0.0
+  otype: numeric
+  unique_values: []
+'STDs: Number of diagnosis':
+  dtype: float64
+  max: 3.0
+  min: 0.0
+  otype: numeric
+  unique_values: []
+STDs:AIDS:
+  dtype: int64
+  max: 0
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+STDs:HIV:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+STDs:HPV:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+STDs:Hepatitis B:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+STDs:cervical condylomatosis:
+  dtype: int64
+  max: 0
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+STDs:condylomatosis:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+STDs:genital herpes:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+STDs:molluscum contagiosum:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+STDs:pelvic inflammatory disease:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+STDs:syphilis:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+STDs:vaginal condylomatosis:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+STDs:vulvo-perineal condylomatosis:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+Schiller:
+  dtype: object
+  max: null
+  min: null
+  otype: categorical
+  unique_values:
+  - F
+  - T
+Smokes:
+  dtype: int64
+  max: 1
+  min: 0
+  otype: ordinal
+  unique_values:
+  - 0
+  - 1
+Smokes (packs/year):
+  dtype: float64
+  max: 37.0
+  min: 0.0
+  otype: numeric
+  unique_values: []
+Smokes (years):
+  dtype: float64
+  max: 37.0
+  min: 0.0
+  otype: numeric
+  unique_values: []
