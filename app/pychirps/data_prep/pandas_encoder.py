@@ -1,10 +1,24 @@
 import numpy as np
 import pandas as pd
-from typing import Optional
-from dataclasses import dataclass
-from data_preprocs.data_providers import DataProvider
+import polars as pl
+from typing import Optional, Union, Any
+from dataclasses import dataclass, field
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer
+
+@dataclass
+class DataProvider:
+    """Base class for data providers."""
+
+    name: str
+    file_name: str
+    class_col: str
+    positive_class: str
+    spiel: str
+    sample_size: float
+    features: Union[pd.DataFrame, pl.DataFrame]
+    target: Union[pd.Series, pl.Series]
+    column_descriptors: dict[str, Any] = field(default_factory=dict)
 
 class PandasEncoder:
     def __init__(self, features: pd.DataFrame, target: pd.Series):
