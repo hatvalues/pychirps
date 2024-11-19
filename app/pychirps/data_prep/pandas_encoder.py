@@ -62,9 +62,14 @@ class PandasEncoder:
         self.target = target.copy()
         self.fit()
         return self.transform()
-    
-def get_fitted_encoder_pd(data_provider_pd: DataProvider, n: Optional[int] = None) -> PandasEncoder:
+
+
+def get_fitted_encoder_pd(
+    data_provider_pd: DataProvider, n: Optional[int] = None
+) -> PandasEncoder:
     slc = slice(n)
-    encoder = PandasEncoder(data_provider_pd.features.iloc[slc,], data_provider_pd.target.iloc[slc])
+    encoder = PandasEncoder(
+        data_provider_pd.features.iloc[slc,], data_provider_pd.target.iloc[slc]
+    )
     encoder.fit()
     return encoder

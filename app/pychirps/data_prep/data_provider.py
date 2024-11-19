@@ -3,6 +3,7 @@ from typing import Optional, Union
 import pandas as pd
 import polars as pl
 
+
 @dataclass
 class DataContainer:
     features: Union[pd.DataFrame, pl.DataFrame]
@@ -16,6 +17,7 @@ class ColumnDescriptor:
     unique_values: list = field(default_factory=list)
     min: Optional[Union[float, int]] = None
     max: Optional[Union[float, int]] = None
+
 
 @dataclass
 class DataProvider:

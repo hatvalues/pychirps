@@ -3,12 +3,19 @@ from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasE
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
 from app.pychirps.rule_mining.pattern_miner import PatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner
-from app.pychirps.model_prep.model_building import fit_random_forest, RandomForestClassifier
-from data_preprocs.data_providers import cervicalb_pd as cervicalb_pandas_provider, nursery_pd as nursery_pandas_provider
+from app.pychirps.model_prep.model_building import (
+    fit_random_forest,
+    RandomForestClassifier,
+)
+from data_preprocs.data_providers import (
+    cervicalb_pd as cervicalb_pandas_provider,
+    nursery_pd as nursery_pandas_provider,
+)
 import numpy as np
 from dataclasses import dataclass
 from app.config import DEFAULT_RANDOM_SEED
 import pytest
+
 
 @dataclass
 class PreparedData:
@@ -18,9 +25,11 @@ class PreparedData:
     unseen_instance_target: np.ndarray
     encoder: PandasEncoder
 
+
 @pytest.fixture(scope="session")
 def cervicalb_pd():
     return cervicalb_pandas_provider
+
 
 @pytest.fixture(scope="session")
 def cervicalb_enc(cervicalb_pd):
@@ -42,7 +51,9 @@ def cervicalb_enc(cervicalb_pd):
 
 @pytest.fixture(scope="session")
 def cervicalb_rf(cervicalb_enc):
-    return fit_random_forest(X=cervicalb_enc.features, y=cervicalb_enc.target, n_estimators=10)
+    return fit_random_forest(
+        X=cervicalb_enc.features, y=cervicalb_enc.target, n_estimators=10
+    )
 
 
 @pytest.fixture
@@ -73,6 +84,7 @@ def cervicalb_rule_miner(cervicalb_rf, cervicalb_enc, cervicalb_pattern_miner): 
         classes=np.unique(cervicalb_enc.target),
     )
 
+
 @pytest.fixture(scope="session")
 def nursery_pd():
     return nursery_pandas_provider
@@ -95,9 +107,12 @@ def nursery_enc(nursery_pd):
         encoder=encoder,
     )
 
+
 @pytest.fixture(scope="session")
 def nursery_rf(nursery_enc):
-    return fit_random_forest(X=nursery_enc.features, y=nursery_enc.target, n_estimators=10)
+    return fit_random_forest(
+        X=nursery_enc.features, y=nursery_enc.target, n_estimators=10
+    )
 
 
 @pytest.fixture

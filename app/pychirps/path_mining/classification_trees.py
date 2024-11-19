@@ -4,7 +4,6 @@ from app.pychirps.path_mining.forest_explorer import ForestExplorer
 import numpy as np
 
 
-
 @dataclass(frozen=True)
 class TreeNode:
     feature: np.uint8
