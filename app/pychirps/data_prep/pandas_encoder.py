@@ -1,24 +1,11 @@
 import numpy as np
 import pandas as pd
 import polars as pl
-from typing import Optional, Union, Any
-from dataclasses import dataclass, field
+from typing import Optional
+from app.pychirps.data_prep.data_provider import DataProvider
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 
-@dataclass
-class DataProvider:
-    """Base class for data providers."""
-
-    name: str
-    file_name: str
-    class_col: str
-    positive_class: str
-    spiel: str
-    sample_size: float
-    features: Union[pd.DataFrame, pl.DataFrame]
-    target: Union[pd.Series, pl.Series]
-    column_descriptors: dict[str, Any] = field(default_factory=dict)
 
 class PandasEncoder:
     def __init__(self, features: pd.DataFrame, target: pd.Series):

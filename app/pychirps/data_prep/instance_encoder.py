@@ -1,4 +1,4 @@
-from data_preprocs.data_loading import DataProvider
+from app.pychirps.data_prep.data_provider import DataProvider
 from typing import Optional, Any
 
 class InstanceEncoder():

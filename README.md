@@ -13,5 +13,12 @@ SaaS for giving ML predictions (Classification Tasks, primarily) with an explana
 2. You get end-point, hopefully both a REST API and a GUI where you can send new individual observations. The model will classify the instance and you will get a classification rule side-by-side to show you how the model produced that response.
 3. Based on my work in [CHIRPS: Explaining random forest classification](https://link.springer.com/article/10.1007/s10462-020-09833-6), [Ada-WHIPS: explaining AdaBoost classification with applications in the health sciences](https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-020-01201-2), and [gbt-HIPS: Explaining the Classifications of Gradient Boosted Tree Ensembles](https://www.mdpi.com/2076-3417/11/6/2511), the classification rule captures the largest region of the feature space that gets the same classification response as your instance, with the smallest number of rule antecedent terms.
 
+### Demos
+Requires my data_preprocs library, which I am also currently tweaking occasionally. For ease of development, this library is installed in a local folder which I just update with git pull as appropiate. The dependency is the rebuilt with 
+
+`poetry remove data_preprocs`
+
+`poetry add --group dev ../data_preprocs`
+
 ## When
 I'd love to finish by early 2025. I think I will have the RF version ready by end of 2024.
