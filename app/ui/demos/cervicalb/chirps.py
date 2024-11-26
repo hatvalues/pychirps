@@ -5,10 +5,9 @@ from ui.explanation_page import build_page_objects, create_sidebar
 import streamlit as st
 
 
+encoder, model, instance_wrapper = build_page_objects(cervicalb_pd)
 
-encoder, model, instance_encoder = build_page_objects(cervicalb_pd)
-
-form_submit, input_values = create_sidebar(instance_encoder.column_descriptors)
+form_submit, input_values = create_sidebar(instance_wrapper.column_descriptors)
 
 
 st.markdown(f"""### Your RF Model.
@@ -21,5 +20,6 @@ Setting this values to the min or max is equivalent to setting any lower or high
 
 
 if form_submit:
+    instance_wrapper.given_instance = input_values
     st.markdown("### Your Inputs:")
-    st.json(input_values)
+    st.json(instance_wrapper.given_instance)

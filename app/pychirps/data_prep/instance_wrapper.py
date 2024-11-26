@@ -1,8 +1,9 @@
 from app.pychirps.data_prep.data_provider import DataProvider
+
 from typing import Optional, Any
 
 
-class InstanceEncoder:
+class InstanceWrapper:
     def __init__(
         self, provider: DataProvider, given_instance: Optional[dict[str, Any]] = None
     ) -> None:
