@@ -2,6 +2,7 @@
 # In due time - it will be adaptable based on uploaded data, and we'd have a model repository
 from data_preprocs.data_providers import cervicalb_pd
 from ui.explanation_page import build_page_objects, create_sidebar
+import pandas as pd
 import streamlit as st
 
 
@@ -23,3 +24,7 @@ if form_submit:
     instance_wrapper.given_instance = input_values
     st.markdown("### Your Inputs:")
     st.json(instance_wrapper.given_instance)
+    features_stack = pd.DataFrame({k: [v] for k, v in instance_wrapper.given_instance.items()})
+    dummy_target = pd.Series(cervicalb_pd.positive_class)
+    encoded_instance, _ = encoder.transform(features_stack, dummy_target)
+    st.dataframe(encoded_instance)

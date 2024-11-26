@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 
-def test_encode_pandas():
+def test_encode_pandas_cervical():
     encoder = PandasEncoder(cervicalb_pd.features, cervicalb_pd.target)
     encoder.fit()
     transformed_features, transformed_target = encoder.transform()
@@ -46,7 +46,45 @@ def test_encode_pandas():
         "num__Dx:HPV",
         "num__Dx",
     ]
+    # checking method only. no assert
+    one_instance = {
+        "Age":13,
+        "Number of sexual partners":1,
+        "First sexual intercourse":10,
+        "Num of pregnancies":0,
+        "Smokes":0,
+        "Smokes (years)":0,
+        "Smokes (packs/year)":0,
+        "Hormonal Contraceptives":0,
+        "Hormonal Contraceptives (years)":0,
+        "IUD":0,
+        "IUD (years)":0,
+        "STDs":0,
+        "STDs (number)":0,
+        "STDs:condylomatosis":0,
+        "STDs:cervical condylomatosis":0,
+        "STDs:vaginal condylomatosis":0,
+        "STDs:vulvo-perineal condylomatosis":0,
+        "STDs:syphilis":0,
+        "STDs:pelvic inflammatory disease":0,
+        "STDs:genital herpes":0,
+        "STDs:molluscum contagiosum":0,
+        "STDs:AIDS":0,
+        "STDs:HIV":0,
+        "STDs:Hepatitis B":0,
+        "STDs:HPV":0,
+        "STDs: Number of diagnosis":0,
+        "Dx:Cancer":0,
+        "Dx:CIN":0,
+        "Dx:HPV":0,
+        "Dx":0,
+    }
+    features_stack = pd.DataFrame({k: [v] for k, v in one_instance.items()})
+    dummy_target = pd.Series(cervicalb_pd.target.loc[0])
+    _, _ = encoder.transform(features_stack, dummy_target)
 
+
+def test_encode_pandas_nursery():
     encoder = PandasEncoder(nursery_pd.features, nursery_pd.target)
     encoder.fit()
     transformed_features, transformed_target = encoder.transform()
