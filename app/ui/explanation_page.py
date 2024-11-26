@@ -92,7 +92,9 @@ def create_sidebar(
         return form_submit, input_values
 
 
-def build_page_objects(data_provider: DataProvider) -> tuple[PandasEncoder, RandomForestClassifier, InstanceWrapper]:
+def build_page_objects(
+    data_provider: DataProvider,
+) -> tuple[PandasEncoder, RandomForestClassifier, InstanceWrapper]:
     encoder = fetch_fitted_encoder(data_provider)
     transformed_features, transformed_target = transform_data(_encoder=encoder)
     model = fit_model(

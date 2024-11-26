@@ -24,7 +24,9 @@ if form_submit:
     instance_wrapper.given_instance = input_values
     st.markdown("### Your Inputs:")
     st.json(instance_wrapper.given_instance)
-    features_stack = pd.DataFrame({k: [v] for k, v in instance_wrapper.given_instance.items()})
+    feature_frame = pd.DataFrame(
+        {k: [v] for k, v in instance_wrapper.given_instance.items()}
+    )
     dummy_target = pd.Series(cervicalb_pd.positive_class)
-    encoded_instance, _ = encoder.transform(features_stack, dummy_target)
+    encoded_instance, _ = encoder.transform(feature_frame, dummy_target)
     st.dataframe(encoded_instance)
