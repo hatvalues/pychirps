@@ -6,6 +6,7 @@ from app.pychirps.model_prep.model_building import (
     fit_random_forest,
     RandomForestClassifier,
 )
+from typing import Union, Any
 import numpy as np
 import streamlit as st
 
@@ -42,27 +43,54 @@ def fit_forest_explorer(
 def fit_instance_encoder(data_provider: DataProvider) -> InstanceEncoder:
     return InstanceEncoder(data_provider)
 
+def render_categorical_input(column_name: str, column_descriptor: ColumnDescriptor) -> st.radio:
+    return st.radio(column_name, column_descriptor.unique_values)
+
+def render_integer_input(column_name: str, column_descriptor: ColumnDescriptor) -> st.number_input:
+    return st.number_input(
+        column_name,
+        min_value=column_descriptor.min,
+        max_value=column_descriptor.max,
+        value="min",
+    )
+
+def render_float_input(column_name: str, column_descriptor: ColumnDescriptor) -> st.slider:
+    return st.slider(
+        column_name,
+        min_value=column_descriptor.min,
+        max_value=column_descriptor.max,
+    )
+
+def render_input(column_name: str, column_descriptor: ColumnDescriptor) -> Any:
+    if column_descriptor.otype == "categorical":
+        return render_categorical_input(column_name, column_descriptor)
+    elif column_descriptor.otype in ("ordinal", "count"):
+        return render_integer_input(column_name, column_descriptor)
+    else:
+        return render_float_input(column_name, column_descriptor)
+
+
 
 def create_sidebar(
-    oob_score: float, column_descriptors: dict[ColumnDescriptor]
-) -> None:
-    with st.sidebar:
-        oob_score = st.metric(
-            label="Fitted RF Model OOB Score:", value=round(oob_score, 4)
-        )
-        for column_name, column_descriptor in column_descriptors.items():
-            if column_descriptor.otype == "categorical":
-                _ = st.radio(column_name, column_descriptor.unique_values)
-            elif column_descriptor.otype in ("ordinal", "count"):
-                _ = st.number_input(
-                    column_name,
-                    min_value=column_descriptor.min,
-                    max_value=column_descriptor.max,
-                    value="min"
-                )
-            else:
-                st.slider(
-                    column_name,
-                    min_value=column_descriptor.min,
-                    max_value=column_descriptor.max,
-                )
+    column_descriptors: dict[ColumnDescriptor]
+) -> dict[str, Union[int, float, str]]:
+    with st.sidebar.form(key ='input_form', border = False):
+        input_values = {column_name: render_input(column_name, column_descriptor) for column_name, column_descriptor in column_descriptors.items()}
+        form_submit = st.form_submit_button(label = 'Submit')
+        return form_submit, input_values
+
+def build_page_objects(data_provider: DataProvider) -> None:
+
+    encoder = fetch_fitted_encoder(data_provider)
+    transformed_features, transformed_target = transform_data(_encoder=encoder)
+    model = fit_model(
+        features=transformed_features, target=transformed_target, n_estimators=1000
+    )
+
+    instance_encoder = fit_instance_encoder(data_provider)
+
+
+    return encoder, model, instance_encoder
+
+
+
