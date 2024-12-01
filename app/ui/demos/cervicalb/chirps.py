@@ -1,6 +1,6 @@
 # Just for dev - map out how the app will work with hard-coded data and model
 # In due time - it will be adaptable based on uploaded data, and we'd have a model repository
-from data_preprocs.data_providers import cervicalb_pd
+from data_preprocs.data_providers.cervical import cervicalb_pd
 from ui.explanation_page import build_page_objects, create_sidebar
 import pandas as pd
 import streamlit as st

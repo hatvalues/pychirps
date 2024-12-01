@@ -7,6 +7,11 @@ update_test:
 install:
 	poetry install
 
+reinstall_data:
+	(cd ../data_preprocs && git pull && poetry install)
+	poetry remove data_preprocs
+	poetry add --group dev ../data_preprocs
+
 lint:
 	poetry run pylint --disable=R,C app
 

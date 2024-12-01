@@ -3,14 +3,12 @@ from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasE
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
 from app.pychirps.rule_mining.pattern_miner import PatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner
-from app.pychirps.model_prep.model_building import (
-    fit_random_forest,
-    RandomForestClassifier,
-)
-from data_preprocs.data_providers import (
+from app.pychirps.model_prep.model_building import fit_random_forest
+from data_preprocs.data_providers.cervical import (
     cervicalb_pd as cervicalb_pandas_provider,
-    nursery_pd as nursery_pandas_provider,
 )
+from data_preprocs.data_providers.nursery import nursery_pd as nursery_pandas_provider
+
 import numpy as np
 from dataclasses import dataclass
 from app.config import DEFAULT_RANDOM_SEED

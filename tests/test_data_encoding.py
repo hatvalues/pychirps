@@ -1,5 +1,6 @@
 from app.pychirps.data_prep.pandas_encoder import PandasEncoder
-from data_preprocs.data_providers import cervicalb_pd, nursery_pd
+from data_preprocs.data_providers.cervical import cervicalb_pd
+from data_preprocs.data_providers.nursery import nursery_pd
 import numpy as np
 import pandas as pd
 

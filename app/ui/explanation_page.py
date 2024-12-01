@@ -72,7 +72,7 @@ def render_float_input(
 
 
 def render_input(column_name: str, column_descriptor: ColumnDescriptor) -> Any:
-    if column_descriptor.otype == "categorical":
+    if column_descriptor.otype in ("categorical", "bool", "const"):
         return render_categorical_input(column_name, column_descriptor)
     elif column_descriptor.otype in ("ordinal", "count"):
         return render_integer_input(column_name, column_descriptor)

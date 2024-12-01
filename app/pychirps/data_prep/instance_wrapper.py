@@ -1,5 +1,5 @@
 from app.pychirps.data_prep.data_provider import DataProvider
-
+from warnings import warn
 from typing import Optional, Any
 
 
@@ -39,6 +39,7 @@ class InstanceWrapper:
         )
 
     def validator(self, column: str):
-        if self.column_descriptors[column].otype == "categorical":
+        print(self.column_descriptors[column].otype)
+        if self.column_descriptors[column].otype in ("categorical", "bool", "constant"):
             return self.validate_categorical
         return self.validate_numeric
