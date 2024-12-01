@@ -41,7 +41,6 @@ def test_instance_nursery(nursery_pd):
 def test_instance_update_cervical(cervicalb_pd):
     instance = {k: v[0] for k, v in cervicalb_pd.features[0:1].to_dict().items()}
     instance_wrapper = InstanceWrapper(cervicalb_pd, instance)
-    print("bef", instance_wrapper.given_instance)
     update_values = {
         "Age": 19.0,
         "Number of sexual partners": 5.0,
@@ -49,7 +48,6 @@ def test_instance_update_cervical(cervicalb_pd):
         "DUMMY": None,
     }
     instance_wrapper.given_instance = update_values
-    print("aft", instance_wrapper.given_instance)
     del update_values["First sexual intercourse"]
     del update_values["DUMMY"]
     assert instance_wrapper.given_instance == instance | update_values

@@ -1,7 +1,7 @@
 from app.pychirps.data_prep.data_provider import DataProvider, ColumnDescriptor
 from app.pychirps.path_mining.classification_trees import ForestPath, ForestExplorer
 from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasEncoder
-from app.pychirps.data_prep.instance_wrapper import InstanceWrapper
+from app.pychirps.data_prep.instance_wrapper import InstanceWrapper, ColumnType
 from app.pychirps.model_prep.model_building import (
     fit_random_forest,
     RandomForestClassifier,
@@ -52,6 +52,17 @@ def render_categorical_input(
 
 def render_integer_input(
     column_name: str, column_descriptor: ColumnDescriptor
+) -> st.slider:
+    return st.slider(
+        column_name,
+        min_value=int(column_descriptor.min),
+        max_value=int(column_descriptor.max),
+        step=1,
+    )
+
+
+def render_float_input(
+    column_name: str, column_descriptor: ColumnDescriptor
 ) -> st.number_input:
     return st.number_input(
         column_name,
@@ -61,20 +72,10 @@ def render_integer_input(
     )
 
 
-def render_float_input(
-    column_name: str, column_descriptor: ColumnDescriptor
-) -> st.slider:
-    return st.slider(
-        column_name,
-        min_value=column_descriptor.min,
-        max_value=column_descriptor.max,
-    )
-
-
 def render_input(column_name: str, column_descriptor: ColumnDescriptor) -> Any:
-    if column_descriptor.otype in ("categorical", "bool", "const"):
+    if column_descriptor.otype in ColumnType.CATEGORICAL.value:
         return render_categorical_input(column_name, column_descriptor)
-    elif column_descriptor.otype in ("ordinal", "count"):
+    elif column_descriptor.otype in ColumnType.INTEGER.value:
         return render_integer_input(column_name, column_descriptor)
     else:
         return render_float_input(column_name, column_descriptor)

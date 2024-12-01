@@ -1,6 +1,18 @@
 from app.pychirps.data_prep.data_provider import DataProvider
 from warnings import warn
 from typing import Optional, Any
+from enum import Enum
+
+
+class ColumnType(Enum):
+    CATEGORICAL = ("categorical", "bool", "constant")
+    INTEGER = ("ordinal", "count")
+    FLOAT = ("float",)
+
+
+class IntegerType(Enum):
+    ORDINAL = "ordinal"
+    COUNT = "count"
 
 
 class InstanceWrapper:
@@ -39,7 +51,6 @@ class InstanceWrapper:
         )
 
     def validator(self, column: str):
-        print(self.column_descriptors[column].otype)
-        if self.column_descriptors[column].otype in ("categorical", "bool", "constant"):
+        if self.column_descriptors[column].otype in ColumnType.CATEGORICAL.value:
             return self.validate_categorical
         return self.validate_numeric
