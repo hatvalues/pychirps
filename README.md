@@ -21,4 +21,4 @@ Requires my data_preprocs library, which I am also currently tweaking occasional
 `poetry add --group dev ../data_preprocs`
 
 ## When
-I'd love to finish by early 2025. I think I will have the RF version ready by end of 2024.
+I'd love to finish by early 2025.
