@@ -29,4 +29,5 @@ if form_submit:
     )
     dummy_target = pd.Series(cervicalb_pd.positive_class)
     encoded_instance, _ = encoder.transform(feature_frame, dummy_target)
-    st.dataframe(encoded_instance)
+    pred = model.predict(encoded_instance)
+    st.dataframe(pred)

@@ -6,32 +6,32 @@ Age:
   unique_values: []
 Dx:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
   - 1
 Dx:CIN:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
   - 1
 Dx:Cancer:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
   - 1
 Dx:HPV:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
@@ -44,8 +44,8 @@ First sexual intercourse:
   unique_values: []
 Hormonal Contraceptives:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
@@ -58,8 +58,8 @@ Hormonal Contraceptives (years):
   unique_values: []
 IUD:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
@@ -84,8 +84,8 @@ Number of sexual partners:
   unique_values: []
 STDs:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
@@ -104,102 +104,102 @@ STDs (number):
   unique_values: []
 STDs:AIDS:
   dtype: int64
-  max: null
-  min: null
+  max: 0
+  min: 0
   otype: constant
   unique_values:
   - 0
 STDs:HIV:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
   - 1
 STDs:HPV:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
   - 1
 STDs:Hepatitis B:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
   - 1
 STDs:cervical condylomatosis:
   dtype: int64
-  max: null
-  min: null
+  max: 0
+  min: 0
   otype: constant
   unique_values:
   - 0
 STDs:condylomatosis:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
   - 1
 STDs:genital herpes:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
   - 1
 STDs:molluscum contagiosum:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
   - 1
 STDs:pelvic inflammatory disease:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
   - 1
 STDs:syphilis:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
   - 1
 STDs:vaginal condylomatosis:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
   - 1
 STDs:vulvo-perineal condylomatosis:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
   - 1
 Smokes:
   dtype: int64
-  max: null
-  min: null
+  max: 1
+  min: 0
   otype: bool
   unique_values:
   - 0
