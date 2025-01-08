@@ -1,6 +1,7 @@
 # Just for dev - map out how the app will work with hard-coded data and model
 # In due time - it will be adaptable based on uploaded data, and we'd have a model repository
 from data_preprocs.data_providers.cervical import cervicalb_pd
+from app.pychirps.explain.pre_explanations import predict
 from ui.explanation_page import build_page_objects, create_sidebar
 import pandas as pd
 import streamlit as st
@@ -27,7 +28,12 @@ if form_submit:
     feature_frame = pd.DataFrame(
         {k: [v] for k, v in instance_wrapper.given_instance.items()}
     )
-    dummy_target = pd.Series(cervicalb_pd.positive_class)
-    encoded_instance, _ = encoder.transform(feature_frame, dummy_target)
-    pred = model.predict(encoded_instance)
-    st.dataframe(pred)
+    
+    model_prediction = predict(
+        model=model,
+        feature_frame=feature_frame,
+        dummy_target_class=pd.Series(cervicalb_pd.positive_class),
+        encoder=encoder
+    )
+    
+    st.dataframe(model_prediction)
