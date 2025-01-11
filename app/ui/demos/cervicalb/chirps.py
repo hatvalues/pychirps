@@ -35,5 +35,9 @@ if form_submit:
         dummy_target_class=pd.Series(cervicalb_pd.positive_class),
         encoder=encoder
     )
+    st.markdown("### Model Predicts:")
+    st.markdown(f"CLASS LABEL: {encoder.label_encoder.inverse_transform(model_prediction)[0]}")
+    st.markdown(f"encoded value: {model_prediction[0]}")
+
+    st.markdown("### Explanation:")
     
-    st.dataframe(model_prediction)
