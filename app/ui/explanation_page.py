@@ -86,6 +86,13 @@ def create_sidebar(
 ) -> dict[str, Union[int, float, str]]:
     with st.sidebar.form(key="input_form", border=False):
         input_values = {
+            "Frequent Pattern Support": st.number_input(
+                "Frequent Pattern Support",
+                min_value=0.0,
+                max_value=1.0,
+                value=0.2
+            )
+        } | {
             column_name: render_input(column_name, column_descriptor)
             for column_name, column_descriptor in column_descriptors.items()
         }

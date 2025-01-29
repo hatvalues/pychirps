@@ -2,6 +2,7 @@ from sklearn.tree import DecisionTreeClassifier
 from dataclasses import dataclass
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
 import numpy as np
+from typing import Optional
 
 
 @dataclass(frozen=True)
@@ -25,7 +26,9 @@ class ForestPath:
     prediction: np.uint8
     paths: tuple[TreePath]
 
-    def get_for_prediction(self, prediction: np.uint8) -> list[TreePath]:
+    def get_for_prediction(self, prediction: Optional[np.uint8] = None) -> tuple[tuple[TreeNode], float]:
+        if prediction is None:
+            prediction = self.prediction
         return tuple(
             (path.nodes, path.weight)
             for path in self.paths

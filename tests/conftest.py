@@ -1,7 +1,7 @@
 from app.pychirps.path_mining.classification_trees import random_forest_paths_factory
 from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasEncoder
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
-from app.pychirps.rule_mining.pattern_miner import PatternMiner
+from app.pychirps.rule_mining.pattern_miner import PatternMiner, PatternSet
 from app.pychirps.rule_mining.rule_miner import RuleMiner
 from app.pychirps.model_prep.model_building import fit_random_forest
 from data_preprocs.data_providers.cervical import (

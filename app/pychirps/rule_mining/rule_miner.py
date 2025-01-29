@@ -4,7 +4,6 @@ import app.pychirps.rule_mining.rule_utilities as rutils
 from sklearn.preprocessing import MinMaxScaler
 from functools import cached_property
 from collections import Counter
-from typing import Callable
 import numpy as np
 
 
@@ -31,6 +30,8 @@ class RuleMiner:
 
     @cached_property
     def weights(self):
+        if not self._pattern_miner.pattern_set.weights:
+            return np.ones(len(self.patterns))
         min_weight = min(self._pattern_miner.pattern_set.weights)
         max_weight = max(self._pattern_miner.pattern_set.weights)
         if min_weight == max_weight:

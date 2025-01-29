@@ -20,6 +20,10 @@ class NodePattern:
 
 
 def apply_rule(rule: tuple[NodePattern], Z: np.ndarray) -> np.ndarray:
+    # Apply a rule to a dataset Z and return the indices where the rule applies
+    # The rule is formed by a tuple of NodePattern objects
+    # For each NodePattern, the rule applies if the feature value is less than or equal to the threshold if leq_threshold is True,
+    # or greater than the threshold if leq_threshold is False
     size = len(rule)
     features = np.empty(size, dtype=int)
     thresholds = np.empty(size, dtype=float)

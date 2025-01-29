@@ -19,8 +19,8 @@ class PatternMiner:
         self,
         forest_path: ForestPath,
         feature_names: Optional[list[str]],
-        prediction: Optional[int] = None,
-        min_support: Optional[float] = 0.2,
+        prediction: Optional[np.uint8] = None,
+        min_support: Optional[float] = 0.1,
     ):
         if min_support > 1:
             raise ValueError("Set min_support using a fraction")
