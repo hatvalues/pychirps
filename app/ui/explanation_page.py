@@ -90,7 +90,7 @@ def create_sidebar(
                 "Frequent Pattern Support",
                 min_value=0.0,
                 max_value=1.0,
-                value=0.2
+                value=0.1,
             )
         } | {
             column_name: render_input(column_name, column_descriptor)
