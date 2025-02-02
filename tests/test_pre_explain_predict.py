@@ -9,18 +9,16 @@ from app.pychirps.explain.pre_explanations import predict
 
 encoder = get_fitted_encoder_pd(cervicalb_pd)
 transformed_features, transformed_target = encoder.transform()
-model = fit_random_forest(X=transformed_features, y=transformed_target, n_estimators=100)
+model = fit_random_forest(
+    X=transformed_features, y=transformed_target, n_estimators=100
+)
 instance_wrapper = InstanceWrapper(cervicalb_pd)
 
 input_1 = load_yaml_fixture_file("pre_exp_predict_input_1")
 input_2 = load_yaml_fixture_file("pre_exp_predict_input_2")
 
-@pytest.mark.parametrize(
-    "input,expected",
-    [
-        (input_1, [0]),
-        (input_2, [1])
-    ])
+
+@pytest.mark.parametrize("input,expected", [(input_1, [0]), (input_2, [1])])
 def test_predict(input, expected):
     instance_wrapper.given_instance = input
 
@@ -32,7 +30,7 @@ def test_predict(input, expected):
         model=model,
         feature_frame=feature_frame,
         dummy_target_class=pd.Series(cervicalb_pd.positive_class),
-        encoder=encoder
+        encoder=encoder,
     )
 
     assert model_prediction == expected

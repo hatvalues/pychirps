@@ -44,6 +44,21 @@ def fit_instance_wrapper(data_provider: DataProvider) -> InstanceWrapper:
     return InstanceWrapper(data_provider)
 
 
+def binary_formatter(value: bool) -> str:
+    return "Yes" if value else "No"
+
+
+def render_binary_input(
+    column_name: str, column_descriptor: ColumnDescriptor
+) -> st.radio:
+    return st.radio(
+        column_name,
+        sorted(column_descriptor.unique_values),
+        format_func=binary_formatter,
+        horizontal=True,
+    )
+
+
 def render_categorical_input(
     column_name: str, column_descriptor: ColumnDescriptor
 ) -> st.radio:
@@ -73,7 +88,9 @@ def render_float_input(
 
 
 def render_input(column_name: str, column_descriptor: ColumnDescriptor) -> Any:
-    if column_descriptor.otype in ColumnType.CATEGORICAL.value:
+    if column_descriptor.otype == "bool":
+        return render_binary_input(column_name, column_descriptor)
+    elif column_descriptor.otype in ColumnType.CATEGORICAL.value:
         return render_categorical_input(column_name, column_descriptor)
     elif column_descriptor.otype in ColumnType.INTEGER.value:
         return render_integer_input(column_name, column_descriptor)

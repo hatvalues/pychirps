@@ -32,24 +32,25 @@ if form_submit:
     feature_frame = pd.DataFrame(
         {k: [v] for k, v in instance_wrapper.given_instance.items()}
     )
-    
+
     model_prediction = predict(
         model=model,
         feature_frame=feature_frame,
         dummy_target_class=pd.Series(cervicalb_pd.positive_class),
-        encoder=encoder
+        encoder=encoder,
     )
     st.markdown("### Model Predicts:")
-    st.markdown(f"CLASS LABEL: {encoder.label_encoder.inverse_transform(model_prediction)[0]}")
+    st.markdown(
+        f"CLASS LABEL: {encoder.label_encoder.inverse_transform(model_prediction)[0]}"
+    )
     st.markdown(f"encoded value: {model_prediction[0]}")
 
-    explainer = Explainer(model, encoder, feature_frame, model_prediction[0], min_support)
+    explainer = Explainer(
+        model, encoder, feature_frame, model_prediction[0], min_support
+    )
     explainer.hill_climb()
 
-
-    rule_parser = RuleParser(
-        encoder.preprocessor.get_feature_names_out().tolist()
-    )
+    rule_parser = RuleParser(encoder.preprocessor.get_feature_names_out().tolist())
     rule = rule_parser.parse(explainer.best_pattern, y_pred=model_prediction[0])
     rule_frame = pd.DataFrame(rule, columns=["Terms"])
 
@@ -58,4 +59,3 @@ if form_submit:
     st.markdown(f"Entropy: {explainer.best_entropy}")
     st.markdown(f"Stability: {explainer.best_stability}")
     st.markdown(f"Exclusive Coverage: {explainer.best_excl_cov}")
-    

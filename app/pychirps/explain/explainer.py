@@ -4,7 +4,8 @@ from app.pychirps.path_mining.forest_explorer import ForestExplorer
 from app.pychirps.rule_mining.pattern_miner import PatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner
 
-class Explainer():
+
+class Explainer:
     def __init__(self, model, encoder, instance, prediction, min_support: float = 0.1):
         self.model = model
         self.prediction = prediction
@@ -35,15 +36,15 @@ class Explainer():
     @property
     def best_pattern(self):
         return self.rule_miner.best_pattern
-    
+
     @property
     def best_stability(self):
         return self.rule_miner.best_stability
-    
+
     @property
     def best_excl_cov(self):
         return self.rule_miner.best_excl_cov
-    
+
     @property
     def best_entropy(self):
         return self.rule_miner.entropy_score(self.rule_miner.best_pattern)
