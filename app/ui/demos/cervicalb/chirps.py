@@ -3,7 +3,8 @@
 from data_preprocs.data_providers.cervical import cervicalb_pd
 from app.pychirps.explain.pre_explanations import predict
 from ui.explanation_page import build_page_objects, create_sidebar
-from app.pychirps.explainer import Explainer
+from app.pychirps.explain.explainer import Explainer
+from app.pychirps.explain.explanations import RuleParser
 import pandas as pd
 import numpy as np
 import streamlit as st
@@ -46,8 +47,14 @@ if form_submit:
     explainer.hill_climb()
 
 
-    st.markdown("### Explanation:")
-    st.json(explainer.best_pattern)
+    rule_parser = RuleParser(
+        encoder.preprocessor.get_feature_names_out().tolist()
+    )
+    rule = rule_parser.parse(explainer.best_pattern, y_pred=model_prediction[0])
+    rule_frame = pd.DataFrame(rule, columns=["Terms"])
+
+    st.markdown(f"### Explanation:")
+    st.table(rule_frame)
     st.markdown(f"Entropy: {explainer.best_entropy}")
     st.markdown(f"Stability: {explainer.best_stability}")
     st.markdown(f"Exclusive Coverage: {explainer.best_excl_cov}")
