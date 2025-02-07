@@ -51,7 +51,7 @@ if form_submit:
     explainer.hill_climb()
 
     rule_parser = RuleParser(encoder.preprocessor.get_feature_names_out().tolist())
-    rule = rule_parser.parse(explainer.best_pattern, y_pred=model_prediction[0])
+    rule = rule_parser.parse(explainer.best_pattern, y_pred=model_prediction[0], rounding=2)
     rule_frame = pd.DataFrame(rule, columns=["Terms"])
 
     st.markdown(f"### Explanation:")

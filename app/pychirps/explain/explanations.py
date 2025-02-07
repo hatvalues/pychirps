@@ -24,12 +24,12 @@ class RuleParser:
         split_attrib = split_name.pop()
         return tuple(["_".join(split_name), node[1], split_attrib])
 
-    def parse(self, pattern: tuple[NodePattern], y_pred: int) -> str:
+    def parse(self, pattern: tuple[NodePattern], y_pred: int, rounding: int) -> str:
         num_parse = [
             (
                 self.feature_names[node.feature].replace("num__", ""),
                 self.parse_leq(node),
-                node.threshold,
+                round(node.threshold, rounding),
             )
             for node in pattern
         ]
