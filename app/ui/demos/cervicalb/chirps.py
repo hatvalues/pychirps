@@ -12,7 +12,7 @@ import streamlit as st
 
 encoder, model, instance_wrapper = build_page_objects(cervicalb_pd)
 
-form_submit, input_values = create_sidebar(instance_wrapper.column_descriptors)
+form_submit, input_values = create_sidebar(instance_wrapper.feature_descriptors)
 
 
 st.markdown(f"""### Your RF Model.
@@ -50,7 +50,10 @@ if form_submit:
     )
     explainer.hill_climb()
 
-    rule_parser = RuleParser(encoder.preprocessor.get_feature_names_out().tolist())
+    rule_parser = RuleParser(
+        feature_names=encoder.preprocessor.get_feature_names_out().tolist(),
+        feature_descriptors=instance_wrapper.feature_descriptors,
+    )
     rule = rule_parser.parse(explainer.best_pattern, y_pred=model_prediction[0], rounding=2)
     rule_frame = pd.DataFrame(rule, columns=["Terms"])
 

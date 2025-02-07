@@ -8,7 +8,7 @@ def test_instance_wrapper_cervical(cervicalb_pd):
     instance_wrapper = InstanceWrapper(cervicalb_pd)
     assert_dict_matches_fixture(
         {k: asdict(v) for k, v in instance_wrapper.column_descriptors.items()},
-        "column_descriptors_cervicalb",
+        "feature_descriptors_cervicalb",
     )
     assert_dict_matches_fixture(
         instance_wrapper.given_instance, "no_given_instance_cervicalb"
@@ -19,7 +19,7 @@ def test_instance_wrapper_nursery(nursery_pd):
     instance_wrapper = InstanceWrapper(nursery_pd)
     assert_dict_matches_fixture(
         {k: asdict(v) for k, v in instance_wrapper.column_descriptors.items()},
-        "column_descriptors_nursery",
+        "feature_descriptors_nursery",
     )
     assert_dict_matches_fixture(
         instance_wrapper.given_instance, "no_given_instance_nursery"

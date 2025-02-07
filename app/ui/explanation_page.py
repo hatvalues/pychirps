@@ -99,7 +99,7 @@ def render_input(column_name: str, column_descriptor: ColumnDescriptor) -> Any:
 
 
 def create_sidebar(
-    column_descriptors: dict[ColumnDescriptor],
+    feature_descriptors: dict[ColumnDescriptor],
 ) -> dict[str, Union[int, float, str]]:
     with st.sidebar.form(key="input_form", border=False):
         input_values = {
@@ -111,7 +111,7 @@ def create_sidebar(
             )
         } | {
             column_name: render_input(column_name, column_descriptor)
-            for column_name, column_descriptor in column_descriptors.items()
+            for column_name, column_descriptor in feature_descriptors.items()
         }
         form_submit = st.form_submit_button(label="Submit")
         return form_submit, input_values
