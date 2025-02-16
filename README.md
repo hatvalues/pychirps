@@ -19,6 +19,3 @@ Requires my data_preprocs library, which I am also currently tweaking occasional
 `poetry remove data_preprocs`
 
 `poetry add --group dev ../data_preprocs`
-
-## When
-I'd love to finish by early 2025.
