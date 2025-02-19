@@ -9,6 +9,7 @@ from app.pychirps.model_prep.model_building import (
 from typing import Union, Any
 import numpy as np
 import streamlit as st
+import plotly.graph_objects as go
 
 
 @st.cache_resource
@@ -129,3 +130,53 @@ def build_page_objects(
     instance_wrapper = fit_instance_wrapper(data_provider)
 
     return encoder, model, instance_wrapper
+
+
+def plot_partition(p: float, q: float):
+    """Creates a partitioned visualization using Plotly."""
+    fig = go.Figure(
+        layout_xaxis_range=[0, 1],
+        layout_yaxis_range=[0, 1],
+    )
+
+    # Define regions and their positions
+    regions = [
+        {"x0": 0, "x1": p, "y0": 1, "y1": q, "color": "#FFD1DC", "label": "Non-Stable Region"},
+        {"x0": 0, "x1": p, "y0": q, "y1": 0, "color": "#AEC6CF", "label": "Covered, Stable Region"},
+    ]
+
+    for region in regions:
+        fig.add_shape(
+            type="rect",
+            x0=region["x0"], x1=region["x1"],
+            y0=region["y0"], y1=region["y1"],
+            fillcolor=region["color"],
+            line=dict(color="black", width=0.5),
+        )
+
+        fig.add_annotation(
+            x=(region["x0"] + region["x1"]) / 2,
+            y=(region["y0"] + region["y1"]) / 2,
+            text=region["label"],
+            showarrow=True,
+            arrowhead=2,
+            ax=(region["y0"] + region["y1"]) / 2,
+            ay=(region["y0"] + region["y1"]) / 2,
+            axref="x",
+            ayref="y",
+            font=dict(size=8, color="black"),
+            align="left"
+        )
+
+
+    # Layout adjustments
+    fig.update_layout(
+        xaxis=dict(visible=False),
+        yaxis=dict(visible=False),
+        width=250,
+        height=250,
+        plot_bgcolor="white",
+        margin=dict(l=0, r=0, t=0, b=0, pad=0),
+    )
+
+    return fig

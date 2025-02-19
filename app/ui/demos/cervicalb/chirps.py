@@ -2,17 +2,18 @@
 # In due time - it will be adaptable based on uploaded data, and we'd have a model repository
 from data_preprocs.data_providers.cervical import cervicalb_pd
 from app.pychirps.explain.pre_explanations import predict
-from ui.explanation_page import build_page_objects, create_sidebar
+from ui.explanation_page import build_page_objects, create_sidebar, plot_partition
 from app.pychirps.explain.explainer import Explainer
 from app.pychirps.explain.explanations import RuleParser
 import pandas as pd
-import numpy as np
 import streamlit as st
+
 
 
 encoder, model, instance_wrapper = build_page_objects(cervicalb_pd)
 
 form_submit, input_values = create_sidebar(instance_wrapper.feature_descriptors)
+
 
 
 st.markdown(f"""### Your RF Model.
@@ -62,3 +63,5 @@ if form_submit:
     st.markdown(f"Entropy: {explainer.best_entropy}")
     st.markdown(f"Stability: {explainer.best_stability}")
     st.markdown(f"Exclusive Coverage: {explainer.best_excl_cov}")
+
+    st.plotly_chart(plot_partition(explainer.best_excl_cov, explainer.best_stability))
