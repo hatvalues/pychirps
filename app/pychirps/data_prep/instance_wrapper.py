@@ -18,7 +18,7 @@ class InstanceWrapper:
     def __init__(
         self, provider: DataProvider, given_instance: Optional[dict[str, Any]] = None
     ) -> None:
-        self.feature_descriptors = provider.feature_descriptors
+        self.feature_descriptors = provider.column_descriptors
         if not given_instance:
             self._given_instance = {key: None for key in self.feature_descriptors}
         else:
