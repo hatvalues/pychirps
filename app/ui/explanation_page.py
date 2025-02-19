@@ -141,8 +141,8 @@ def plot_partition(p: float, q: float):
 
     # Define regions and their positions
     regions = [
-        {"x0": 0, "x1": p, "y0": 1, "y1": q, "color": "#FFD1DC", "label": "Non-Stable Region"},
-        {"x0": 0, "x1": p, "y0": q, "y1": 0, "color": "#AEC6CF", "label": "Covered, Stable Region"},
+        {"x0": 0, "x1": p, "y0": 1, "y1": q, "color": "#F7A399", "label": f"Non-Stable Region: {p * (1-q) * 100:.2f}%"},
+        {"x0": 0, "x1": p, "y0": q, "y1": 0, "color": "#A9DEF9", "label": f"Stable Region: {p * q * 100:.2f}%"},
     ]
 
     for region in regions:
@@ -151,20 +151,26 @@ def plot_partition(p: float, q: float):
             x0=region["x0"], x1=region["x1"],
             y0=region["y0"], y1=region["y1"],
             fillcolor=region["color"],
-            line=dict(color="black", width=0.5),
+            line=dict(color="#000000", width=0.5),
         )
-
+        arrow_tip = (region["y0"] + region["y1"]) / 2
+        if arrow_tip > 0.95:
+            ay = arrow_tip - 0.05
+        elif arrow_tip < 0.05:
+            ay = arrow_tip + 0.05
+        else:
+            ay = arrow_tip
         fig.add_annotation(
-            x=(region["x0"] + region["x1"]) / 2,
-            y=(region["y0"] + region["y1"]) / 2,
+            x=p,
+            y=arrow_tip,
             text=region["label"],
             showarrow=True,
             arrowhead=2,
-            ax=(region["y0"] + region["y1"]) / 2,
-            ay=(region["y0"] + region["y1"]) / 2,
+            ax=(1-p)/2 + 2/len(region["label"]),
+            ay=ay,
             axref="x",
             ayref="y",
-            font=dict(size=8, color="black"),
+            font=dict(size=12, color="black"),
             align="left"
         )
 
@@ -173,8 +179,9 @@ def plot_partition(p: float, q: float):
     fig.update_layout(
         xaxis=dict(visible=False),
         yaxis=dict(visible=False),
-        width=250,
-        height=250,
+        width=600,
+        height=600,
+        autosize=False,
         plot_bgcolor="white",
         margin=dict(l=0, r=0, t=0, b=0, pad=0),
     )
