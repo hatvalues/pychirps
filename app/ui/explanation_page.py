@@ -8,6 +8,7 @@ from app.pychirps.model_prep.model_building import (
 )
 from typing import Union, Any
 import numpy as np
+import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
 
@@ -130,6 +131,42 @@ def build_page_objects(
     instance_wrapper = fit_instance_wrapper(data_provider)
 
     return encoder, model, instance_wrapper
+
+
+def page_pre_submit_texts(model: RandomForestClassifier):
+    st.markdown(
+        f"""### Your RF Model.
+:violet[***Out Of Bag Error:*** {round(1 - model.oob_score_, 4)}]"""
+    )
+
+    st.markdown(
+        """Use the side panel to configure inputs, then click submit.
+                
+*Note: numerical input ranges represent the in distribution (observed) values.
+Setting this values to the min or max is equivalent to setting any lower or higher number respectively.*"""
+)
+
+        
+
+def page_post_pred_texts(encoder: PandasEncoder, model_prediction: np.ndarray):
+    st.markdown("### Model Predicts:")
+    st.markdown(
+        f"CLASS LABEL: {encoder.label_encoder.inverse_transform(model_prediction)[0]}"
+    )
+    st.markdown(f"encoded value: {model_prediction[0]}")
+
+
+def page_post_explain_texts(
+    explainer: Any, rule_parser: Any, model_prediction: np.ndarray
+):
+    rule = rule_parser.parse(explainer.best_pattern, y_pred=model_prediction[0], rounding=2)
+    rule_frame = pd.DataFrame(rule, columns=["Terms"])
+
+    st.markdown(f"### Explanation:")
+    st.table(rule_frame)
+    st.markdown(f"Entropy: {explainer.best_entropy}")
+    st.markdown(f"Exclusive Coverage: {explainer.best_excl_cov}")
+    st.markdown(f"Stability: {explainer.best_stability}")
 
 
 def plot_partition(p: float, q: float):

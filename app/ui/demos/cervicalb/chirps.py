@@ -2,7 +2,14 @@
 # In due time - it will be adaptable based on uploaded data, and we'd have a model repository
 from data_preprocs.data_providers.cervical import cervicalb_pd
 from app.pychirps.explain.pre_explanations import predict
-from ui.explanation_page import build_page_objects, create_sidebar, plot_partition
+from ui.explanation_page import (
+    page_pre_submit_texts,
+    page_post_pred_texts,
+    page_post_explain_texts,
+    build_page_objects,
+    create_sidebar,
+    plot_partition,
+)
 from app.pychirps.explain.explainer import Explainer
 from app.pychirps.explain.explanations import RuleParser
 import pandas as pd
@@ -14,15 +21,7 @@ encoder, model, instance_wrapper = build_page_objects(cervicalb_pd)
 
 form_submit, input_values = create_sidebar(instance_wrapper.feature_descriptors)
 
-
-
-st.markdown(f"""### Your RF Model.
-:violet[***Out Of Bag Error:*** {round(1 - model.oob_score_, 4)}]""")
-
-st.markdown("""Use the side panel to configure inputs, then click submit.
-            
-*Note: numerical input ranges represent the in distribution (observed) values.
-Setting this values to the min or max is equivalent to setting any lower or higher number respectively.*""")
+page_pre_submit_texts(model)
 
 
 if form_submit:
@@ -40,11 +39,8 @@ if form_submit:
         dummy_target_class=pd.Series(cervicalb_pd.positive_class),
         encoder=encoder,
     )
-    st.markdown("### Model Predicts:")
-    st.markdown(
-        f"CLASS LABEL: {encoder.label_encoder.inverse_transform(model_prediction)[0]}"
-    )
-    st.markdown(f"encoded value: {model_prediction[0]}")
+
+    page_post_pred_texts(encoder, model_prediction)
 
     explainer = Explainer(
         model, encoder, feature_frame, model_prediction[0], min_support
@@ -55,13 +51,7 @@ if form_submit:
         feature_names=encoder.preprocessor.get_feature_names_out().tolist(),
         feature_descriptors=instance_wrapper.feature_descriptors,
     )
-    rule = rule_parser.parse(explainer.best_pattern, y_pred=model_prediction[0], rounding=2)
-    rule_frame = pd.DataFrame(rule, columns=["Terms"])
 
-    st.markdown(f"### Explanation:")
-    st.table(rule_frame)
-    st.markdown(f"Entropy: {explainer.best_entropy}")
-    st.markdown(f"Stability: {explainer.best_stability}")
-    st.markdown(f"Exclusive Coverage: {explainer.best_excl_cov}")
+    page_post_explain_texts(explainer, rule_parser, model_prediction)
 
     st.plotly_chart(plot_partition(explainer.best_excl_cov, explainer.best_stability))
