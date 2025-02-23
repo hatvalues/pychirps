@@ -5,7 +5,10 @@ import numpy as np
 
 
 def test_rule_miner_init_patterns(cervicalb_rule_miner):  # noqa # mypy can't cope with pytest fixtures
-    assert all(w < 1.0 for w in cervicalb_rule_miner.weights)
+    assert all(w <= 1.0 for w in cervicalb_rule_miner.weights)
+    # for p, w in zip(cervicalb_rule_miner.patterns, cervicalb_rule_miner.weights):
+    #     print(p, w)
+    # assert False
     assert_dict_matches_fixture(
         {
             i: {

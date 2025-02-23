@@ -67,6 +67,7 @@ def cervicalb_pattern_miner(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy c
     return PatternMiner(
         forest_path=cervicalb_rf_paths,
         feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
+        min_support=0.2,
     )
 
 
@@ -126,6 +127,7 @@ def nursery_pattern_miner(nursery_rf_paths, nursery_enc):  # noqa # mypy can't c
     return PatternMiner(
         forest_path=nursery_rf_paths,
         feature_names=nursery_enc.encoder.preprocessor.get_feature_names_out().tolist(),
+        min_support=0.2,
     )
 
 
