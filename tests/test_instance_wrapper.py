@@ -7,7 +7,7 @@ import pytest
 def test_instance_wrapper_cervical(cervicalb_pd):
     instance_wrapper = InstanceWrapper(cervicalb_pd)
     assert_dict_matches_fixture(
-        {k: asdict(v) for k, v in instance_wrapper.column_descriptors.items()},
+        {k: asdict(v) for k, v in instance_wrapper.feature_descriptors.items()},
         "feature_descriptors_cervicalb",
     )
     assert_dict_matches_fixture(
@@ -18,7 +18,7 @@ def test_instance_wrapper_cervical(cervicalb_pd):
 def test_instance_wrapper_nursery(nursery_pd):
     instance_wrapper = InstanceWrapper(nursery_pd)
     assert_dict_matches_fixture(
-        {k: asdict(v) for k, v in instance_wrapper.column_descriptors.items()},
+        {k: asdict(v) for k, v in instance_wrapper.feature_descriptors.items()},
         "feature_descriptors_nursery",
     )
     assert_dict_matches_fixture(
