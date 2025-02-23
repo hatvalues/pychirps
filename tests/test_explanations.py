@@ -3,9 +3,10 @@ from app.pychirps.rule_mining.rule_utilities import NodePattern
 from tests.fixture_helper import assert_dict_matches_fixture
 
 
-def test_cat_parse(nursery_enc):
+def test_cat_parse(nursery_pd, nursery_enc):
     rule_parser = RuleParser(
-        nursery_enc.encoder.preprocessor.get_feature_names_out().tolist()
+        nursery_enc.encoder.preprocessor.get_feature_names_out().tolist(),
+        nursery_pd.column_descriptors,
     )
     assert rule_parser.parse_cat(("cat__field_value", "is", 0.5)) == (
         "field",
@@ -19,9 +20,10 @@ def test_cat_parse(nursery_enc):
     )
 
 
-def test_parse_rule_cervical(cervicalb_enc):
+def test_parse_rule_cervical(cervicalb_pd, cervicalb_enc):
     rule_parser = RuleParser(
-        cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist()
+        cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
+        cervicalb_pd.column_descriptors,
     )
     rule = rule_parser.parse(
         (
@@ -35,9 +37,10 @@ def test_parse_rule_cervical(cervicalb_enc):
     assert_dict_matches_fixture({"rule": rule}, "rule_cervical_1")
 
 
-def test_parse_rule_nursery(nursery_enc):
+def test_parse_rule_nursery(nursery_pd, nursery_enc):
     rule_parser = RuleParser(
-        nursery_enc.encoder.preprocessor.get_feature_names_out().tolist()
+        nursery_enc.encoder.preprocessor.get_feature_names_out().tolist(),
+        nursery_pd.column_descriptors,
     )
 
     rule = rule_parser.parse(

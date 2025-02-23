@@ -52,7 +52,7 @@ class RuleParser:
         split_attrib = split_name.pop()
         return tuple(["_".join(split_name), node[1], split_attrib])
 
-    def parse(self, pattern: tuple[NodePattern], y_pred: int, rounding: int) -> str:
+    def parse(self, pattern: tuple[NodePattern], y_pred: int, rounding: int = 2) -> str:
         num_parse = [
             (
                 self.feature_names[node.feature].replace("num__", ""),
