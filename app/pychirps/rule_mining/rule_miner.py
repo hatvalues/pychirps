@@ -17,33 +17,25 @@ class RuleMiner:
         classes=np.array([0, 1], dtype=np.uint8),
         cardinality_regularizing_weight: float = 0.5,
     ):
-        self._pattern_miner = pattern_miner
+        self.patterns = pattern_miner.pattern_set.patterns
+        self._weights = pattern_miner.pattern_set.weights
         self.y_pred = y_pred
         self.features = features
         self.preds = preds
         self.classes = np.sort(classes)
         self.cardinality_regularizing_weight = cardinality_regularizing_weight
 
-    @property
-    def patterns(self):
-        return self._pattern_miner.pattern_set.patterns
 
     @cached_property
     def weights(self):
-        if not self._pattern_miner.pattern_set.weights:
+        if not self._weights:
             return np.ones(len(self.patterns))
-        min_weight = min(self._pattern_miner.pattern_set.weights)
-        max_weight = max(self._pattern_miner.pattern_set.weights)
+        min_weight = min(self._weights)
+        max_weight = max(self._weights)
         if min_weight == max_weight:
-            return np.ones(len(self._pattern_miner.pattern_set.weights))
-        elif min_weight >= 1.0:
-            feature_limit = min_weight / max_weight
-            scaler = MinMaxScaler(feature_range=(feature_limit, 1 - feature_limit))
-            return scaler.fit_transform(
-                np.array(self._pattern_miner.pattern_set.weights).reshape(-1, 1)
-            ).flatten()
+            return np.ones(len(self._weights))
         else:
-            return np.array(self._pattern_miner.pattern_set.weights)
+            return np.array([w / max_weight for w in self._weights])
 
     def entropy_score(self, pattern: tuple[NodePattern]) -> float:
         rule_applies_indices = rutils.apply_rule(pattern, self.features)
