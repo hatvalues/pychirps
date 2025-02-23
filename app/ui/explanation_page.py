@@ -144,9 +144,8 @@ def page_pre_submit_texts(model: RandomForestClassifier):
                 
 *Note: numerical input ranges represent the in distribution (observed) values.
 Setting this values to the min or max is equivalent to setting any lower or higher number respectively.*"""
-)
+    )
 
-        
 
 def page_post_pred_texts(encoder: PandasEncoder, model_prediction: np.ndarray):
     st.markdown("### Model Predicts:")
@@ -159,7 +158,9 @@ def page_post_pred_texts(encoder: PandasEncoder, model_prediction: np.ndarray):
 def page_post_explain_texts(
     explainer: Any, rule_parser: Any, model_prediction: np.ndarray
 ):
-    rule = rule_parser.parse(explainer.best_pattern, y_pred=model_prediction[0], rounding=2)
+    rule = rule_parser.parse(
+        explainer.best_pattern, y_pred=model_prediction[0], rounding=2
+    )
     rule_frame = pd.DataFrame(rule, columns=["Terms"])
 
     st.markdown(f"### Explanation:")
@@ -178,15 +179,31 @@ def plot_partition(p: float, q: float):
 
     # Define regions and their positions
     regions = [
-        {"x0": 0, "x1": p, "y0": 1, "y1": q, "color": "#F7A399", "label": f"Non-Stable Region: {p * (1-q) * 100:.2f}%"},
-        {"x0": 0, "x1": p, "y0": q, "y1": 0, "color": "#A9DEF9", "label": f"Stable Region: {p * q * 100:.2f}%"},
+        {
+            "x0": 0,
+            "x1": p,
+            "y0": 1,
+            "y1": q,
+            "color": "#F7A399",
+            "label": f"Non-Stable Region: {p * (1-q) * 100:.2f}%",
+        },
+        {
+            "x0": 0,
+            "x1": p,
+            "y0": q,
+            "y1": 0,
+            "color": "#A9DEF9",
+            "label": f"Stable Region: {p * q * 100:.2f}%",
+        },
     ]
 
     for region in regions:
         fig.add_shape(
             type="rect",
-            x0=region["x0"], x1=region["x1"],
-            y0=region["y0"], y1=region["y1"],
+            x0=region["x0"],
+            x1=region["x1"],
+            y0=region["y0"],
+            y1=region["y1"],
             fillcolor=region["color"],
             line=dict(color="#000000", width=0.5),
         )
@@ -203,14 +220,13 @@ def plot_partition(p: float, q: float):
             text=region["label"],
             showarrow=True,
             arrowhead=2,
-            ax=(1-p)/2 + 2/len(region["label"]),
+            ax=(1 - p) / 2 + 2 / len(region["label"]),
             ay=ay,
             axref="x",
             ayref="y",
             font=dict(size=12, color="black"),
-            align="left"
+            align="left",
         )
-
 
     # Layout adjustments
     fig.update_layout(

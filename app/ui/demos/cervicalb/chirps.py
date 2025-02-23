@@ -16,7 +16,6 @@ import pandas as pd
 import streamlit as st
 
 
-
 encoder, model, instance_wrapper = build_page_objects(cervicalb_pd)
 
 form_submit, input_values = create_sidebar(instance_wrapper.feature_descriptors)

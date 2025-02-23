@@ -25,7 +25,6 @@ class RuleMiner:
         self.classes = np.sort(classes)
         self.cardinality_regularizing_weight = cardinality_regularizing_weight
 
-
     @cached_property
     def weights(self):
         if not self._weights:
