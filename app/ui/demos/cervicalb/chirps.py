@@ -61,4 +61,4 @@ if form_submit:
     cfact_eval = explainer.counterfactual_evaluator
     st.markdown(f"### Counterfactual Evaluation")
     st.markdown(f"{cfact_eval.pattern}")
-    st.markdown(f"{cfact_eval.flip_node_pattern(cfact_eval.pattern[0])}")
+    st.markdown(f"{cfact_eval.point_counter_factuals(cfact_eval.pattern)}")

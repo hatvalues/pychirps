@@ -165,3 +165,10 @@ class CounterfactualEvaluater:
             threshold=node_pattern.threshold,
             leq_threshold=not node_pattern.leq_threshold
         )
+    
+    @staticmethod
+    def point_counter_factuals(pattern: tuple[NodePattern]) -> tuple[tuple[NodePattern]]:
+        return tuple(
+            tuple(pattern[:n] + (CounterfactualEvaluater.flip_node_pattern(node),) + pattern[n+1:])
+            for n, node in enumerate(pattern)
+        )
