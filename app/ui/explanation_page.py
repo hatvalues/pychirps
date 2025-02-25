@@ -2,6 +2,8 @@ from app.pychirps.data_prep.data_provider import DataProvider, ColumnDescriptor
 from app.pychirps.path_mining.classification_trees import ForestPath, ForestExplorer
 from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasEncoder
 from app.pychirps.data_prep.instance_wrapper import InstanceWrapper, ColumnType
+from app.pychirps.explain.explainer import Explainer
+from app.pychirps.explain.explanations import RuleParser
 from app.pychirps.model_prep.model_building import (
     fit_random_forest,
     RandomForestClassifier,
@@ -155,16 +157,20 @@ def page_post_pred_texts(encoder: PandasEncoder, model_prediction: np.ndarray):
     st.markdown(f"encoded value: {model_prediction[0]}")
 
 
-def page_post_explain_texts(
-    explainer: Any, rule_parser: Any, model_prediction: np.ndarray
+def page_rule_frame(
+    explainer: Explainer, rule_parser: RuleParser, model_prediction: np.ndarray
 ):
-    rule = rule_parser.parse(
-        explainer.best_pattern, y_pred=model_prediction[0], rounding=2
+    rule_frame = pd.DataFrame(
+        rule_parser.parse(
+            explainer.best_pattern, y_pred=model_prediction[0], rounding=2
+        ),
+        columns=["Terms"],
     )
-    rule_frame = pd.DataFrame(rule, columns=["Terms"])
-
     st.markdown(f"### Explanation:")
     st.table(rule_frame)
+
+
+def page_post_explain_texts(explainer: Explainer):
     st.markdown(f"Entropy: {explainer.best_entropy}")
     st.markdown(f"Exclusive Coverage: {explainer.best_excl_cov}")
     st.markdown(f"Stability: {explainer.best_stability}")
