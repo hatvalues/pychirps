@@ -162,7 +162,7 @@ def page_rule_frame(
 ):
     rule_frame = pd.DataFrame(
         rule_parser.parse(
-            explainer.best_pattern, y_pred=model_prediction[0], rounding=2
+            explainer.best_pattern, rounding=2
         ),
         columns=["Terms"],
     )

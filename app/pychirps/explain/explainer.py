@@ -1,8 +1,9 @@
 import numpy as np
+from functools import cached_property
 from app.pychirps.path_mining.classification_trees import random_forest_paths_factory
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
 from app.pychirps.rule_mining.pattern_miner import PatternMiner
-from app.pychirps.rule_mining.rule_miner import RuleMiner
+from app.pychirps.rule_mining.rule_miner import RuleMiner, CounterfactualEvaluater
 
 
 class Explainer:
@@ -22,12 +23,22 @@ class Explainer:
         )
 
         transformed_features, transformed_targets = self.encoder.transform()
+        preds = model.predict(encoder.features)
+        classes = np.unique(transformed_targets)
         self.rule_miner = RuleMiner(
             pattern_miner=self.pattern_miner,
             y_pred=self.prediction,
             features=transformed_features,
-            preds=model.predict(encoder.features),
-            classes=np.unique(transformed_targets),
+            preds=preds,
+            classes=classes,
+        )
+
+        self._counterfactual_evaluator = CounterfactualEvaluater(
+            pattern=tuple(),
+            y_pred=self.prediction,
+            features=transformed_features,
+            preds=preds,
+            classes=classes,
         )
 
     def hill_climb(self):
@@ -48,3 +59,9 @@ class Explainer:
     @property
     def best_entropy(self):
         return self.rule_miner.entropy_score(self.rule_miner.best_pattern)
+    
+    @cached_property
+    def counterfactual_evaluator(self):
+        if self.best_pattern:
+            self._counterfactual_evaluator.pattern = self.best_pattern
+        return self._counterfactual_evaluator

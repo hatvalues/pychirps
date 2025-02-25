@@ -1,7 +1,6 @@
 from app.pychirps.rule_mining.pattern_miner import PatternMiner
 from app.pychirps.rule_mining.rule_utilities import NodePattern
 import app.pychirps.rule_mining.rule_utilities as rutils
-from sklearn.preprocessing import MinMaxScaler
 from functools import cached_property
 from collections import Counter
 import numpy as np
@@ -24,6 +23,7 @@ class RuleMiner:
         self.preds = preds
         self.classes = np.sort(classes)
         self.cardinality_regularizing_weight = cardinality_regularizing_weight
+        self.best_pattern = tuple()
 
     @cached_property
     def weights(self):
@@ -141,3 +141,27 @@ class RuleMiner:
 
         # will need to normalise the weights so min(weights) = 1.0
         # weighted_counts = np.round(self.paths_weights * 1/min(self.paths_weights)).astype('int')
+
+
+class CounterfactualEvaluater:
+    def __init__(
+        self,
+        pattern: tuple[NodePattern],
+        y_pred: np.uint8,
+        features: np.ndarray,
+        preds: np.ndarray,
+        classes=np.array([0, 1], dtype=np.uint8),
+    ):
+        self.pattern = pattern
+        self.y_pred = y_pred
+        self.features = features
+        self.preds = preds
+        self.classes = np.sort(classes)
+
+    @staticmethod
+    def flip_node_pattern(node_pattern: NodePattern) -> NodePattern:
+        return NodePattern(
+            feature=node_pattern.feature,
+            threshold=node_pattern.threshold,
+            leq_threshold=not node_pattern.leq_threshold
+        )

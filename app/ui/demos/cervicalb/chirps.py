@@ -57,3 +57,8 @@ if form_submit:
     page_post_explain_texts(explainer)
 
     st.plotly_chart(plot_partition(explainer.best_excl_cov, explainer.best_stability))
+
+    cfact_eval = explainer.counterfactual_evaluator
+    st.markdown(f"### Counterfactual Evaluation")
+    st.markdown(f"{cfact_eval.pattern}")
+    st.markdown(f"{cfact_eval.flip_node_pattern(cfact_eval.pattern[0])}")

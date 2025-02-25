@@ -1,6 +1,7 @@
 from app.pychirps.rule_mining.rule_utilities import NodePattern
 from app.pychirps.data_prep.data_provider import ColumnDescriptor
 from functools import cached_property
+import numpy as np
 
 
 class RuleParser:
@@ -52,7 +53,7 @@ class RuleParser:
         split_attrib = split_name.pop()
         return tuple(["_".join(split_name), node[1], split_attrib])
 
-    def parse(self, pattern: tuple[NodePattern], y_pred: int, rounding: int = 2) -> str:
+    def parse(self, pattern: tuple[NodePattern], rounding: int = 2) -> str:
         num_parse = [
             (
                 self.feature_names[node.feature].replace("num__", ""),
