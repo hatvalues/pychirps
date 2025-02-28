@@ -1,5 +1,6 @@
 from app.pychirps.data_prep.data_provider import DataProvider, ColumnDescriptor
 from app.pychirps.path_mining.classification_trees import ForestPath, ForestExplorer
+from app.pychirps.rule_mining.rule_miner import CounterfactualEvaluater
 from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasEncoder
 from app.pychirps.data_prep.instance_wrapper import InstanceWrapper, ColumnType
 from app.pychirps.explain.explainer import Explainer
@@ -158,13 +159,23 @@ def page_post_pred_texts(encoder: PandasEncoder, model_prediction: np.ndarray):
 
 
 def page_rule_frame(
-    explainer: Explainer, rule_parser: RuleParser, model_prediction: np.ndarray
+    explainer: Explainer, rule_parser: RuleParser, counterfactual_evaluator: CounterfactualEvaluater
 ):
+    counterfactuals = np.array(counterfactual_evaluator.evaluate_counterfactuals())
+    # each row is [entropy, coverage, precision]
+    counterfactual_precision = counterfactuals[:, 1]
+    counterfactual_coverage = counterfactuals[:, 0]
     rule_frame = pd.DataFrame(
-        rule_parser.parse(
+        {"Terms": rule_parser.parse(
             explainer.best_pattern, rounding=2
         ),
-        columns=["Terms"],
+        "Contrast Precision": counterfactual_precision,
+        "Contrasts (diff. Precision)": explainer.best_stability - counterfactual_precision,
+        "Contrasts (rel. Precision)": (explainer.best_stability - counterfactual_precision) / explainer.best_stability,
+        "Contrast Coverage": counterfactual_coverage,
+        "Contrasts (diff. Coverage)": explainer.best_excl_cov - counterfactual_coverage,
+        "Contrasts (rel. Coverage)": (explainer.best_excl_cov - counterfactual_coverage) / explainer.best_excl_cov,
+        }
     )
     st.markdown(f"### Explanation:")
     st.table(rule_frame)
@@ -172,8 +183,10 @@ def page_rule_frame(
 
 def page_post_explain_texts(explainer: Explainer):
     st.markdown(f"Entropy: {explainer.best_entropy}")
-    st.markdown(f"Exclusive Coverage: {explainer.best_excl_cov}")
     st.markdown(f"Stability: {explainer.best_stability}")
+    st.markdown(f"Exclusive Coverage: {explainer.best_excl_cov}")
+    st.markdown(f"Coverage: {explainer.best_coverage}")
+    st.markdown(f"Precision: {explainer.best_precision}")
 
 
 def plot_partition(p: float, q: float):
@@ -191,7 +204,7 @@ def plot_partition(p: float, q: float):
             "y0": 1,
             "y1": q,
             "color": "#F7A399",
-            "label": f"Non-Stable Region: {p * (1-q) * 100:.2f}%",
+            "label": f"Other Class: {p * (1-q) * 100:.2f}%",
         },
         {
             "x0": 0,
@@ -199,7 +212,7 @@ def plot_partition(p: float, q: float):
             "y0": q,
             "y1": 0,
             "color": "#A9DEF9",
-            "label": f"Stable Region: {p * q * 100:.2f}%",
+            "label": f"Same Class: {p * q * 100:.2f}%",
         },
     ]
 

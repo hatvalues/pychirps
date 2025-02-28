@@ -6,7 +6,61 @@ from collections import Counter
 import numpy as np
 
 
-class RuleMiner:
+class Evaluator:
+    def __init__(
+        self,
+        y_pred: np.uint8,
+        features: np.ndarray,
+        preds: np.ndarray,
+        classes=np.array([0, 1], dtype=np.uint8),
+    ):
+        self.y_pred = y_pred
+        self.features = features
+        self.preds = preds
+        self.classes = np.sort(classes)
+
+    def entropy_score(self, pattern: tuple[NodePattern]) -> float:
+        rule_applies_indices = rutils.apply_rule(pattern, self.features)
+        rule_applies_preds = self.preds[rule_applies_indices]
+        pred_count = Counter(rule_applies_preds)
+        # ensuring same order each time
+        pred_count.update({k: 0 for k in self.classes if k not in pred_count})
+        return rutils.entropy(np.array([pred_count[cla] for cla in self.classes]))
+
+    def stability_score(self, pattern: tuple[NodePattern]) -> float:
+        return rutils.stability(
+            y_pred=self.y_pred,
+            z_pred=self.preds,
+            Z=self.features,
+            pattern=pattern,
+            K=len(self.classes),
+        )
+
+    def exclusive_coverage_score(self, pattern: tuple[NodePattern]) -> float:
+        return rutils.exclusive_coverage(
+            y_pred=self.y_pred,
+            z_pred=self.preds,
+            Z=self.features,
+            pattern=pattern,
+            K=len(self.classes),
+        )
+    
+    def precision_score(self, pattern: tuple[NodePattern]) -> float:
+        return rutils.precision(
+            y_pred=self.y_pred,
+            z_pred=self.preds,
+            Z=self.features,
+            pattern=pattern,
+        )
+    
+    def coverage_score(self, pattern: tuple[NodePattern]) -> float:
+        return rutils.coverage(
+            Z=self.features,
+            pattern=pattern,
+        )
+
+
+class RuleMiner(Evaluator):
     def __init__(
         self,
         pattern_miner: PatternMiner,
@@ -16,12 +70,9 @@ class RuleMiner:
         classes=np.array([0, 1], dtype=np.uint8),
         cardinality_regularizing_weight: float = 0.5,
     ):
+        super().__init__(y_pred, features, preds, classes)
         self.patterns = pattern_miner.pattern_set.patterns
         self._weights = pattern_miner.pattern_set.weights
-        self.y_pred = y_pred
-        self.features = features
-        self.preds = preds
-        self.classes = np.sort(classes)
         self.cardinality_regularizing_weight = cardinality_regularizing_weight
         self.best_pattern = tuple()
 
@@ -35,14 +86,6 @@ class RuleMiner:
             return np.ones(len(self._weights))
         else:
             return np.array([w / max_weight for w in self._weights])
-
-    def entropy_score(self, pattern: tuple[NodePattern]) -> float:
-        rule_applies_indices = rutils.apply_rule(pattern, self.features)
-        rule_applies_preds = self.preds[rule_applies_indices]
-        pred_count = Counter(rule_applies_preds)
-        # ensuring same order each time
-        pred_count.update({k: 0 for k in self.classes if k not in pred_count})
-        return rutils.entropy(np.array([pred_count[cla] for cla in self.classes]))
 
     @cached_property
     def entropy_regularizing_weights(self):
@@ -69,24 +112,6 @@ class RuleMiner:
         # C. the cardinality of the pattern, (longer is better, more interaction terms)
         return tuple(pattern for pattern, _, _ in sorted_pattern_weights)
 
-    def stability_score(self, pattern: tuple[NodePattern]) -> float:
-        return rutils.stability(
-            y_pred=self.y_pred,
-            z_pred=self.preds,
-            Z=self.features,
-            pattern=pattern,
-            K=len(self.classes),
-        )
-
-    def exclusive_coverage_score(self, pattern: tuple[NodePattern]) -> float:
-        return rutils.exclusive_coverage(
-            y_pred=self.y_pred,
-            z_pred=self.preds,
-            Z=self.features,
-            pattern=pattern,
-            K=len(self.classes),
-        )
-
     def hill_climb(
         self, blending_weight: float = 1.0, cardinality_regularizing_weight: float = 0.0
     ):
@@ -95,7 +120,7 @@ class RuleMiner:
         # start with the patterns sorted by their weights
         # pick the rule from the top and add it to the rule
         # if the rule set is better than the previous rule set, keep the pattern
-        # loop until no more increase in objective functtion, no more patterns
+        # loop until no more increase in objective function, no more patterns
         sorted_patterns = [pattern for pattern in self.custom_sorted_patterns]
         best_pattern = tuple()
         best_score = -np.inf
@@ -116,8 +141,11 @@ class RuleMiner:
                 best_score = try_score
 
         self.best_pattern = best_pattern
+        self.best_entropy = self.entropy_score(best_pattern)
         self.best_stability = self.stability_score(best_pattern)
         self.best_excl_cov = self.exclusive_coverage_score(best_pattern)
+        self.best_precision = self.precision_score(best_pattern)
+        self.best_coverage = self.coverage_score(best_pattern)
 
     def dynamic_programming(self):
         # dynamic programming algorithm to find the best combination of patterns
@@ -143,7 +171,7 @@ class RuleMiner:
         # weighted_counts = np.round(self.paths_weights * 1/min(self.paths_weights)).astype('int')
 
 
-class CounterfactualEvaluater:
+class CounterfactualEvaluater(Evaluator):
     def __init__(
         self,
         pattern: tuple[NodePattern],
@@ -152,11 +180,8 @@ class CounterfactualEvaluater:
         preds: np.ndarray,
         classes=np.array([0, 1], dtype=np.uint8),
     ):
+        super().__init__(y_pred, features, preds, classes)
         self.pattern = pattern
-        self.y_pred = y_pred
-        self.features = features
-        self.preds = preds
-        self.classes = np.sort(classes)
 
     @staticmethod
     def flip_node_pattern(node_pattern: NodePattern) -> NodePattern:
@@ -167,8 +192,17 @@ class CounterfactualEvaluater:
         )
     
     @staticmethod
-    def point_counter_factuals(pattern: tuple[NodePattern]) -> tuple[tuple[NodePattern]]:
+    def get_counterfactuals(pattern: tuple[NodePattern]) -> tuple[tuple[NodePattern]]:
         return tuple(
             tuple(pattern[:n] + (CounterfactualEvaluater.flip_node_pattern(node),) + pattern[n+1:])
             for n, node in enumerate(pattern)
+        )
+    
+    def evaluate_counterfactuals(self) -> tuple[float]:
+        return tuple(
+            (
+                self.coverage_score(pattern=counterfactual),
+                self.precision_score(pattern=counterfactual)
+            )
+            for counterfactual in self.get_counterfactuals(self.pattern)
         )

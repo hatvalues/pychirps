@@ -46,6 +46,24 @@ def apply_rule(rule: tuple[NodePattern], Z: np.ndarray) -> np.ndarray:
     return np.where(rule_applies)[0]
 
 
+def precision(
+    y_pred: np.uint8,
+    z_pred: np.ndarray,
+    Z: np.ndarray,
+    pattern: tuple[NodePattern],
+) -> float:
+    # Precision is the proportion of instances in Z that are covered by the rule and are predicted with the same class, that is:
+    # numerator = covered by rule and predicted with same class,
+    # denominator = all instance (except instance itself) predicted with same class
+    rule_applies_indices = apply_rule(rule=pattern, Z=Z)
+    rule_applies_count = len(rule_applies_indices)
+
+    y_pred_indices = np.where(y_pred == z_pred)[0]
+
+    same_pred = len(set(rule_applies_indices).intersection(set(y_pred_indices)))
+    return same_pred / rule_applies_count if rule_applies_count > 0.0 else 0.0
+
+
 def stability(
     y_pred: np.uint8,
     z_pred: np.ndarray,
@@ -78,6 +96,13 @@ def true_negative_rate(
         set(rule_does_not_apply_indices).intersection(set(other_pred_indices))
     ) / len(other_pred_indices)
 
+
+def coverage(Z: np.ndarray, pattern: tuple[NodePattern]) -> float:
+    # Coverage is the proportion of instances in Z that are covered by the rule, that is:
+    # numerator = covered by rule,
+    # denominator = all instance (except instance itself)
+    rule_applies_indices = apply_rule(rule=pattern, Z=Z)
+    return len(rule_applies_indices) / len(Z)
 
 def exclusive_coverage(
     y_pred: np.uint8,

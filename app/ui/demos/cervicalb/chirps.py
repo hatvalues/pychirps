@@ -52,13 +52,11 @@ if form_submit:
         feature_descriptors=instance_wrapper.feature_descriptors,
     )
 
-    page_rule_frame(explainer, rule_parser, model_prediction)
+    counterfactuals = explainer.counterfactual_evaluator
+
+    page_rule_frame(explainer, rule_parser, counterfactuals)
 
     page_post_explain_texts(explainer)
 
-    st.plotly_chart(plot_partition(explainer.best_excl_cov, explainer.best_stability))
+    st.plotly_chart(plot_partition(explainer.best_coverage, explainer.best_precision))
 
-    cfact_eval = explainer.counterfactual_evaluator
-    st.markdown(f"### Counterfactual Evaluation")
-    st.markdown(f"{cfact_eval.pattern}")
-    st.markdown(f"{cfact_eval.point_counter_factuals(cfact_eval.pattern)}")
