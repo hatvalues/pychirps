@@ -32,7 +32,6 @@ def test_parse_rule_cervical(cervicalb_pd, cervicalb_enc):
             NodePattern(9, 2.7, True),
             NodePattern(10, 22.1, False),
         ),
-        y_pred=1,
     )
     assert_dict_matches_fixture({"rule": rule}, "rule_cervical_1")
 
@@ -50,6 +49,5 @@ def test_parse_rule_nursery(nursery_pd, nursery_enc):
             NodePattern(9, 0.5, True),
             NodePattern(10, 0.5, False),
         ),
-        y_pred=3,
     )
     assert_dict_matches_fixture({"rule": rule}, "rule_nursery_1")
