@@ -59,18 +59,17 @@ class Explainer:
     @property
     def best_entropy(self):
         return self.rule_miner.best_entropy
-    
+
     @property
     def best_precision(self):
         return self.rule_miner.best_precision
-    
+
     @property
     def best_coverage(self):
         return self.rule_miner.best_coverage
-    
+
     @cached_property
     def counterfactual_evaluator(self):
         if self.best_pattern:
             self._counterfactual_evaluator.pattern = self.best_pattern
         return self._counterfactual_evaluator
-

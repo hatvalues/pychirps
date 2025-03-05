@@ -104,6 +104,7 @@ def coverage(Z: np.ndarray, pattern: tuple[NodePattern]) -> float:
     rule_applies_indices = apply_rule(rule=pattern, Z=Z)
     return len(rule_applies_indices) / len(Z)
 
+
 def exclusive_coverage(
     y_pred: np.uint8,
     z_pred: np.ndarray,

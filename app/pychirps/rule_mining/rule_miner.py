@@ -44,7 +44,7 @@ class Evaluator:
             pattern=pattern,
             K=len(self.classes),
         )
-    
+
     def precision_score(self, pattern: tuple[NodePattern]) -> float:
         return rutils.precision(
             y_pred=self.y_pred,
@@ -52,7 +52,7 @@ class Evaluator:
             Z=self.features,
             pattern=pattern,
         )
-    
+
     def coverage_score(self, pattern: tuple[NodePattern]) -> float:
         return rutils.coverage(
             Z=self.features,
@@ -188,21 +188,25 @@ class CounterfactualEvaluater(Evaluator):
         return NodePattern(
             feature=node_pattern.feature,
             threshold=node_pattern.threshold,
-            leq_threshold=not node_pattern.leq_threshold
+            leq_threshold=not node_pattern.leq_threshold,
         )
-    
+
     @staticmethod
     def get_counterfactuals(pattern: tuple[NodePattern]) -> tuple[tuple[NodePattern]]:
         return tuple(
-            tuple(pattern[:n] + (CounterfactualEvaluater.flip_node_pattern(node),) + pattern[n+1:])
+            tuple(
+                pattern[:n]
+                + (CounterfactualEvaluater.flip_node_pattern(node),)
+                + pattern[n + 1 :]
+            )
             for n, node in enumerate(pattern)
         )
-    
+
     def evaluate_counterfactuals(self) -> tuple[float]:
         return tuple(
             (
                 self.coverage_score(pattern=counterfactual),
-                self.precision_score(pattern=counterfactual)
+                self.precision_score(pattern=counterfactual),
             )
             for counterfactual in self.get_counterfactuals(self.pattern)
         )

@@ -39,9 +39,15 @@ class InstanceWrapper:
         }
 
         # current values + update values + constant values that aren't presented to the user because they are a dataset aberration
-        instance = self.given_instance | update_values |  {
-            k : v.unique_values[0] for k, v in self.feature_descriptors.items() if v.otype in ColumnType.CONSTANT.value
-        }
+        instance = (
+            self.given_instance
+            | update_values
+            | {
+                k: v.unique_values[0]
+                for k, v in self.feature_descriptors.items()
+                if v.otype in ColumnType.CONSTANT.value
+            }
+        )
 
         # validate the given values
         print(instance)
@@ -66,6 +72,9 @@ class InstanceWrapper:
     def validator(self, column: str):
         if self.feature_descriptors[column].otype in ColumnType.CATEGORICAL.value:
             return self.validate_categorical
-        elif self.feature_descriptors[column].otype in ColumnType.INTEGER.value + ColumnType.FLOAT.value:
+        elif (
+            self.feature_descriptors[column].otype
+            in ColumnType.INTEGER.value + ColumnType.FLOAT.value
+        ):
             return self.validate_numeric
-        return self.valide_stub # pass constant values
+        return self.valide_stub  # pass constant values

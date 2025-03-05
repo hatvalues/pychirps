@@ -20,7 +20,11 @@ import streamlit as st
 
 encoder, model, instance_wrapper = build_page_objects(cervicalb_pd)
 
-contants_check = {k: v.unique_values[0] for k, v in instance_wrapper.feature_descriptors.items() if v.otype in ColumnType.CONSTANT.value}
+contants_check = {
+    k: v.unique_values[0]
+    for k, v in instance_wrapper.feature_descriptors.items()
+    if v.otype in ColumnType.CONSTANT.value
+}
 
 form_submit, input_values = create_sidebar(instance_wrapper.feature_descriptors)
 
@@ -37,7 +41,9 @@ if form_submit:
     )
     if contants_check:
         st.markdown("#### Note")
-        st.markdown(f"The following dataset features exist in the data dictionary as constants:")
+        st.markdown(
+            f"The following dataset features exist in the data dictionary as constants:"
+        )
         st.json(contants_check, expanded=False)
 
     model_prediction = predict(
@@ -66,4 +72,3 @@ if form_submit:
     page_post_explain_texts(explainer)
 
     st.plotly_chart(plot_partition(explainer.best_coverage, explainer.best_precision))
-

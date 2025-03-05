@@ -161,22 +161,31 @@ def page_post_pred_texts(encoder: PandasEncoder, model_prediction: np.ndarray):
 
 
 def page_rule_frame(
-    explainer: Explainer, rule_parser: RuleParser, counterfactual_evaluator: CounterfactualEvaluater
+    explainer: Explainer,
+    rule_parser: RuleParser,
+    counterfactual_evaluator: CounterfactualEvaluater,
 ):
     counterfactuals = np.array(counterfactual_evaluator.evaluate_counterfactuals())
     # each row is [entropy, coverage, precision]
     counterfactual_precision = counterfactuals[:, 1]
     counterfactual_coverage = counterfactuals[:, 0]
     rule_frame = pd.DataFrame(
-        {"Terms": rule_parser.parse(
-            explainer.best_pattern, rounding=2
-        ),
-        "Contrast Precision": counterfactual_precision,
-        "Contrasts (diff. Precision)": explainer.best_stability - counterfactual_precision,
-        "Contrasts (rel. Precision)": (explainer.best_stability - counterfactual_precision) / explainer.best_stability,
-        "Contrast Coverage": counterfactual_coverage,
-        "Contrasts (diff. Coverage)": explainer.best_excl_cov - counterfactual_coverage,
-        "Contrasts (rel. Coverage)": (explainer.best_excl_cov - counterfactual_coverage) / explainer.best_excl_cov,
+        {
+            "Terms": rule_parser.parse(explainer.best_pattern, rounding=2),
+            "Contrast Precision": counterfactual_precision,
+            "Contrasts (diff. Precision)": explainer.best_stability
+            - counterfactual_precision,
+            "Contrasts (rel. Precision)": (
+                explainer.best_stability - counterfactual_precision
+            )
+            / explainer.best_stability,
+            "Contrast Coverage": counterfactual_coverage,
+            "Contrasts (diff. Coverage)": explainer.best_excl_cov
+            - counterfactual_coverage,
+            "Contrasts (rel. Coverage)": (
+                explainer.best_excl_cov - counterfactual_coverage
+            )
+            / explainer.best_excl_cov,
         }
     )
     st.markdown(f"### Explanation:")
