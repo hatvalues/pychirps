@@ -93,7 +93,9 @@ def render_float_input(
 
 
 def render_input(column_name: str, column_descriptor: ColumnDescriptor) -> Any:
-    if column_descriptor.otype == "bool":
+    if column_descriptor.otype == "constant":
+        pass
+    elif column_descriptor.otype == "bool":
         return render_binary_input(column_name, column_descriptor)
     elif column_descriptor.otype in ColumnType.CATEGORICAL.value:
         return render_categorical_input(column_name, column_descriptor)

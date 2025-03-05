@@ -73,3 +73,4 @@ class Explainer:
         if self.best_pattern:
             self._counterfactual_evaluator.pattern = self.best_pattern
         return self._counterfactual_evaluator
+
