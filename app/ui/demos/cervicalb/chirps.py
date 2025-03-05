@@ -13,11 +13,14 @@ from ui.explanation_page import (
 )
 from app.pychirps.explain.explainer import Explainer
 from app.pychirps.explain.explanations import RuleParser
+from app.pychirps.data_prep.instance_wrapper import ColumnType
 import pandas as pd
 import streamlit as st
 
 
 encoder, model, instance_wrapper = build_page_objects(cervicalb_pd)
+
+contants_check = {k: v.unique_values[0] for k, v in instance_wrapper.feature_descriptors.items() if v.otype in ColumnType.CONSTANT.value}
 
 form_submit, input_values = create_sidebar(instance_wrapper.feature_descriptors)
 
@@ -32,6 +35,10 @@ if form_submit:
     feature_frame = pd.DataFrame(
         {k: [v] for k, v in instance_wrapper.given_instance.items()}
     )
+    if contants_check:
+        st.markdown("#### Note")
+        st.markdown(f"The following dataset features exist in the data dictionary as constants:")
+        st.json(contants_check, expanded=False)
 
     model_prediction = predict(
         model=model,
