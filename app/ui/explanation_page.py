@@ -232,7 +232,6 @@ def plot_partition(p: float, q: float):
         # calculate x and y positions for the arrow tip / annotations - sometimes there is no area
         annotation_x: float = (1 - p) / 2 + 2 / max(len(region["label"]) for region in regions)
         annotation_y: float = (region["y0"] + region["y1"]) / 2
-        print(annotation_x, annotation_y)
         if annotation_y > 0.95:
             ay = annotation_y - 0.05
         elif annotation_y < 0.05:
