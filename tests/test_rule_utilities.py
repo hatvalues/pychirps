@@ -2,6 +2,7 @@ import pytest
 import numpy as np
 from numpy.random import seed
 import app.pychirps.rule_mining.rule_utilities as rutils
+from app.pychirps.rule_mining.pattern_miner import NodePattern
 from tests.fixture_helper import (
     load_yaml_fixture_file,
     assert_dict_matches_fixture,
@@ -360,3 +361,28 @@ def test_objective_function(
         blending_weight=blending_weight,
         cardinality_regularizing_weight=cardinality_regularizing_weight,
     ) == pytest.approx(expected)
+
+def test_pattern_list_prune():
+
+    # fail if any special __eq__ method is defined incorrectly
+    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) == NodePattern(feature=0, threshold=22.0, leq_threshold=True)
+    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(feature=0, threshold=22.0, leq_threshold=False)
+    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(feature=0, threshold=23.0, leq_threshold=True)
+    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(feature=1, threshold=22.0, leq_threshold=True)
+
+    # test pruning logic
+    node_patterns = [
+        (NodePattern(0, 22.0, True),),
+        (NodePattern(0, 22.0, False),),
+        (NodePattern(0, 23.0, True),),
+        (NodePattern(1, 22.0, True),),
+        (NodePattern(0, 22.0, False), NodePattern(0, 22.0, True)),
+        (NodePattern(0, 23.0, True), NodePattern(0, 22.0, True)),
+        (NodePattern(1, 22.0, True), NodePattern(0, 22.0, True)),
+        (NodePattern(1, 22.0, True), NodePattern(2, 22.0, True)),
+    ]
+
+    # test pruning logic
+    covers = [rutils.pattern_covers_pattern(node_pattern, (NodePattern(0, 22.0, True),)) for node_pattern in node_patterns]
+
+    assert covers == [True, False, False, False, True, True, True, False]

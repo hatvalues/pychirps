@@ -112,6 +112,12 @@ class RuleMiner(Evaluator):
         # C. the cardinality of the pattern, (longer is better, more interaction terms)
         return tuple(pattern for pattern, _, _ in sorted_pattern_weights)
 
+    @staticmethod
+    def prune_covered_patterns(covering_pattern: tuple[NodePattern], patterns: tuple[tuple[NodePattern]]) -> tuple[tuple[NodePattern]]:
+        return [
+            pattern for pattern in patterns if not rutils.pattern_covers_pattern(covering_pattern, pattern)
+        ]
+
     def hill_climb(
         self, blending_weight: float = 1.0, cardinality_regularizing_weight: float = 0.0
     ):
@@ -139,6 +145,11 @@ class RuleMiner(Evaluator):
             if try_score > best_score:
                 best_pattern = try_pattern
                 best_score = try_score
+
+            # prune the input list of patterns to shorten the search list
+            sorted_patterns = self.prune_covered_patterns(
+                covering_pattern=add_pattern, patterns=sorted_patterns
+            )
 
         self.best_pattern = best_pattern
         self.best_entropy = self.entropy_score(best_pattern)
