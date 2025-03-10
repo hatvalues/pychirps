@@ -9,7 +9,7 @@ from app.pychirps.model_prep.model_building import (
     fit_random_forest,
     RandomForestClassifier,
 )
-from typing import Union, Any
+from typing import Optional, Union, Any
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -228,35 +228,48 @@ def plot_partition(p: float, q: float):
     ]
 
     for region in regions:
-        fig.add_shape(
-            type="rect",
-            x0=region["x0"],
-            x1=region["x1"],
-            y0=region["y0"],
-            y1=region["y1"],
-            fillcolor=region["color"],
-            line=dict(color="#000000", width=0.5),
-        )
-        arrow_tip = (region["y0"] + region["y1"]) / 2
-        if arrow_tip > 0.95:
-            ay = arrow_tip - 0.05
-        elif arrow_tip < 0.05:
-            ay = arrow_tip + 0.05
+        
+        # calculate x and y positions for the arrow tip / annotations - sometimes there is no area
+        annotation_x: float = (1 - p) / 2 + 2 / max(len(region["label"]) for region in regions)
+        annotation_y: float = (region["y0"] + region["y1"]) / 2
+        print(annotation_x, annotation_y)
+        if annotation_y > 0.95:
+            ay = annotation_y - 0.05
+        elif annotation_y < 0.05:
+            ay = annotation_y + 0.05
         else:
-            ay = arrow_tip
-        fig.add_annotation(
-            x=p,
-            y=arrow_tip,
-            text=region["label"],
-            showarrow=True,
-            arrowhead=2,
-            ax=(1 - p) / 2 + 2 / len(region["label"]),
-            ay=ay,
-            axref="x",
-            ayref="y",
-            font=dict(size=12, color="black"),
-            align="left",
-        )
+            ay = annotation_y
+
+        # check if there is an area to draw
+        has_area = region["y0"] != region["y1"]
+
+        # add the shape to the figure
+        if has_area:
+            fig.add_shape(
+                type="rect",
+                x0=region["x0"],
+                x1=region["x1"],
+                y0=region["y0"],
+                y1=region["y1"],
+                fillcolor=region["color"],
+                line=dict(color="#000000", width=0.5),
+            )
+
+        # add annotation without an arrow if the region has zero area
+        annotation_kwargs = {
+            "x": p if has_area else annotation_x,  # Keep x consistent for the annotation itself
+            "y": annotation_y if has_area else ay,
+            "text": region["label"],
+            "showarrow": has_area,
+            "ax": annotation_x,  # Apply annotation_x regardless of has_area
+            "ay": ay,
+            "axref": "x",
+            "ayref": "y",
+            "font": dict(size=12, color="black"),
+            "align": "left",
+        }
+
+        fig.add_annotation(**annotation_kwargs)
 
     # Layout adjustments
     fig.update_layout(
