@@ -42,7 +42,7 @@ if form_submit:
     if contants_check:
         st.markdown("#### Note")
         st.markdown(
-            f"The following dataset features exist in the data dictionary as constants:"
+            "The following dataset features exist in the data dictionary as constants:"
         )
         st.json(contants_check, expanded=False)
 
