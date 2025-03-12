@@ -5,7 +5,7 @@ from tests.fixture_helper import (
     convert_native,
     load_yaml_fixture_file,
 )
-from pychirps.rule_mining.pattern_miner import NodePattern
+from app.pychirps.rule_mining.pattern_miner import NodePattern
 import numpy as np
 
 

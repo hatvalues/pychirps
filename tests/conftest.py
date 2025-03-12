@@ -4,6 +4,7 @@ from app.pychirps.path_mining.forest_explorer import ForestExplorer
 from app.pychirps.rule_mining.pattern_miner import PatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner
 from app.pychirps.model_prep.model_building import fit_random_forest
+from app.pychirps.explain.explainer import Explainer
 from data_preprocs.data_providers.cervical import (
     cervicalb_pd as cervicalb_pandas_provider,
 )
@@ -84,6 +85,19 @@ def cervicalb_rule_miner(cervicalb_rf, cervicalb_enc, cervicalb_pattern_miner): 
     )
 
 
+@pytest.fixture
+def cervicalb_explainer(cervicalb_rf, cervicalb_enc):
+    return Explainer(
+        model=cervicalb_rf,
+        encoder=cervicalb_enc.encoder,
+        instance=cervicalb_enc.unseen_instance_features.astype(np.float32).reshape(
+            1, -1
+        ),
+        prediction=cervicalb_rf.predict(cervicalb_enc.unseen_instance_features)[0],
+        min_support=0.1,
+    )
+
+
 @pytest.fixture(scope="session")
 def nursery_pd():
     return nursery_pandas_provider
@@ -141,4 +155,15 @@ def nursery_rule_miner(nursery_rf, nursery_enc, nursery_pattern_miner):  # noqa 
         features=nursery_enc.features,
         preds=preds,
         classes=np.unique(nursery_enc.target),
+    )
+
+
+@pytest.fixture
+def nursery_explainer(nursery_rf, nursery_enc):
+    return Explainer(
+        model=nursery_rf,
+        encoder=nursery_enc.encoder,
+        instance=nursery_enc.unseen_instance_features,
+        prediction=nursery_rf.predict(nursery_enc.unseen_instance_features)[0],
+        min_support=0.1,
     )

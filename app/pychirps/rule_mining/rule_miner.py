@@ -69,6 +69,7 @@ class RuleMiner(Evaluator):
         preds: np.ndarray,
         classes=np.array([0, 1], dtype=np.uint8),
         cardinality_regularizing_weight: float = 0.5,
+        pruning_tolerance: float = 0.05,
     ):
         super().__init__(y_pred, features, preds, classes)
         self.patterns = pattern_miner.pattern_set.patterns
@@ -187,6 +188,10 @@ class RuleMiner(Evaluator):
 
         # will need to normalise the weights so min(weights) = 1.0
         # weighted_counts = np.round(self.paths_weights * 1/min(self.paths_weights)).astype('int')
+
+    def pruning_stage_two(self):
+        # stage two of the pruning algorithm
+        pass
 
 
 class CounterfactualEvaluater(Evaluator):

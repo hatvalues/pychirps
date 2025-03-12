@@ -9,7 +9,7 @@ from app.pychirps.model_prep.model_building import (
     fit_random_forest,
     RandomForestClassifier,
 )
-from typing import Optional, Union, Any
+from typing import Union, Any
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -194,8 +194,13 @@ def page_rule_frame(
 
 def page_explain_texts(explainer: Explainer):
     st.markdown(f"#### Rule Metrics:")
-    st.markdown(f"Coverage: {explainer.best_coverage}")
-    st.markdown(f"Precision: {explainer.best_precision}")
+    st.markdown(
+        f"Coverage: {round(explainer.best_coverage * 100, 2)}% of background distribution is covered by rule antecedent."
+    )
+    st.markdown(
+        f"Precision: {round(explainer.best_precision * 100,2)}% of covered region has the same predicted class."
+    )
+
 
 def page_post_explain_texts(explainer: Explainer):
     st.markdown(f"#### Rule Finding Metrics:")

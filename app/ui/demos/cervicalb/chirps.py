@@ -1,7 +1,6 @@
 # Just for dev - map out how the app will work with hard-coded data and model
 # In due time - it will be adaptable based on uploaded data, and we'd have a model repository
 from data_preprocs.data_providers.cervical import cervicalb_pd
-from app.pychirps.explain.pre_explanations import predict
 from ui.explanation_page import (
     page_pre_submit_texts,
     page_post_pred_texts,
@@ -12,10 +11,11 @@ from ui.explanation_page import (
     create_sidebar,
     plot_partition,
 )
-from app.pychirps.explain.explainer import Explainer
+from app.pychirps.explain.explainer import Explainer, predict
 from app.pychirps.explain.explanations import RuleParser
 from app.pychirps.data_prep.instance_wrapper import ColumnType
 import pandas as pd
+import numpy as np
 import streamlit as st
 
 
@@ -36,9 +36,7 @@ if form_submit:
     instance_wrapper.given_instance = input_values
     st.markdown("### Your Inputs:")
     st.json(instance_wrapper.given_instance, expanded=False)
-    feature_frame = pd.DataFrame(
-        {k: [v] for k, v in instance_wrapper.given_instance.items()}
-    )
+
     if contants_check:
         st.markdown("#### Note")
         st.markdown(
@@ -48,7 +46,7 @@ if form_submit:
 
     model_prediction = predict(
         model=model,
-        feature_frame=feature_frame,
+        feature_frame=instance_wrapper.given_instance_frame,
         dummy_target_class=pd.Series(cervicalb_pd.positive_class),
         encoder=encoder,
     )
@@ -58,7 +56,13 @@ if form_submit:
     st.markdown(f"### Explanation:")
 
     explainer = Explainer(
-        model, encoder, feature_frame, model_prediction[0], min_support
+        model=model,
+        encoder=encoder,
+        instance=instance_wrapper.given_instance_frame.to_numpy()
+        .astype(np.float32)
+        .reshape(1, -1),
+        prediction=model_prediction[0],
+        min_support=min_support,
     )
     explainer.hill_climb()
 
@@ -70,6 +74,10 @@ if form_submit:
     page_explain_texts(explainer)
 
     counterfactuals = explainer.counterfactual_evaluator
+
+    evaluted_counterfactuals = counterfactuals.evaluate_counterfactuals()
+    st.markdown("### Counterfactuals")
+    print(evaluted_counterfactuals)
 
     page_rule_frame(explainer, rule_parser, counterfactuals)
 

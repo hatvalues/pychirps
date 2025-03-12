@@ -1,6 +1,8 @@
 from app.pychirps.data_prep.data_provider import DataProvider
 from typing import Optional, Any
 from enum import Enum
+import pandas as pd
+import numpy as np
 
 
 class ColumnType(Enum):
@@ -53,6 +55,10 @@ class InstanceWrapper:
         [self.validator(column)(column, value) for column, value in instance.items()]
 
         self._given_instance = instance
+
+    @property
+    def given_instance_frame(self):
+        return pd.DataFrame(self.given_instance, index=[0])
 
     def validate_categorical(self, column: str, value: Any):
         assert value in self.feature_descriptors[column].unique_values
