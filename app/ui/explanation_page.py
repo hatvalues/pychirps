@@ -188,16 +188,20 @@ def page_rule_frame(
             / explainer.best_excl_cov,
         }
     )
-    st.markdown(f"### Explanation:")
+    st.markdown("#### Rule and Counterfactuals:")
     st.table(rule_frame)
 
 
+def page_explain_texts(explainer: Explainer):
+    st.markdown(f"#### Rule Metrics:")
+    st.markdown(f"Coverage: {explainer.best_coverage}")
+    st.markdown(f"Precision: {explainer.best_precision}")
+
 def page_post_explain_texts(explainer: Explainer):
+    st.markdown(f"#### Rule Finding Metrics:")
     st.markdown(f"Entropy: {explainer.best_entropy}")
     st.markdown(f"Stability: {explainer.best_stability}")
     st.markdown(f"Exclusive Coverage: {explainer.best_excl_cov}")
-    st.markdown(f"Coverage: {explainer.best_coverage}")
-    st.markdown(f"Precision: {explainer.best_precision}")
 
 
 def plot_partition(p: float, q: float):

@@ -5,6 +5,7 @@ from app.pychirps.explain.pre_explanations import predict
 from ui.explanation_page import (
     page_pre_submit_texts,
     page_post_pred_texts,
+    page_explain_texts,
     page_rule_frame,
     page_post_explain_texts,
     build_page_objects,
@@ -55,6 +56,8 @@ if form_submit:
 
     page_post_pred_texts(encoder, model_prediction)
 
+    st.markdown(f"### Explanation:")
+
     explainer = Explainer(
         model, encoder, feature_frame, model_prediction[0], min_support
     )
@@ -65,10 +68,12 @@ if form_submit:
         feature_descriptors=instance_wrapper.feature_descriptors,
     )
 
+    page_explain_texts(explainer)
+
     counterfactuals = explainer.counterfactual_evaluator
 
     page_rule_frame(explainer, rule_parser, counterfactuals)
 
-    page_post_explain_texts(explainer)
-
     st.plotly_chart(plot_partition(explainer.best_coverage, explainer.best_precision))
+
+    page_post_explain_texts(explainer)
