@@ -362,13 +362,21 @@ def test_objective_function(
         cardinality_regularizing_weight=cardinality_regularizing_weight,
     ) == pytest.approx(expected)
 
-def test_pattern_list_prune():
 
+def test_pattern_list_prune():
     # fail if any special __eq__ method is defined incorrectly
-    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) == NodePattern(feature=0, threshold=22.0, leq_threshold=True)
-    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(feature=0, threshold=22.0, leq_threshold=False)
-    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(feature=0, threshold=23.0, leq_threshold=True)
-    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(feature=1, threshold=22.0, leq_threshold=True)
+    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) == NodePattern(
+        feature=0, threshold=22.0, leq_threshold=True
+    )
+    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(
+        feature=0, threshold=22.0, leq_threshold=False
+    )
+    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(
+        feature=0, threshold=23.0, leq_threshold=True
+    )
+    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(
+        feature=1, threshold=22.0, leq_threshold=True
+    )
 
     # test pruning logic
     node_patterns = [
@@ -383,6 +391,9 @@ def test_pattern_list_prune():
     ]
 
     # test pruning logic
-    covers = [rutils.pattern_covers_pattern(node_pattern, (NodePattern(0, 22.0, True),)) for node_pattern in node_patterns]
+    covers = [
+        rutils.pattern_covers_pattern(node_pattern, (NodePattern(0, 22.0, True),))
+        for node_pattern in node_patterns
+    ]
 
     assert covers == [True, False, False, False, True, True, True, False]

@@ -228,9 +228,10 @@ def plot_partition(p: float, q: float):
     ]
 
     for region in regions:
-        
         # calculate x and y positions for the arrow tip / annotations - sometimes there is no area
-        annotation_x: float = (1 - p) / 2 + 2 / max(len(region["label"]) for region in regions)
+        annotation_x: float = (1 - p) / 2 + 2 / max(
+            len(region["label"]) for region in regions
+        )
         annotation_y: float = (region["y0"] + region["y1"]) / 2
         if annotation_y > 0.95:
             ay = annotation_y - 0.05
@@ -256,7 +257,9 @@ def plot_partition(p: float, q: float):
 
         # add annotation without an arrow if the region has zero area
         annotation_kwargs = {
-            "x": p if has_area else annotation_x,  # Keep x consistent for the annotation itself
+            "x": p
+            if has_area
+            else annotation_x,  # Keep x consistent for the annotation itself
             "y": annotation_y if has_area else ay,
             "text": region["label"],
             "showarrow": has_area,

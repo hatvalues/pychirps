@@ -113,10 +113,14 @@ class RuleMiner(Evaluator):
         return tuple(pattern for pattern, _, _ in sorted_pattern_weights)
 
     @staticmethod
-    def prune_covered_patterns(covering_pattern: tuple[NodePattern], patterns: tuple[tuple[NodePattern]]) -> tuple[tuple[NodePattern]]:
-        return [
-            pattern for pattern in patterns if not rutils.pattern_covers_pattern(covering_pattern, pattern)
-        ]
+    def prune_covered_patterns(
+        covering_pattern: tuple[NodePattern], patterns: tuple[tuple[NodePattern]]
+    ) -> tuple[tuple[NodePattern]]:
+        return tuple(
+            pattern
+            for pattern in patterns
+            if not rutils.pattern_covers_pattern(covering_pattern, pattern)
+        )
 
     def hill_climb(
         self, blending_weight: float = 1.0, cardinality_regularizing_weight: float = 0.0
@@ -127,7 +131,7 @@ class RuleMiner(Evaluator):
         # pick the rule from the top and add it to the rule
         # if the rule set is better than the previous rule set, keep the pattern
         # loop until no more increase in objective function, no more patterns
-        sorted_patterns = [pattern for pattern in self.custom_sorted_patterns]
+        sorted_patterns = list(self.custom_sorted_patterns)
         best_pattern = tuple()
         best_score = -np.inf
         while sorted_patterns:
@@ -147,8 +151,11 @@ class RuleMiner(Evaluator):
                 best_score = try_score
 
             # prune the input list of patterns to shorten the search list
-            sorted_patterns = self.prune_covered_patterns(
-                covering_pattern=add_pattern, patterns=sorted_patterns
+            # output of pruning function is a tuple because we need hashable objects under the hood
+            sorted_patterns = list(
+                self.prune_covered_patterns(
+                    covering_pattern=add_pattern, patterns=sorted_patterns
+                )
             )
 
         self.best_pattern = best_pattern

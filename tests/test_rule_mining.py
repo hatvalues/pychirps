@@ -1,6 +1,10 @@
 import pytest
 from dataclasses import asdict
-from tests.fixture_helper import assert_dict_matches_fixture, convert_native, load_yaml_fixture_file
+from tests.fixture_helper import (
+    assert_dict_matches_fixture,
+    convert_native,
+    load_yaml_fixture_file,
+)
 from pychirps.rule_mining.pattern_miner import NodePattern
 import numpy as np
 
@@ -98,29 +102,46 @@ def test_rule_miner_hill_climb(cervicalb_rule_miner):  # noqa # mypy can't cope 
         "patterns_cervicalb_hill_climb_excl_cov_weighted",
     )
 
+
 def test_pattern_list_prune(cervicalb_rule_miner):  # noqa # mypy can't cope with pytest fixtures
     nodes = cervicalb_rule_miner.patterns[:10]
 
     # fail if any special __eq__ method is defined incorrectly
-    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) == NodePattern(feature=0, threshold=22.0, leq_threshold=True)
-    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(feature=0, threshold=22.0, leq_threshold=False)
-    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(feature=0, threshold=23.0, leq_threshold=True)
-    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(feature=1, threshold=22.0, leq_threshold=True)
+    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) == NodePattern(
+        feature=0, threshold=22.0, leq_threshold=True
+    )
+    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(
+        feature=0, threshold=22.0, leq_threshold=False
+    )
+    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(
+        feature=0, threshold=23.0, leq_threshold=True
+    )
+    assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) != NodePattern(
+        feature=1, threshold=22.0, leq_threshold=True
+    )
 
     # test pruning logic, get a known covered pattern e.g. first node of first pattern and append it for a new tuple of node pattern
     covering_pattern = (nodes[0][0],)
     nodes_add_singleton = nodes + (covering_pattern,)
 
     assert nodes_add_singleton != nodes
-    pruned_patterns = cervicalb_rule_miner.prune_covered_patterns(covering_pattern=covering_pattern, patterns=nodes_add_singleton)
+    pruned_patterns = cervicalb_rule_miner.prune_covered_patterns(
+        covering_pattern=covering_pattern, patterns=nodes_add_singleton
+    )
     assert pruned_patterns == nodes
 
     # test pruning logic with first pattern that is two long
-    two_patterns = tuple(node_pattern for node_pattern in nodes if len(node_pattern) == 2)
-    non_covered_singleton = (NodePattern(feature=999999, threshold=np.inf, leq_threshold=True),)
+    two_patterns = tuple(
+        node_pattern for node_pattern in nodes if len(node_pattern) == 2
+    )
+    non_covered_singleton = (
+        NodePattern(feature=999999, threshold=np.inf, leq_threshold=True),
+    )
     pruned_patterns = nodes + (non_covered_singleton,)
     for tp in two_patterns:
-        pruned_patterns = cervicalb_rule_miner.prune_covered_patterns(covering_pattern=tp, patterns=pruned_patterns)
+        pruned_patterns = cervicalb_rule_miner.prune_covered_patterns(
+            covering_pattern=tp, patterns=pruned_patterns
+        )
     # were all the covering patterns pruned?
     assert not any(cp in pruned_patterns for cp in two_patterns)
     # was the non_covered_singleton not pruned?

@@ -247,5 +247,7 @@ def merge_patterns(
     return tuple(node for node in OrderedSet(base_pattern) | OrderedSet(add_pattern))
 
 
-def pattern_covers_pattern(covering_pattern: tuple[NodePattern], test_pattern: tuple[NodePattern]) -> bool:
+def pattern_covers_pattern(
+    covering_pattern: tuple[NodePattern], test_pattern: tuple[NodePattern]
+) -> bool:
     return set(covering_pattern).issuperset(set(test_pattern))
