@@ -31,12 +31,11 @@ form_submit, input_values = create_sidebar(instance_wrapper.feature_descriptors)
 
 page_pre_submit_texts(model)
 
-
 if form_submit:
     min_support = input_values.pop("Frequent Pattern Support")
     instance_wrapper.given_instance = input_values
     st.markdown("### Your Inputs:")
-    st.json(instance_wrapper.given_instance)
+    st.json(instance_wrapper.given_instance, expanded=False)
     feature_frame = pd.DataFrame(
         {k: [v] for k, v in instance_wrapper.given_instance.items()}
     )
