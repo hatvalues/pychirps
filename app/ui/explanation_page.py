@@ -192,8 +192,13 @@ def page_rule_frame(
     st.table(rule_frame)
 
 
-def page_explain_texts(explainer: Explainer):
-    st.markdown(f"#### Rule Metrics:")
+def page_explain_texts(explainer: Explainer, rule_parser: RuleParser, encoder: PandasEncoder, model_prediction: np.ndarray):
+    st.markdown(
+        "Your input is covered by the following rule:\n\n" +
+        " *and*\n\n".join(rule_parser.parse(explainer.best_pattern, rounding=2)) +
+        "\n\n --> CLASS LABEL = " + encoder.label_encoder.inverse_transform(model_prediction)[0]
+    )
+    st.markdown("#### Rule Metrics:")
     st.markdown(
         f"Coverage: {round(explainer.best_coverage * 100, 2)}% of background distribution is covered by rule antecedent."
     )
@@ -293,4 +298,4 @@ def plot_partition(p: float, q: float):
         margin=dict(l=0, r=0, t=0, b=0, pad=0),
     )
 
-    return fig
+    st.plotly_chart(fig)

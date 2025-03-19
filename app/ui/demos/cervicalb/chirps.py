@@ -71,7 +71,9 @@ if form_submit:
         feature_descriptors=instance_wrapper.feature_descriptors,
     )
 
-    page_explain_texts(explainer)
+    page_explain_texts(explainer, rule_parser, encoder, model_prediction)
+
+    plot_partition(explainer.best_coverage, explainer.best_precision)
 
     counterfactuals = explainer.counterfactual_evaluator
 
@@ -80,7 +82,5 @@ if form_submit:
     print(evaluted_counterfactuals)
 
     page_rule_frame(explainer, rule_parser, counterfactuals)
-
-    st.plotly_chart(plot_partition(explainer.best_coverage, explainer.best_precision))
 
     page_post_explain_texts(explainer)
