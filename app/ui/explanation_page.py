@@ -154,10 +154,10 @@ Setting this values to the min or max is equivalent to setting any lower or high
 
 def page_post_pred_texts(encoder: PandasEncoder, model_prediction: np.ndarray):
     st.markdown("### Model Predicts:")
-    st.markdown(
-        f"CLASS LABEL: {encoder.label_encoder.inverse_transform(model_prediction)[0]}"
-    )
-    st.markdown(f"encoded value: {model_prediction[0]}")
+    st.json({
+        "CLASS LABEL": encoder.label_encoder.inverse_transform(model_prediction)[0],
+        "encoded value": int(model_prediction[0]),
+    }, expanded=False)
 
 
 def page_rule_frame(
@@ -165,28 +165,22 @@ def page_rule_frame(
     rule_parser: RuleParser,
     counterfactual_evaluator: CounterfactualEvaluater,
 ):
-    counterfactuals = np.array(counterfactual_evaluator.evaluate_counterfactuals())
+    counterfactual_rules = counterfactual_evaluator.get_counterfactuals()
+    evaluated_counterfactuals = np.array(counterfactual_evaluator.evaluate_counterfactuals())
     # each row is [entropy, coverage, precision]
-    counterfactual_precision = counterfactuals[:, 1]
-    counterfactual_coverage = counterfactuals[:, 0]
+    counterfactual_precision = np.round(evaluated_counterfactuals[:, 1], 5)
+    counterfactual_coverage = np.round(evaluated_counterfactuals[:, 0], 5)
+    lost_precision = (f"{lp}%" for lp in np.round((explainer.best_precision - counterfactual_precision) / explainer.best_precision * 100, 2))
+    lost_coverage = (f"{lc}%" for lc in np.round((explainer.best_coverage - counterfactual_coverage) / explainer.best_coverage * 100))
     rule_frame = pd.DataFrame(
         {
-            "Terms": rule_parser.parse(explainer.best_pattern, rounding=2),
-            "Contrast Precision": counterfactual_precision,
-            "Contrasts (diff. Precision)": explainer.best_stability
-            - counterfactual_precision,
-            "Contrasts (rel. Precision)": (
-                explainer.best_stability - counterfactual_precision
-            )
-            / explainer.best_stability,
-            "Contrast Coverage": counterfactual_coverage,
-            "Contrasts (diff. Coverage)": explainer.best_excl_cov
-            - counterfactual_coverage,
-            "Contrasts (rel. Coverage)": (
-                explainer.best_excl_cov - counterfactual_coverage
-            )
-            / explainer.best_excl_cov,
-        }
+            "Counterfactual Rule": (" & ".join(rule_parser.parse((node_pattern for node_pattern in counterfactual_rule), rounding=2)) for counterfactual_rule in counterfactual_rules),
+            "Precision": counterfactual_precision,
+            "Lost Precision %": lost_precision,
+            "Coverage": counterfactual_coverage,
+            "Lost Coverage %": lost_coverage,
+        },
+        dtype=str,
     )
     st.markdown("#### Rule and Counterfactuals:")
     st.table(rule_frame)
@@ -200,7 +194,7 @@ def page_explain_texts(explainer: Explainer, rule_parser: RuleParser, encoder: P
     )
     st.markdown("#### Rule Metrics:")
     st.markdown(
-        f"Coverage: {round(explainer.best_coverage * 100, 2)}% of background distribution is covered by rule antecedent."
+        f"Coverage: {round(explainer.best_coverage * 100, 2)}% of background distribution is covered by this rule's antecedent."
     )
     st.markdown(
         f"Precision: {round(explainer.best_precision * 100,2)}% of covered region has the same predicted class."

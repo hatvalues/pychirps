@@ -214,15 +214,14 @@ class CounterfactualEvaluater(Evaluator):
             leq_threshold=not node_pattern.leq_threshold,
         )
 
-    @staticmethod
-    def get_counterfactuals(pattern: tuple[NodePattern]) -> tuple[tuple[NodePattern]]:
+    def get_counterfactuals(self) -> tuple[tuple[NodePattern]]:
         return tuple(
             tuple(
-                pattern[:n]
+                self.pattern[:n]
                 + (CounterfactualEvaluater.flip_node_pattern(node),)
-                + pattern[n + 1 :]
+                + self.pattern[n + 1 :]
             )
-            for n, node in enumerate(pattern)
+            for n, node in enumerate(self.pattern)
         )
 
     def evaluate_counterfactuals(self) -> tuple[float]:
@@ -231,5 +230,5 @@ class CounterfactualEvaluater(Evaluator):
                 self.coverage_score(pattern=counterfactual),
                 self.precision_score(pattern=counterfactual),
             )
-            for counterfactual in self.get_counterfactuals(self.pattern)
+            for counterfactual in self.get_counterfactuals()
         )

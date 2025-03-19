@@ -75,12 +75,8 @@ if form_submit:
 
     plot_partition(explainer.best_coverage, explainer.best_precision)
 
-    counterfactuals = explainer.counterfactual_evaluator
-
-    evaluted_counterfactuals = counterfactuals.evaluate_counterfactuals()
+    counterfactual_evaluator = explainer.counterfactual_evaluator
     st.markdown("### Counterfactuals")
-    print(evaluted_counterfactuals)
-
-    page_rule_frame(explainer, rule_parser, counterfactuals)
+    page_rule_frame(explainer, rule_parser, counterfactual_evaluator)
 
     page_post_explain_texts(explainer)
