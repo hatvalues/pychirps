@@ -38,13 +38,13 @@ class PandasEncoder:
 
     def transform(
         self, features: Optional[np.ndarray] = None, target: Optional[np.ndarray] = None
-    ) -> tuple[np.ndarray, np.ndarray]:
-        if (features is None) ^ (target is None):  # ^ is XOR
-            raise ValueError("Features and target must both be given, or neither.")
+    ) -> tuple[np.ndarray, Optional[np.ndarray]]:
         if features is None:
             return self.preprocessor.transform(
                 self.features
             ), self.label_encoder.transform(self.target)
+        if target is None:
+            return self.preprocessor.transform(features), None
         if (len(features.shape) == 1 and len(target) == 1) or (
             features.shape[0] == len(target)
         ):

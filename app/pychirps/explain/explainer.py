@@ -12,11 +12,9 @@ from app.pychirps.model_prep.model_building import RandomForestClassifier
 def predict(
     model: RandomForestClassifier,
     feature_frame: pd.DataFrame,
-    dummy_target_class: str,
     encoder: PandasEncoder,
 ) -> np.ndarray:
-    dummy_target = pd.Series(dummy_target_class)
-    encoded_instance, _ = encoder.transform(feature_frame, dummy_target)
+    encoded_instance, _ = encoder.transform(features=feature_frame)
     return model.predict(encoded_instance)
 
 
@@ -37,7 +35,7 @@ class Explainer:
         self,
         model: RandomForestClassifier,
         encoder: PandasEncoder,
-        instance,
+        feature_frame: pd.DataFrame,
         prediction,
         min_support: float = 0.1,
         pruning_tolerance: float = 0.05,
@@ -47,7 +45,9 @@ class Explainer:
         self.encoder = encoder
 
         self.forest_explorer = ForestExplorer(self.model, self.encoder)
-        self.forest_path = random_forest_paths_factory(self.forest_explorer, instance)
+        encoded_instance, _ = encoder.transform(features=feature_frame)
+        encoded_instance = encoded_instance.astype(np.float32).reshape(1, -1)
+        self.forest_path = random_forest_paths_factory(self.forest_explorer, encoded_instance)
         self.pattern_miner = PatternMiner(
             forest_path=self.forest_path,
             feature_names=self.encoder.preprocessor.get_feature_names_out().tolist(),
@@ -56,7 +56,7 @@ class Explainer:
         )
 
         transformed_features, transformed_targets = self.encoder.transform()
-        preds = model.predict(encoder.features)
+        preds = model.predict(transformed_features)
         classes = np.unique(transformed_targets)
         self.rule_miner = RuleMiner(
             pattern_miner=self.pattern_miner,

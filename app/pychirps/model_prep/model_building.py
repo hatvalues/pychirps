@@ -17,7 +17,7 @@ def fit_random_forest(
         "oob_score": True,
     } | kwargs
     model = RandomForestClassifier(
-        random_state=DEFAULT_RANDOM_SEED, **hyper_parameter_defaults
+        random_state=random_state, **hyper_parameter_defaults
     )
     model.fit(X, y)
     return model

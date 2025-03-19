@@ -173,8 +173,8 @@ def page_rule_frame(
         counterfactual_evaluator.evaluate_counterfactuals()
     )
 
-    counterfactual_precision = np.round(evaluated_counterfactuals[:, 1], 5)
-    counterfactual_coverage = np.round(evaluated_counterfactuals[:, 0], 5)
+    counterfactual_precision = np.round(evaluated_counterfactuals[:, 1], 4)
+    counterfactual_coverage = np.round(evaluated_counterfactuals[:, 0], 4)
     lost_precision = (
         f"{lp}%"
         for lp in np.round(

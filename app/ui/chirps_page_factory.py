@@ -48,7 +48,6 @@ def chirps_page_factory(data_provider: DataProvider) -> Callable[[], None]:
             model_prediction = predict(
                 model=model,
                 feature_frame=instance_wrapper.given_instance_frame,
-                dummy_target_class=pd.Series(data_provider.positive_class),
                 encoder=encoder,
             )
 
@@ -59,9 +58,7 @@ def chirps_page_factory(data_provider: DataProvider) -> Callable[[], None]:
             explainer = Explainer(
                 model=model,
                 encoder=encoder,
-                instance=instance_wrapper.given_instance_frame.to_numpy()
-                .astype(np.float32)
-                .reshape(1, -1),
+                feature_frame=instance_wrapper.given_instance_frame,
                 prediction=model_prediction[0],
                 min_support=min_support,
             )
