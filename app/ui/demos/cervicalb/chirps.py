@@ -53,7 +53,7 @@ if form_submit:
 
     page_post_pred_texts(encoder, model_prediction)
 
-    st.markdown(f"### Explanation:")
+    st.markdown("### Explanation:")
 
     explainer = Explainer(
         model=model,

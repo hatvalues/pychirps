@@ -154,10 +154,13 @@ Setting this values to the min or max is equivalent to setting any lower or high
 
 def page_post_pred_texts(encoder: PandasEncoder, model_prediction: np.ndarray):
     st.markdown("### Model Predicts:")
-    st.json({
-        "CLASS LABEL": encoder.label_encoder.inverse_transform(model_prediction)[0],
-        "encoded value": int(model_prediction[0]),
-    }, expanded=False)
+    st.json(
+        {
+            "CLASS LABEL": encoder.label_encoder.inverse_transform(model_prediction)[0],
+            "encoded value": int(model_prediction[0]),
+        },
+        expanded=False,
+    )
 
 
 def page_rule_frame(
@@ -166,15 +169,40 @@ def page_rule_frame(
     counterfactual_evaluator: CounterfactualEvaluater,
 ):
     counterfactual_rules = counterfactual_evaluator.get_counterfactuals()
-    evaluated_counterfactuals = np.array(counterfactual_evaluator.evaluate_counterfactuals())
-    # each row is [entropy, coverage, precision]
+    evaluated_counterfactuals = np.array(
+        counterfactual_evaluator.evaluate_counterfactuals()
+    )
+
     counterfactual_precision = np.round(evaluated_counterfactuals[:, 1], 5)
     counterfactual_coverage = np.round(evaluated_counterfactuals[:, 0], 5)
-    lost_precision = (f"{lp}%" for lp in np.round((explainer.best_precision - counterfactual_precision) / explainer.best_precision * 100, 2))
-    lost_coverage = (f"{lc}%" for lc in np.round((explainer.best_coverage - counterfactual_coverage) / explainer.best_coverage * 100))
+    lost_precision = (
+        f"{lp}%"
+        for lp in np.round(
+            (explainer.best_precision - counterfactual_precision)
+            / explainer.best_precision
+            * 100,
+            2,
+        )
+    )
+    lost_coverage = (
+        f"{lc}%"
+        for lc in np.round(
+            (explainer.best_coverage - counterfactual_coverage)
+            / explainer.best_coverage
+            * 100
+        )
+    )
     rule_frame = pd.DataFrame(
         {
-            "Counterfactual Rule": (" & ".join(rule_parser.parse((node_pattern for node_pattern in counterfactual_rule), rounding=2)) for counterfactual_rule in counterfactual_rules),
+            "Counterfactual Rule": (
+                " & ".join(
+                    rule_parser.parse(
+                        (node_pattern for node_pattern in counterfactual_rule),
+                        rounding=2,
+                    )
+                )
+                for counterfactual_rule in counterfactual_rules
+            ),
             "Precision": counterfactual_precision,
             "Lost Precision %": lost_precision,
             "Coverage": counterfactual_coverage,
@@ -186,11 +214,17 @@ def page_rule_frame(
     st.table(rule_frame)
 
 
-def page_explain_texts(explainer: Explainer, rule_parser: RuleParser, encoder: PandasEncoder, model_prediction: np.ndarray):
+def page_explain_texts(
+    explainer: Explainer,
+    rule_parser: RuleParser,
+    encoder: PandasEncoder,
+    model_prediction: np.ndarray,
+):
     st.markdown(
-        "Your input is covered by the following rule:\n\n" +
-        " *and*\n\n".join(rule_parser.parse(explainer.best_pattern, rounding=2)) +
-        "\n\n --> CLASS LABEL = " + encoder.label_encoder.inverse_transform(model_prediction)[0]
+        "Your input is covered by the following rule:\n\n"
+        + " *and*\n\n".join(rule_parser.parse(explainer.best_pattern, rounding=2))
+        + "\n\n --> CLASS LABEL = "
+        + encoder.label_encoder.inverse_transform(model_prediction)[0]
     )
     st.markdown("#### Rule Metrics:")
     st.markdown(

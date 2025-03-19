@@ -57,5 +57,3 @@ def test_rule_pruning_stage_two(cervicalb_explainer):
     cervicalb_explainer.best_precision = 1.0
     counterfactual_evaluator = cervicalb_explainer.counterfactual_evaluator
     counterfactuals = counterfactual_evaluator.evaluate_counterfactuals()
-
-
