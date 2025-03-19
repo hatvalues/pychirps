@@ -4,7 +4,7 @@ from data_preprocs.data_providers.cervical import cervicalb_pd as cvb
 import pandas as pd
 import streamlit as st
 
-st.title("Cervical Demo")
+st.title("Cervical B Dataset")
 st.write(cvb.spiel)
 
 st.sidebar.metric(label="Rows:", value=cvb.features.shape[0])
