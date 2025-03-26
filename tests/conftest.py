@@ -1,5 +1,6 @@
 from app.pychirps.path_mining.classification_trees import random_forest_paths_factory
 from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasEncoder
+from app.pychirps.data_prep.instance_wrapper import InstanceWrapper
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
 from app.pychirps.rule_mining.pattern_miner import PatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner
@@ -86,13 +87,11 @@ def cervicalb_rule_miner(cervicalb_rf, cervicalb_enc, cervicalb_pattern_miner): 
 
 
 @pytest.fixture
-def cervicalb_explainer(cervicalb_rf, cervicalb_enc):
+def cervicalb_explainer(cervicalb_pd, cervicalb_rf, cervicalb_enc):
     return Explainer(
         model=cervicalb_rf,
         encoder=cervicalb_enc.encoder,
-        instance=cervicalb_enc.unseen_instance_features.astype(np.float32).reshape(
-            1, -1
-        ),
+        feature_frame=cervicalb_pd.features[-1:],
         prediction=cervicalb_rf.predict(cervicalb_enc.unseen_instance_features)[0],
         min_support=0.1,
     )

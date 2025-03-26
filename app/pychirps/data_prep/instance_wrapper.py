@@ -2,7 +2,6 @@ from app.pychirps.data_prep.data_provider import DataProvider
 from typing import Optional, Any
 from enum import Enum
 import pandas as pd
-import numpy as np
 
 
 class ColumnType(Enum):
@@ -52,7 +51,7 @@ class InstanceWrapper:
         )
 
         # validate the given values
-        [self.validator(column)(column, value) for column, value in instance.items()]
+        _ = [self.validator(column)(column, value) for column, value in instance.items()]
 
         self._given_instance = instance
 

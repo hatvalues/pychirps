@@ -1,7 +1,6 @@
 from app.pychirps.rule_mining.rule_utilities import NodePattern
 from app.pychirps.data_prep.data_provider import ColumnDescriptor
 from functools import cached_property
-import numpy as np
 
 
 class RuleParser:

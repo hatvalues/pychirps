@@ -31,7 +31,6 @@ def test_predict(input, expected):
     model_prediction = predict(
         model=model,
         feature_frame=feature_frame,
-        dummy_target_class=pd.Series(cervicalb_pd.positive_class),
         encoder=encoder,
     )
 

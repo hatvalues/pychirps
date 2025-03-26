@@ -236,7 +236,7 @@ def page_explain_texts(
 
 
 def page_post_explain_texts(explainer: Explainer):
-    st.markdown(f"#### Rule Finding Metrics:")
+    st.markdown("#### Rule Finding Metrics:")
     st.markdown(f"Entropy: {explainer.best_entropy}")
     st.markdown(f"Stability: {explainer.best_stability}")
     st.markdown(f"Exclusive Coverage: {explainer.best_excl_cov}")

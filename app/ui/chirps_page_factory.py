@@ -12,8 +12,6 @@ from app.pychirps.explain.explainer import Explainer, predict
 from app.pychirps.explain.explanations import RuleParser
 from app.pychirps.data_prep.instance_wrapper import ColumnType
 from app.pychirps.data_prep.data_provider import DataProvider
-import pandas as pd
-import numpy as np
 import streamlit as st
 from typing import Callable
 
