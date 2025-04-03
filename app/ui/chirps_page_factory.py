@@ -26,12 +26,12 @@ def chirps_page_factory(data_provider: DataProvider) -> Callable[[], None]:
             if v.otype in ColumnType.CONSTANT.value
         }
 
-        form_submit, input_values = create_sidebar(instance_wrapper.feature_descriptors)
+        form_submit, input_values, config_values = create_sidebar(instance_wrapper.feature_descriptors)
 
         page_pre_submit_texts(model)
 
         if form_submit:
-            min_support = input_values.pop("Frequent Pattern Support")
+            min_support = config_values["Frequent Pattern Support"]
             instance_wrapper.given_instance = input_values
             st.markdown("### Your Inputs:")
             st.json(instance_wrapper.given_instance, expanded=False)

@@ -109,19 +109,25 @@ def create_sidebar(
     feature_descriptors: dict[ColumnDescriptor],
 ) -> dict[str, Union[int, float, str]]:
     with st.sidebar.form(key="input_form", border=False):
-        input_values = {
-            "Frequent Pattern Support": st.number_input(
-                "Frequent Pattern Support",
-                min_value=0.0,
-                max_value=1.0,
-                value=0.1,
-            )
-        } | {
-            column_name: render_input(column_name, column_descriptor)
-            for column_name, column_descriptor in feature_descriptors.items()
-        }
-        form_submit = st.form_submit_button(label="Submit")
-        return form_submit, input_values
+        st.title("Inputs")
+
+        with st.expander("Configuration Options"):
+            config_values = {
+                "Frequent Pattern Support": st.number_input(
+                    "Frequent Pattern Support (for finding rules)",
+                    min_value=0.0,
+                    max_value=1.0,
+                    value=0.1,
+                )
+            }
+        
+        with st.expander("Instance Values"):
+            input_values = {
+                column_name: render_input(column_name, column_descriptor)
+                for column_name, column_descriptor in feature_descriptors.items()
+            }
+            form_submit = st.form_submit_button(label="Submit")
+        return form_submit, input_values, config_values
 
 
 def build_page_objects(
