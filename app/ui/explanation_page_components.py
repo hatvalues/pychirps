@@ -113,7 +113,7 @@ def create_sidebar(
                     value=0.1,
                 )
             }
-        
+
         with st.expander("Instance Values"):
             input_values = {
                 column_name: render_input(column_name, column_descriptor)

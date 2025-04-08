@@ -4,8 +4,8 @@
 import pandas as pd
 import streamlit as st
 from typing import Callable
-from app.pychirps.data_prep.data_provider import DataProvider
 from app.ui.pages.page_factory import PageFactory
+
 
 class DataDescriptionPageFactory(PageFactory):
     def create_page(self) -> Callable[[], None]:
@@ -15,9 +15,13 @@ class DataDescriptionPageFactory(PageFactory):
             st.write(self.data_provider.spiel)
 
             st.sidebar.metric(label="Rows:", value=self.data_provider.features.shape[0])
-            st.sidebar.metric(label="Columns:", value=self.data_provider.features.shape[1])
+            st.sidebar.metric(
+                label="Columns:", value=self.data_provider.features.shape[1]
+            )
 
-            columns_df = pd.DataFrame(self.data_provider.features.columns, columns=["Features:"])
+            columns_df = pd.DataFrame(
+                self.data_provider.features.columns, columns=["Features:"]
+            )
             st.sidebar.table(columns_df)
 
         # Streamlit is introspecting the function name and requires unique names for each page

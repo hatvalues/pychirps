@@ -1,14 +1,18 @@
 import streamlit as st
 from app.ui.pages.data_description_factory import DataDescriptionPageFactory
-from app.ui.chirps_page_factory import chirps_page_factory
+from app.ui.pages.chirps_page_factory import ChirpsPageFactory
 from data_preprocs.data_providers.cervical import cervicalb_pd
 from data_preprocs.data_providers.nursery import nursery_pd
 
 # Create Page Callables
-cervicalb_data_description = DataDescriptionPageFactory(cervicalb_pd, "Cervical B Dataset").create_page()
-cervicalb_chirps = chirps_page_factory(cervicalb_pd)
-nursery_data_description = DataDescriptionPageFactory(nursery_pd, "Nursery Dataset").create_page()
-nursery_chirps = chirps_page_factory(nursery_pd)
+cervicalb_data_description = DataDescriptionPageFactory(
+    cervicalb_pd, "Cervical B Dataset"
+).create_page()
+cervicalb_chirps = ChirpsPageFactory(cervicalb_pd, "Cervical B Dataset").create_page()
+nursery_data_description = DataDescriptionPageFactory(
+    nursery_pd, "Nursery Dataset"
+).create_page()
+nursery_chirps = ChirpsPageFactory(nursery_pd, "Nursery Dataset").create_page()
 
 pg = st.navigation(
     {

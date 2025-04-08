@@ -51,7 +51,9 @@ class InstanceWrapper:
         )
 
         # validate the given values
-        _ = [self.validator(column)(column, value) for column, value in instance.items()]
+        _ = [
+            self.validator(column)(column, value) for column, value in instance.items()
+        ]
 
         self._given_instance = instance
 
