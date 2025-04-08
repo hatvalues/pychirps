@@ -75,7 +75,7 @@ class ChirpsPageFactory(PageFactory):
                 explainer.hill_climb()
 
                 rule_parser = RuleParser(
-                    feature_names=encoder.preprocessor.get_feature_names_out().tolist(),
+                    feature_names_enc=encoder.preprocessor.get_feature_names_out().tolist(),
                     feature_descriptors=instance_wrapper.feature_descriptors,
                 )
 

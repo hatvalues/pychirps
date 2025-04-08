@@ -1,0 +1,4 @@
+rule:
+- housing is not less_conv
+- social is not slightly_prob
+- health is not_recom
