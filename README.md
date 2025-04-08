@@ -19,3 +19,11 @@ Requires my data_preprocs library, which I am also currently tweaking occasional
 `poetry remove data_preprocs`
 
 `poetry add --group dev ../data_preprocs`
+
+### TO DO
+* Add support for more tree ensemble methods
+* Add support for more datasets
+* Add support from more sophisticated search/optimization
+* Model cache
+* Input cache
+* Finish and document the APIs

@@ -33,9 +33,4 @@ st.markdown("""- Read about the dataset on the Data Description page
 - Input your own instance values on the CHIRPS page side panel
 - Trigger the model to predict a class label for your inputs and show the explanation for by clicking
 the submit button""")
-st.markdown("TO DO:")
-st.markdown("""- Add support for more tree ensemble methods
-- Add support for more datasets
-- Model cache
-- Input cache
-- Finish and document the APIs""")
+
