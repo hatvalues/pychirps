@@ -38,13 +38,6 @@ def fit_model(
 
 
 @st.cache_resource
-def fit_forest_explorer(
-    encoder: PandasEncoder, model: RandomForestClassifier
-) -> ForestPath:
-    return ForestExplorer(model, encoder)
-
-
-@st.cache_resource
 def fit_instance_wrapper(data_provider: DataProvider) -> InstanceWrapper:
     return InstanceWrapper(data_provider)
 
