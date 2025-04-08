@@ -1,5 +1,4 @@
 from app.pychirps.data_prep.data_provider import DataProvider, ColumnDescriptor
-from app.pychirps.path_mining.classification_trees import ForestPath, ForestExplorer
 from app.pychirps.rule_mining.rule_miner import CounterfactualEvaluater
 from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasEncoder
 from app.pychirps.data_prep.instance_wrapper import InstanceWrapper, ColumnType
