@@ -1,4 +1,4 @@
-from app.ui.explanation_page_components import (
+from app.ui.pages.explanation_page_components import (
     page_pre_submit_texts,
     page_post_pred_texts,
     page_explain_texts,
@@ -18,10 +18,17 @@ from typing import Callable
 
 class ChirpsPageFactory(PageFactory):
     def create_page(self) -> Callable[[], None]:
+        unique_name = f"chirps_{self.data_provider.name}"
+
         def page():
-            st.session_state["current_page_id"] = f"{self.title}_description"
+            st.session_state["current_page_id"] = unique_name
             st.title(self.title)
-            encoder, model, instance_wrapper = build_page_objects(self.data_provider)
+            current_page = st.session_state.get(
+                "current_page_id", "Unknown"
+            )  # resets cache objects if different page is loaded
+            encoder, model, instance_wrapper = build_page_objects(
+                self.data_provider, current_page
+            )
 
             contants_check = {
                 k: v.unique_values[0]
@@ -83,6 +90,5 @@ class ChirpsPageFactory(PageFactory):
                 page_post_explain_texts(explainer)
 
         # Streamlit is introspecting the function name and requires unique names for each page
-        page.__name__ = f"chirps_{self.data_provider.name}"
-
+        page.__name__ = unique_name
         return page

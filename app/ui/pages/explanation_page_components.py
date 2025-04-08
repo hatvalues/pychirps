@@ -17,27 +17,30 @@ import plotly.graph_objects as go
 
 @st.cache_resource
 def fetch_fitted_encoder(
-    data_provider: DataProvider, reset: bool = False
+    data_provider: DataProvider,
+    current_page: str,  # unique page name to reset the cache if a new demo is loaded
 ) -> PandasEncoder:
     return get_fitted_encoder_pd(data_provider)
 
 
 @st.cache_data
 def transform_data(
-    _encoder: PandasEncoder, reset: bool = False
+    _encoder: PandasEncoder, current_page: str
 ) -> tuple[np.ndarray, np.ndarray]:
     return _encoder.transform()
 
 
 @st.cache_resource
 def fit_model(
-    features: np.ndarray, target: np.ndarray, reset: bool = False, **kwargs
+    features: np.ndarray, target: np.ndarray, current_page: str, **kwargs
 ) -> RandomForestClassifier:
     return fit_random_forest(X=features, y=target, **kwargs)
 
 
 @st.cache_resource
-def fit_instance_wrapper(data_provider: DataProvider) -> InstanceWrapper:
+def fit_instance_wrapper(
+    data_provider: DataProvider, current_page: str
+) -> InstanceWrapper:
     return InstanceWrapper(data_provider)
 
 
@@ -123,15 +126,20 @@ def create_sidebar(
 
 
 def build_page_objects(
-    data_provider: DataProvider,
+    data_provider: DataProvider, current_page: str
 ) -> tuple[PandasEncoder, RandomForestClassifier, InstanceWrapper]:
-    encoder = fetch_fitted_encoder(data_provider)
-    transformed_features, transformed_target = transform_data(_encoder=encoder)
+    encoder = fetch_fitted_encoder(data_provider, current_page=current_page)
+    transformed_features, transformed_target = transform_data(
+        _encoder=encoder, current_page=current_page
+    )
     model = fit_model(
-        features=transformed_features, target=transformed_target, n_estimators=1000
+        features=transformed_features,
+        target=transformed_target,
+        n_estimators=1000,
+        current_page=current_page,
     )
 
-    instance_wrapper = fit_instance_wrapper(data_provider)
+    instance_wrapper = fit_instance_wrapper(data_provider, current_page=current_page)
 
     return encoder, model, instance_wrapper
 

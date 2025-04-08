@@ -10,7 +10,6 @@ from app.ui.pages.page_factory import PageFactory
 class DataDescriptionPageFactory(PageFactory):
     def create_page(self) -> Callable[[], None]:
         def page():
-            st.session_state["current_page_id"] = f"{self.title}_description"
             st.title(self.title)
             st.write(self.data_provider.spiel)
 
@@ -25,6 +24,6 @@ class DataDescriptionPageFactory(PageFactory):
             st.sidebar.table(columns_df)
 
         # Streamlit is introspecting the function name and requires unique names for each page
-        page.__name__ = f"data_description_{self.data_provider.name}"
-
+        unique_name = f"data_description_{self.data_provider.name}"
+        page.__name__ = unique_name
         return page
