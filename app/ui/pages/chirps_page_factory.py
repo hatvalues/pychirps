@@ -27,7 +27,7 @@ class ChirpsPageFactory(PageFactory):
                 "current_page_id", "Unknown"
             )  # resets cache objects if different page is loaded
             encoder, model, instance_wrapper = build_page_objects(
-                self.data_provider, current_page
+                self.data_provider, "random_forest", current_page
             )
 
             contants_check = {
