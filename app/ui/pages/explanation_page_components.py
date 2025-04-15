@@ -153,12 +153,23 @@ def build_page_objects(
     return encoder, model, instance_wrapper
 
 
-def page_pre_submit_texts(model: RandomForestClassifier):
+def page_pre_submit_texts(model: Union[RandomForestClassifier, AdaBoostClassifier]):
+    if type(model) == RandomForestClassifier:
+        model_short_name = "RF"
+        error_type = "Out Of Bag"
+        error_value = 1 - model.oob_score_
+    elif type(model) == AdaBoostClassifier:
+        model_short_name = "AB"
+        error_type = "Cross Validation"
+        error_value = 1 - model.mean_cv_score
+    else:
+        model_short_name = "Unknown"
+        error_type = "Unknown"
+        error_value = 0.0
     st.markdown(
-        f"""### Your RF Model.
-:violet[***Out Of Bag Error:*** {round(1 - model.oob_score_, 4)}]"""
-    )
-
+            f"""### Your {model_short_name} Model.
+:violet[***{error_type} Error:*** {round(error_value, 4)}]"""
+        )
     st.markdown(
         """Use the side panel to configure inputs, then click submit.
                 

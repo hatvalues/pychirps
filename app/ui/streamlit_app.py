@@ -1,6 +1,7 @@
 import streamlit as st
 from app.ui.pages.data_description_factory import DataDescriptionPageFactory
 from app.ui.pages.chirps_page_factory import ChirpsPageFactory
+from app.ui.pages.adawhips_page_factory import AdaWhipsPageFactory
 from data_preprocs.data_providers.cervical import cervicalb_pd
 from data_preprocs.data_providers.nursery import nursery_pd
 from data_preprocs.data_providers.rcdv import rcdv_pd
@@ -10,14 +11,25 @@ cervicalb_data_description = DataDescriptionPageFactory(
     cervicalb_pd, "Cervical B Dataset"
 ).create_page()
 cervicalb_chirps = ChirpsPageFactory(cervicalb_pd, "Cervical B Dataset").create_page()
+cervicalb_adawhips = AdaWhipsPageFactory(
+    cervicalb_pd, "Cervical B Dataset"
+).create_page()
+
 nursery_data_description = DataDescriptionPageFactory(
     nursery_pd, "Nursery Dataset"
 ).create_page()
 nursery_chirps = ChirpsPageFactory(nursery_pd, "Nursery Dataset").create_page()
+nursery_adawhips = AdaWhipsPageFactory(
+    nursery_pd, "Nursery Dataset"
+).create_page()
+
 rcdv_data_description = DataDescriptionPageFactory(
     rcdv_pd, "Recidivism Dataset"
 ).create_page()
 rcdv_chirps = ChirpsPageFactory(rcdv_pd, "Recidivism Dataset").create_page()
+rcdv_adawhips = AdaWhipsPageFactory(
+    rcdv_pd, "Recidivism Dataset"
+).create_page()
 
 # Create Streamlit Navigation
 pg = st.navigation(
@@ -26,14 +38,17 @@ pg = st.navigation(
         "Cervical B Demo": [
             st.Page(cervicalb_data_description, title="Cervical B Dataset"),
             st.Page(cervicalb_chirps, title="CHIRPS (Random Forest)"),
+            st.Page(cervicalb_adawhips, title="AdaWhips (AdaBoost)"),
         ],
         "Nursery Demo": [
             st.Page(nursery_data_description, title="Nursery Dataset"),
             st.Page(nursery_chirps, title="CHIRPS (Random Forest)"),
+            st.Page(nursery_adawhips, title="AdaWhips (AdaBoost)"),
         ],
         "Recidivism Demo": [
             st.Page(rcdv_data_description, title="Recidivism Dataset"),
             st.Page(rcdv_chirps, title="CHIRPS (Random Forest)"),
+            st.Page(rcdv_adawhips, title="AdaWhips (AdaBoost)"),
         ]
     }
 )
