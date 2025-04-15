@@ -3,7 +3,6 @@ from app.pychirps.explain.explanations import RuleParser
 from app.pychirps.rule_mining.rule_utilities import NodePattern
 from tests.fixture_helper import assert_dict_matches_fixture
 
-
 def test_parse_rule_cervical(cervicalb_pd, cervicalb_enc):
     rule_parser = RuleParser(
         cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
