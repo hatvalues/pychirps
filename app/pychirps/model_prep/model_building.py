@@ -30,7 +30,7 @@ def fit_adaboost(
 ) -> AdaBoostClassifier:
     hyper_parameters = {
         "n_estimators": 100,
-        "learning_rate": 1.0,
+        "learning_rate": 0.1,
         "max_depth": 1,
     } | kwargs
     max_depth = hyper_parameters.pop("max_depth")
