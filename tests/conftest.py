@@ -1,6 +1,4 @@
-from app.pychirps.path_mining.classification_trees import random_forest_paths_factory
 from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasEncoder
-from app.pychirps.data_prep.instance_wrapper import InstanceWrapper
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
 from app.pychirps.rule_mining.pattern_miner import PatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner
@@ -61,7 +59,7 @@ def cervicalb_rf_paths(cervicalb_pd, cervicalb_enc, cervicalb_rf):
     forest_explorer = ForestExplorer(cervicalb_rf, cervicalb_enc.encoder)
     instance = cervicalb_pd.features.iloc[0]
     instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
-    return random_forest_paths_factory(forest_explorer, instance32)
+    return forest_explorer.get_forest_path(instance32)
 
 
 @pytest.fixture
@@ -132,7 +130,7 @@ def nursery_rf_paths(nursery_pd, nursery_enc, nursery_rf):
     forest_explorer = ForestExplorer(nursery_rf, nursery_enc.encoder)
     instance = nursery_pd.features.iloc[0]
     instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
-    return random_forest_paths_factory(forest_explorer, instance32)
+    return forest_explorer.get_forest_path(instance32)
 
 
 @pytest.fixture

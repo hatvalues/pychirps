@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 from functools import cached_property
-from app.pychirps.path_mining.classification_trees import random_forest_paths_factory
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
 from app.pychirps.rule_mining.pattern_miner import PatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner, CounterfactualEvaluater
@@ -47,9 +46,7 @@ class Explainer:
         self.forest_explorer = ForestExplorer(self.model, self.encoder)
         encoded_instance, _ = encoder.transform(features=feature_frame)
         encoded_instance = encoded_instance.astype(np.float32).reshape(1, -1)
-        self.forest_path = random_forest_paths_factory(
-            self.forest_explorer, encoded_instance
-        )
+        self.forest_path = self.forest_explorer.get_forest_path(encoded_instance)
         self.pattern_miner = PatternMiner(
             forest_path=self.forest_path,
             feature_names=self.encoder.preprocessor.get_feature_names_out().tolist(),

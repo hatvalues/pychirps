@@ -1,9 +1,8 @@
-from app.pychirps.path_mining.classification_trees import (
+from app.pychirps.path_mining.forest_explorer import (
     ForestPath,
     TreePath,
     TreeNode,
 )
-import data_preprocs.data_providers as dp
 import numpy as np
 import pytest
 

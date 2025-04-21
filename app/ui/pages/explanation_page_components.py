@@ -31,19 +31,23 @@ def transform_data(
 ) -> tuple[np.ndarray, np.ndarray]:
     return _encoder.transform()
 
+
 model_mapping = {
     "random_forest": fit_random_forest,
     "adaboost": fit_adaboost,
 }
 
+
 @st.cache_resource
 def fit_model(
     model: str, features: np.ndarray, target: np.ndarray, current_page: str, **kwargs
 ) -> Union[RandomForestClassifier, AdaBoostClassifier]:
-    return model_mapping[model](
-        X=features, y=target, random_state=42, **kwargs
-    ) if model in model_mapping else None
-    
+    return (
+        model_mapping[model](X=features, y=target, random_state=42, **kwargs)
+        if model in model_mapping
+        else None
+    )
+
 
 @st.cache_resource
 def fit_instance_wrapper(
@@ -135,7 +139,9 @@ def create_sidebar(
 
 def build_page_objects(
     data_provider: DataProvider, model: str, current_page: str
-) -> tuple[PandasEncoder, Union[RandomForestClassifier, AdaBoostClassifier], InstanceWrapper]:
+) -> tuple[
+    PandasEncoder, Union[RandomForestClassifier, AdaBoostClassifier], InstanceWrapper
+]:
     encoder = fetch_fitted_encoder(data_provider, current_page=current_page)
     transformed_features, transformed_target = transform_data(
         _encoder=encoder, current_page=current_page
@@ -167,9 +173,9 @@ def page_pre_submit_texts(model: Union[RandomForestClassifier, AdaBoostClassifie
         error_type = "Unknown"
         error_value = 0.0
     st.markdown(
-            f"""### Your {model_short_name} Model.
+        f"""### Your {model_short_name} Model.
 :violet[***{error_type} Error:*** {round(error_value, 4)}]"""
-        )
+    )
     st.markdown(
         """Use the side panel to configure inputs, then click submit.
                 

@@ -6,16 +6,23 @@ from sklearn.metrics import accuracy_score
 from app.config import DEFAULT_RANDOM_SEED
 import pytest
 
+
 @pytest.mark.parametrize(
     "model_class,kwargs",
     [
-        (RandomForestClassifier, dict(n_estimators=100, random_state=DEFAULT_RANDOM_SEED)),
-        (AdaBoostClassifier, dict(
-            random_state=DEFAULT_RANDOM_SEED,
-            estimator=DecisionTreeClassifier(max_depth=4),
-            n_estimators=100,
-            learning_rate=1.0,
-        )),
+        (
+            RandomForestClassifier,
+            dict(n_estimators=100, random_state=DEFAULT_RANDOM_SEED),
+        ),
+        (
+            AdaBoostClassifier,
+            dict(
+                random_state=DEFAULT_RANDOM_SEED,
+                estimator=DecisionTreeClassifier(max_depth=4),
+                n_estimators=100,
+                learning_rate=1.0,
+            ),
+        ),
     ],
 )
 def test_model_harness(model_class, kwargs):

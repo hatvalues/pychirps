@@ -18,9 +18,7 @@ def fit_random_forest(
         "max_features": "sqrt",
         "oob_score": True,
     } | kwargs
-    model = RandomForestClassifier(
-        random_state=random_state, **hyper_parameters
-    )
+    model = RandomForestClassifier(random_state=random_state, **hyper_parameters)
     model.fit(X, y)
     return model
 
@@ -36,9 +34,13 @@ def fit_adaboost(
     max_depth = hyper_parameters.pop("max_depth")
     max_features = hyper_parameters.pop("max_features", None)
     model = AdaBoostClassifier(
-        random_state=random_state, estimator=DecisionTreeClassifier(max_depth=max_depth, max_features=max_features), **hyper_parameters
+        random_state=random_state,
+        estimator=DecisionTreeClassifier(
+            max_depth=max_depth, max_features=max_features
+        ),
+        **hyper_parameters,
     )
-    cv_scores = cross_val_score(model, X, y, cv=5, scoring='accuracy')
+    cv_scores = cross_val_score(model, X, y, cv=5, scoring="accuracy")
     model.fit(X, y)
     model.cv_scores = cv_scores
     model.mean_cv_score = np.mean(cv_scores)

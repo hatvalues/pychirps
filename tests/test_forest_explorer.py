@@ -1,7 +1,9 @@
-from pychirps.path_mining.forest_explorer import ForestExplorer
+from app.pychirps.path_mining.forest_explorer import ForestExplorer, TreePath
 from sklearn.ensemble import RandomForestClassifier
 from app.pychirps.data_prep.pandas_encoder import PandasEncoder
 from data_preprocs.data_providers.cervical import cervicalb_pd
+from tests.fixture_helper import assert_dict_matches_fixture, convert_native
+from dataclasses import asdict
 import numpy as np
 
 
@@ -41,3 +43,27 @@ def test_forest_explorer():
         65,
         75,
     ]
+
+
+def test_parse_tree_for_instance(cervicalb_enc, cervicalb_rf):
+    forest_explorer = ForestExplorer(cervicalb_rf, cervicalb_enc.encoder)
+    instance = cervicalb_enc.features[0, :]
+    instance32 = instance.astype(np.float32).reshape(1, -1)
+
+    tree_path = forest_explorer.parse_tree_for_instance(
+        tree=cervicalb_rf.estimators_[0],
+        instance=instance32,
+        path_weight=1.0,
+    )
+
+    assert type(tree_path) == TreePath
+    assert tree_path.prediction == 0.0
+    assert_dict_matches_fixture(
+        convert_native(asdict(tree_path.nodes[0])), "basic_tree_path_0"
+    )
+    assert_dict_matches_fixture(
+        convert_native(asdict(tree_path.nodes[1])), "basic_tree_path_1"
+    )
+    assert_dict_matches_fixture(
+        convert_native(asdict(tree_path.nodes[-1])), "basic_tree_path_last"
+    )

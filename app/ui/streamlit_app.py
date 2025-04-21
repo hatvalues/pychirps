@@ -19,17 +19,13 @@ nursery_data_description = DataDescriptionPageFactory(
     nursery_pd, "Nursery Dataset"
 ).create_page()
 nursery_chirps = ChirpsPageFactory(nursery_pd, "Nursery Dataset").create_page()
-nursery_adawhips = AdaWhipsPageFactory(
-    nursery_pd, "Nursery Dataset"
-).create_page()
+nursery_adawhips = AdaWhipsPageFactory(nursery_pd, "Nursery Dataset").create_page()
 
 rcdv_data_description = DataDescriptionPageFactory(
     rcdv_pd, "Recidivism Dataset"
 ).create_page()
 rcdv_chirps = ChirpsPageFactory(rcdv_pd, "Recidivism Dataset").create_page()
-rcdv_adawhips = AdaWhipsPageFactory(
-    rcdv_pd, "Recidivism Dataset"
-).create_page()
+rcdv_adawhips = AdaWhipsPageFactory(rcdv_pd, "Recidivism Dataset").create_page()
 
 # Create Streamlit Navigation
 pg = st.navigation(
@@ -49,7 +45,7 @@ pg = st.navigation(
             st.Page(rcdv_data_description, title="Recidivism Dataset"),
             st.Page(rcdv_chirps, title="CHIRPS (Random Forest)"),
             st.Page(rcdv_adawhips, title="AdaWhips (AdaBoost)"),
-        ]
+        ],
     }
 )
 
