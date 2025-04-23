@@ -6,8 +6,8 @@ from itertools import cycle
 import numpy as np
 
 
-def test_pattern_miner(cervicalb_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
-    assert len(cervicalb_pattern_miner.paths) == 10
+def test_pattern_miner(cervicalb_rf_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
+    assert len(cervicalb_rf_pattern_miner.paths) == 10
 
 
 def test_pattern_miner_prediction(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
@@ -53,12 +53,12 @@ def test_fp_paths(weighted_paths):
     )
 
 
-def test_feature_value_generator(cervicalb_pattern_miner):
+def test_feature_value_generator(cervicalb_rf_pattern_miner):
     feature_values = {
         np.int64(0): [3.4, 4.5, 6.7, 8.9],
         np.int64(4): [1.2, 2.3, 3.4, 4.5, 5.6, 6.7],
     }
-    feature_value_generator = cervicalb_pattern_miner.feature_value_generator(
+    feature_value_generator = cervicalb_rf_pattern_miner.feature_value_generator(
         feature_values
     )
     alternator = cycle([0, 4])
@@ -75,8 +75,8 @@ def test_feature_value_generator(cervicalb_pattern_miner):
     assert final_return_values == {0: 8.9, 4: 6.7}
 
 
-def test_pattern_miner_discretize(cervicalb_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
-    discretized_centred = cervicalb_pattern_miner.discretize_continuous_thresholds()
+def test_pattern_miner_discretize(cervicalb_rf_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
+    discretized_centred = cervicalb_rf_pattern_miner.discretize_continuous_thresholds()
     assert_dict_matches_fixture(
         {
             feature.item(): [value.item() for value in values]
@@ -95,7 +95,7 @@ def test_pattern_miner_discretize(cervicalb_pattern_miner):  # noqa # mypy can't
     assert_dict_matches_fixture(
         {
             p: [convert_native(asdict(node)) for node in path]
-            for p, path in enumerate(cervicalb_pattern_miner.discretized_paths)
+            for p, path in enumerate(cervicalb_rf_pattern_miner.discretized_paths)
         },
         "discretized_paths",
     )

@@ -2,7 +2,7 @@ from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasE
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
 from app.pychirps.rule_mining.pattern_miner import PatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner
-from app.pychirps.model_prep.model_building import fit_random_forest
+from app.pychirps.model_prep.model_building import fit_random_forest, fit_adaboost
 from app.pychirps.explain.explainer import Explainer
 from data_preprocs.data_providers.cervical import (
     cervicalb_pd as cervicalb_pandas_provider,
@@ -54,6 +54,19 @@ def cervicalb_rf(cervicalb_enc):
     )
 
 
+@pytest.fixture(scope="session")
+def cervicalb_ada_factory(cervicalb_enc):
+    def _factory(n_estimators=10, max_depth=1):
+        return fit_adaboost(
+            X=cervicalb_enc.features,
+            y=cervicalb_enc.target,
+            n_estimators=n_estimators,
+            max_depth=max_depth,
+        )
+
+    return _factory
+
+
 @pytest.fixture
 def cervicalb_rf_paths(cervicalb_pd, cervicalb_enc, cervicalb_rf):
     forest_explorer = ForestExplorer(cervicalb_rf, cervicalb_enc.encoder)
@@ -63,7 +76,7 @@ def cervicalb_rf_paths(cervicalb_pd, cervicalb_enc, cervicalb_rf):
 
 
 @pytest.fixture
-def cervicalb_pattern_miner(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
+def cervicalb_rf_pattern_miner(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
     return PatternMiner(
         forest_path=cervicalb_rf_paths,
         feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
@@ -72,11 +85,11 @@ def cervicalb_pattern_miner(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy c
 
 
 @pytest.fixture
-def cervicalb_rule_miner(cervicalb_rf, cervicalb_enc, cervicalb_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
+def cervicalb_rule_miner(cervicalb_rf, cervicalb_enc, cervicalb_rf_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
     y_pred = cervicalb_rf.predict(cervicalb_enc.unseen_instance_features)[0]
     preds = cervicalb_rf.predict(cervicalb_enc.features)
     return RuleMiner(
-        pattern_miner=cervicalb_pattern_miner,
+        pattern_miner=cervicalb_rf_pattern_miner,
         y_pred=y_pred,
         features=cervicalb_enc.features,
         preds=preds,

@@ -3,7 +3,6 @@ from dataclasses import asdict
 from tests.fixture_helper import (
     assert_dict_matches_fixture,
     convert_native,
-    load_yaml_fixture_file,
 )
 from app.pychirps.rule_mining.pattern_miner import NodePattern
 import numpy as np

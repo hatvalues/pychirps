@@ -5,9 +5,10 @@ from data_preprocs.data_providers.cervical import cervicalb_pd
 from tests.fixture_helper import assert_dict_matches_fixture, convert_native
 from dataclasses import asdict
 import numpy as np
+import pytest
 
 
-def test_forest_explorer():
+def test_random_forest_explorer():
     model = RandomForestClassifier(n_estimators=10, random_state=42)
     encoder = PandasEncoder(cervicalb_pd.features, cervicalb_pd.target)
     encoder.fit()
@@ -67,3 +68,51 @@ def test_parse_tree_for_instance(cervicalb_enc, cervicalb_rf):
     assert_dict_matches_fixture(
         convert_native(asdict(tree_path.nodes[-1])), "basic_tree_path_last"
     )
+
+
+@pytest.mark.parametrize(
+    "max_depth,expected_sparse_path",
+    [
+        (
+            1,
+            [
+                0,
+                1,
+            ],
+        ),
+        (
+            2,
+            [
+                0,
+                1,
+                2,
+            ],
+        ),
+        (
+            5,
+            [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+            ],
+        ),
+    ],
+)
+def test_adaboost_explorer(
+    cervicalb_enc, cervicalb_ada_factory, max_depth, expected_sparse_path
+):
+    model = cervicalb_ada_factory(n_estimators=10, max_depth=max_depth)
+    forest_explorer = ForestExplorer(model, cervicalb_enc.encoder)
+    assert len(forest_explorer.trees) == 10
+    assert len(forest_explorer.tree_weights) == 10
+    assert isinstance(forest_explorer.feature_names, list)
+    assert isinstance(forest_explorer.trees, list)
+    assert isinstance(forest_explorer.tree_weights, np.ndarray)
+    assert forest_explorer.tree_weights.all() == 1.0
+    sparse_path = forest_explorer.trees[0].tree_.decision_path(
+        cervicalb_pd.features.loc[0].values.reshape(1, -1).astype(np.float32)
+    )
+    assert sparse_path.indices.tolist() == expected_sparse_path

@@ -34,6 +34,7 @@ def fit_adaboost(
     max_depth = hyper_parameters.pop("max_depth")
     max_features = hyper_parameters.pop("max_features", None)
     model = AdaBoostClassifier(
+        algorithm="SAMME",
         random_state=random_state,
         estimator=DecisionTreeClassifier(
             max_depth=max_depth, max_features=max_features
