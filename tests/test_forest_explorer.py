@@ -15,14 +15,14 @@ def test_random_forest_explorer():
     transformed_features, transformed_target = encoder.transform()
     model.fit(transformed_features, transformed_target)
 
-    explorer = ForestExplorer(model, encoder)
-    assert len(explorer.trees) == 10
-    assert len(explorer.tree_weights) == 10
-    assert isinstance(explorer.feature_names, list)
-    assert isinstance(explorer.trees, list)
-    assert isinstance(explorer.tree_weights, np.ndarray)
-    assert explorer.tree_weights.all() == 1.0
-    sparse_path = explorer.trees[0].tree_.decision_path(
+    forest_explorer = ForestExplorer(model, encoder)
+    assert len(forest_explorer.trees) == 10
+    assert len(forest_explorer.tree_weights) == 10
+    assert isinstance(forest_explorer.feature_names, list)
+    assert isinstance(forest_explorer.trees, list)
+    assert isinstance(forest_explorer.tree_weights, np.ndarray)
+    assert np.all(tw == 1.0 for tw in forest_explorer.tree_weights)
+    sparse_path = forest_explorer.trees[0].tree_.decision_path(
         cervicalb_pd.features.loc[0].values.reshape(1, -1).astype(np.float32)
     )
     assert sparse_path.indices.tolist() == [
@@ -105,13 +105,19 @@ def test_adaboost_explorer(
     cervicalb_enc, cervicalb_ada_factory, max_depth, expected_sparse_path
 ):
     model = cervicalb_ada_factory(n_estimators=10, max_depth=max_depth)
+    assert model.estimator_weights_ is not None
     forest_explorer = ForestExplorer(model, cervicalb_enc.encoder)
     assert len(forest_explorer.trees) == 10
     assert len(forest_explorer.tree_weights) == 10
     assert isinstance(forest_explorer.feature_names, list)
     assert isinstance(forest_explorer.trees, list)
     assert isinstance(forest_explorer.tree_weights, np.ndarray)
-    assert forest_explorer.tree_weights.all() == 1.0
+    assert np.all(tw < 1.0 for tw in forest_explorer.tree_weights)
+    assert np.all(tw > 0.0 for tw in forest_explorer.tree_weights)
+    assert np.all(
+        tw == mw
+        for tw, mw in zip(forest_explorer.tree_weights, model.estimator_weights_)
+    )
     sparse_path = forest_explorer.trees[0].tree_.decision_path(
         cervicalb_pd.features.loc[0].values.reshape(1, -1).astype(np.float32)
     )

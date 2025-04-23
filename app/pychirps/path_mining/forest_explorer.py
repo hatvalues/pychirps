@@ -46,7 +46,6 @@ class ForestExplorer:
         encoder: PandasEncoder,
     ) -> None:
         self.model = model
-        self.encoder = encoder
         self.trees = model.estimators_
         # AdaBoost SAMME has individual tree weights
         if not hasattr(model, "estimator_weights_"):
