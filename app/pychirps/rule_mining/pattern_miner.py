@@ -40,7 +40,7 @@ class PatternMiner:
                 )
                 for node in nodes
             )
-            for nodes, weight in self.forest_path.get_for_prediction(
+            for nodes, weight in self.forest_path.get_paths_for_prediction(
                 prediction=self.prediction
             )
             for _ in range(int(weight))

@@ -130,6 +130,7 @@ def adjusted_cardinality_weight(
         warnings.warn(
             "Negative values of alpha are allowed but favour shorter path segments, which reduces the importance of interation terms."
         )
+        # THESIS CHAPTER 6: Equation 6.1 right-hand term
     return (cardinality - cardinality_regularizing_weight) / cardinality
 
 
@@ -144,7 +145,10 @@ def objective_function(
     return (
         (blending_weight * stability_score)
         + ((1 - blending_weight) * excl_cov_score)
-        - adjusted_cardinality_weight(cardinality, cardinality_regularizing_weight)
+        - adjusted_cardinality_weight(
+            cardinality=cardinality,
+            cardinality_regularizing_weight=cardinality_regularizing_weight,
+        )
     )
 
 
@@ -154,6 +158,10 @@ def pattern_importance_score(
     entropy_regularizing_weight: float = 1.0,
     cardinality_regularizing_weight: float = 1.0,
 ):
+    # THESIS CHAPTER 6: Equation 6.1 full equation for scoring path segments extracted by frequent pattern mining
+    # cardinality_regularizing_weight is the alpha parameter in the thesis
+    # support_regularizing_weight is the sup parameter in the thesis
+    # entropy_regularizing_weight is the w parameter in the thesis
     return (
         support_regularizing_weight
         * entropy_regularizing_weight

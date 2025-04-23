@@ -27,7 +27,7 @@ class ForestPath:
     prediction: np.uint8
     paths: tuple[TreePath]
 
-    def get_for_prediction(
+    def get_paths_for_prediction(
         self, prediction: Optional[np.uint8] = None
     ) -> tuple[tuple[TreeNode], float]:
         if prediction is None:
