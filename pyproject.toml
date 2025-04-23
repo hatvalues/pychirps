@@ -29,12 +29,14 @@ ordered-set = "^4.1.0"
 pytest = "^8.3.3"
 pytest-cov = "^5.0.0"
 pyyaml = "^6.0.2"
+types-pyyaml = "^6.0.12.20250402"
 
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.6.8"
 pylint = "^3.3.1"
 data-preprocs = {path = "../data_preprocs"}
+mypy = "^1.15.0"
 
 
 [tool.poetry.group.ui.dependencies]

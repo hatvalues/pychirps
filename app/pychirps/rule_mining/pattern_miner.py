@@ -3,7 +3,7 @@ from pyfpgrowth import find_frequent_patterns
 from app.pychirps.rule_mining.rule_utilities import NodePattern
 from collections import defaultdict
 from dataclasses import dataclass
-from typing import Optional, Generator
+from typing import Optional, Generator, Union
 import app.pychirps.rule_mining.rule_utilities as rutils
 import numpy as np
 
@@ -20,9 +20,9 @@ class PatternMiner:
         forest_path: ForestPath,
         feature_names: Optional[list[str]],
         prediction: Optional[np.uint8] = None,
-        min_support: Optional[float] = 0.1,
+        min_support: Optional[Union[float, int]] = 0.1,
     ):
-        if min_support > 1:
+        if min_support > 1.0:
             raise ValueError("Set min_support using a fraction")
         self.support = round(min_support * len(forest_path.paths))
         self.forest_path = forest_path
