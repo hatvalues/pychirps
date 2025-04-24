@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from functools import cached_property
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
-from app.pychirps.rule_mining.pattern_miner import PatternMiner
+from app.pychirps.rule_mining.pattern_miner import RandomForestPatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner, CounterfactualEvaluater
 from app.pychirps.data_prep.pandas_encoder import PandasEncoder
 from app.pychirps.model_prep.model_building import RandomForestClassifier
@@ -47,7 +47,7 @@ class Explainer:
         encoded_instance, _ = encoder.transform(features=feature_frame)
         encoded_instance = encoded_instance.astype(np.float32).reshape(1, -1)
         self.forest_path = self.forest_explorer.get_forest_path(encoded_instance)
-        self.pattern_miner = PatternMiner(
+        self.pattern_miner = RandomForestPatternMiner(
             forest_path=self.forest_path,
             feature_names=self.encoder.preprocessor.get_feature_names_out().tolist(),
             prediction=self.prediction,

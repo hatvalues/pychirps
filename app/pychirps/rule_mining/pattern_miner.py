@@ -20,11 +20,8 @@ class PatternMiner:
         forest_path: ForestPath,
         feature_names: list[str],
         prediction: np.uint8,
-        min_support: Optional[Union[float, int]] = 0.1,
+
     ):
-        if min_support > 1.0:
-            raise ValueError("Set min_support using a fraction")
-        self.support = round(min_support * len(forest_path.paths))
         self.forest_path = forest_path
         self.prediction = prediction
         self.feature_names = feature_names
@@ -78,13 +75,6 @@ class PatternMiner:
             tuple(node for node in nodes) for nodes in discretized_paths
         )
 
-        frequent_patterns = find_frequent_patterns(self.discretized_paths, self.support)
-        if frequent_patterns:
-            patterns, weights = zip(*frequent_patterns.items())
-        else:
-            patterns, weights = [], []
-        self.pattern_set = PatternSet(patterns=patterns, weights=weights)
-
     @staticmethod
     def feature_value_generator(
         feature_values: dict[np.generic, np.ndarray],
@@ -121,3 +111,23 @@ class PatternMiner:
         ), self.feature_value_generator(
             {k: self.centering(np.array(v)) for k, v in feature_values_gt.items()}
         )
+
+class RandomForestPatternMiner(PatternMiner):
+    def __init__(
+        self,
+        forest_path: ForestPath,
+        feature_names: list[str],
+        prediction: np.uint8,
+        min_support: Optional[Union[float, int]] = 0.1,
+    ):
+        super().__init__(forest_path, feature_names, prediction)
+        if min_support > 1.0:
+            raise ValueError("Set min_support using a fraction")
+        self.support = round(min_support * len(forest_path.paths))
+        
+        frequent_patterns = find_frequent_patterns(self.discretized_paths, self.support)
+        if frequent_patterns:
+            patterns, weights = zip(*frequent_patterns.items())
+        else:
+            patterns, weights = [], []
+        self.pattern_set = PatternSet(patterns=patterns, weights=weights)

@@ -1,5 +1,5 @@
 from tests.forest_paths_helper import weighted_paths  # noqa # mypy can't cope with pytest fixtures
-from app.pychirps.rule_mining.pattern_miner import PatternMiner
+from app.pychirps.rule_mining.pattern_miner import RandomForestPatternMiner
 from tests.fixture_helper import assert_dict_matches_fixture, convert_native
 from dataclasses import asdict
 from itertools import cycle
@@ -11,7 +11,7 @@ def test_pattern_miner(cervicalb_rf_pattern_miner):  # noqa # mypy can't cope wi
 
 
 def test_pattern_miner_prediction(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
-    pattern_miner = PatternMiner(
+    pattern_miner = RandomForestPatternMiner(
         forest_path=cervicalb_rf_paths,
         feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
         prediction=0,
@@ -20,7 +20,7 @@ def test_pattern_miner_prediction(cervicalb_rf_paths, cervicalb_enc):  # noqa # 
 
 
 def test_pattern_miner_alt_prediction(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
-    pattern_miner = PatternMiner(
+    pattern_miner = RandomForestPatternMiner(
         forest_path=cervicalb_rf_paths,
         feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
         prediction=1,
@@ -29,7 +29,7 @@ def test_pattern_miner_alt_prediction(cervicalb_rf_paths, cervicalb_enc):  # noq
 
 
 def test_pattern_miner_weighted_paths(weighted_paths):  # noqa # mypy can't cope with pytest fixtures
-    pattern_miner = PatternMiner(
+    pattern_miner = RandomForestPatternMiner(
         forest_path=weighted_paths,
         feature_names=["num__first", "cat__second", "num__third"],
         prediction=0.0,
@@ -39,7 +39,7 @@ def test_pattern_miner_weighted_paths(weighted_paths):  # noqa # mypy can't cope
 
 
 def test_fp_paths(weighted_paths):
-    pattern_miner = PatternMiner(
+    pattern_miner = RandomForestPatternMiner(
         forest_path=weighted_paths,
         feature_names=["num__first", "cat__second", "num__third"],
         prediction=0.0,

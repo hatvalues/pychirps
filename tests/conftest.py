@@ -1,6 +1,6 @@
 from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasEncoder
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
-from app.pychirps.rule_mining.pattern_miner import PatternMiner
+from app.pychirps.rule_mining.pattern_miner import RandomForestPatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner
 from app.pychirps.model_prep.model_building import fit_random_forest, fit_adaboost
 from app.pychirps.explain.explainer import Explainer
@@ -77,7 +77,7 @@ def cervicalb_rf_paths(cervicalb_pd, cervicalb_enc, cervicalb_rf):
 
 @pytest.fixture
 def cervicalb_rf_pattern_miner(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
-    return PatternMiner(
+    return RandomForestPatternMiner(
         forest_path=cervicalb_rf_paths,
         feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
         prediction=0.0,
@@ -149,7 +149,7 @@ def nursery_rf_paths(nursery_pd, nursery_enc, nursery_rf):
 
 @pytest.fixture
 def nursery_pattern_miner(nursery_rf_paths, nursery_enc):  # noqa # mypy can't cope with pytest fixtures
-    return PatternMiner(
+    return RandomForestPatternMiner(
         forest_path=nursery_rf_paths,
         feature_names=nursery_enc.encoder.preprocessor.get_feature_names_out().tolist(),
         min_support=0.2,
