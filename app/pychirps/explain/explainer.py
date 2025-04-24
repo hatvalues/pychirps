@@ -76,11 +76,11 @@ class Explainer:
 
         # Initialize rule mining result attributes
         self.best_pattern = tuple()
-        self.best_precision = 0
-        self.best_coverage = None
-        self.best_entropy = None
-        self.best_excl_cov = None
-        self.best_stability = None
+        self.best_precision = 0.0
+        self.best_coverage = 0.0
+        self.best_entropy = 0.0
+        self.best_excl_cov = 0.0
+        self.best_stability = 0.0
 
     def _update_best_metrics_from_rule_miner(self):
         """Update best metrics from the rule miner's results."""
