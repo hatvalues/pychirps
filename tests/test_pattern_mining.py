@@ -32,6 +32,7 @@ def test_pattern_miner_weighted_paths(weighted_paths):  # noqa # mypy can't cope
     pattern_miner = PatternMiner(
         forest_path=weighted_paths,
         feature_names=["num__first", "cat__second", "num__third"],
+        prediction=0.0,
     )
     assert len(pattern_miner.paths) == 4
     assert len(set(pattern_miner.paths)) == 2  # one path was repeated thrice
@@ -41,6 +42,7 @@ def test_fp_paths(weighted_paths):
     pattern_miner = PatternMiner(
         forest_path=weighted_paths,
         feature_names=["num__first", "cat__second", "num__third"],
+        prediction=0.0,
         min_support=0.5,
     )
     patterns = pattern_miner.pattern_set.patterns

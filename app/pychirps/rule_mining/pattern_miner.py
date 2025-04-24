@@ -18,18 +18,15 @@ class PatternMiner:
     def __init__(
         self,
         forest_path: ForestPath,
-        feature_names: Optional[list[str]],
-        prediction: Optional[np.uint8] = None,
+        feature_names: list[str],
+        prediction: np.uint8,
         min_support: Optional[Union[float, int]] = 0.1,
     ):
         if min_support > 1.0:
             raise ValueError("Set min_support using a fraction")
         self.support = round(min_support * len(forest_path.paths))
         self.forest_path = forest_path
-        if prediction:
-            self.prediction = prediction
-        else:
-            self.prediction = forest_path.prediction
+        self.prediction = prediction
         self.feature_names = feature_names
         self.paths = tuple(
             tuple(

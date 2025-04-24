@@ -19,19 +19,16 @@ class TreeNode:
 class TreePath:
     prediction: np.uint8
     nodes: tuple[TreeNode]
-    weight: float = 1.0
+    weight: float
 
 
 @dataclass(frozen=True)
 class ForestPath:
-    prediction: np.uint8
     paths: tuple[TreePath]
 
     def get_paths_for_prediction(
         self, prediction: Optional[np.uint8] = None
     ) -> tuple[tuple[TreeNode], float]:
-        if prediction is None:
-            prediction = self.prediction
         return tuple(
             (path.nodes, path.weight)
             for path in self.paths
@@ -85,7 +82,6 @@ class ForestExplorer:
 
     def get_forest_path(self, instance: np.ndarray) -> ForestPath:
         return ForestPath(
-            prediction=self.model.predict(instance)[0],
             paths=tuple(
                 self.parse_tree_for_instance(tree, instance, weight)
                 for tree, weight in zip(self.trees, self.tree_weights)

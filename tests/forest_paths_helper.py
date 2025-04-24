@@ -39,4 +39,4 @@ def weighted_paths():
     tree_path_3 = TreePath(
         prediction=0, nodes=(tree_node_3, tree_node_1, tree_node_2), weight=3.0
     )
-    return ForestPath(prediction=0, paths=(tree_path_1, tree_path_2, tree_path_3))
+    return ForestPath(paths=(tree_path_1, tree_path_2, tree_path_3))

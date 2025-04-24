@@ -80,6 +80,7 @@ def cervicalb_rf_pattern_miner(cervicalb_rf_paths, cervicalb_enc):  # noqa # myp
     return PatternMiner(
         forest_path=cervicalb_rf_paths,
         feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
+        prediction=0.0,
         min_support=0.2,
     )
 
