@@ -55,6 +55,14 @@ def cervicalb_rf(cervicalb_enc):
 
 
 @pytest.fixture(scope="session")
+def cervicalb_rf_paths(cervicalb_pd, cervicalb_enc, cervicalb_rf):
+    forest_explorer = ForestExplorer(cervicalb_rf, cervicalb_enc.encoder)
+    instance = cervicalb_pd.features.iloc[0]
+    instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
+    return forest_explorer.get_forest_path(instance32)
+
+
+@pytest.fixture(scope="session")
 def cervicalb_ada_factory(cervicalb_enc):
     def _factory(n_estimators=10, max_depth=1):
         return fit_adaboost(
@@ -67,12 +75,16 @@ def cervicalb_ada_factory(cervicalb_enc):
     return _factory
 
 
-@pytest.fixture
-def cervicalb_rf_paths(cervicalb_pd, cervicalb_enc, cervicalb_rf):
-    forest_explorer = ForestExplorer(cervicalb_rf, cervicalb_enc.encoder)
-    instance = cervicalb_pd.features.iloc[0]
-    instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
-    return forest_explorer.get_forest_path(instance32)
+@pytest.fixture(scope="session")
+def cervicalb_ada_paths_factory(cervicalb_pd, cervicalb_enc, cervicalb_ada_factory):
+    def _factory(n_estimators=10, max_depth=1):
+        model = cervicalb_ada_factory(n_estimators=n_estimators, max_depth=max_depth)
+        forest_explorer = ForestExplorer(model, cervicalb_enc.encoder)
+        instance = cervicalb_pd.features.iloc[0]
+        instance32 = instance.to_numpy().astype(np.float32).reshape(1, -1)
+        return forest_explorer.get_forest_path(instance32)
+
+    return _factory
 
 
 @pytest.fixture

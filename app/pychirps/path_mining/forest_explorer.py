@@ -27,7 +27,7 @@ class ForestPath:
     paths: tuple[TreePath]
 
     def get_paths_for_prediction(
-        self, prediction: Optional[np.uint8] = None
+        self, prediction: Optional[np.uint8]
     ) -> tuple[tuple[TreeNode], float]:
         return tuple(
             (path.nodes, path.weight)

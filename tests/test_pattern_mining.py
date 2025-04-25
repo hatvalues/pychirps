@@ -4,6 +4,7 @@ from tests.fixture_helper import assert_dict_matches_fixture, convert_native
 from dataclasses import asdict
 from itertools import cycle
 import numpy as np
+import pytest
 
 
 def test_pattern_miner(cervicalb_rf_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
@@ -20,13 +21,13 @@ def test_pattern_miner_prediction(cervicalb_rf_paths, cervicalb_enc):  # noqa # 
 
 
 def test_pattern_miner_alt_prediction(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
-    pattern_miner = RandomForestPatternMiner(
-        forest_path=cervicalb_rf_paths,
-        feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
-        prediction=1,
-    )
-    assert len(pattern_miner.paths) == 0
-
+    with pytest.raises(ValueError):
+        RandomForestPatternMiner(
+            forest_path=cervicalb_rf_paths,
+            feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
+            prediction=1,
+        )
+    # no paths for prediction 1
 
 def test_pattern_miner_weighted_paths(weighted_paths):  # noqa # mypy can't cope with pytest fixtures
     pattern_miner = RandomForestPatternMiner(
@@ -34,8 +35,8 @@ def test_pattern_miner_weighted_paths(weighted_paths):  # noqa # mypy can't cope
         feature_names=["num__first", "cat__second", "num__third"],
         prediction=0.0,
     )
-    assert len(pattern_miner.paths) == 4
-    assert len(set(pattern_miner.paths)) == 2  # one path was repeated thrice
+    print(pattern_miner.paths)
+    assert len(pattern_miner.paths) == 2
 
 
 def test_fp_paths(weighted_paths):

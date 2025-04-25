@@ -122,3 +122,22 @@ def test_adaboost_explorer(
         cervicalb_pd.features.loc[0].values.reshape(1, -1).astype(np.float32)
     )
     assert sparse_path.indices.tolist() == expected_sparse_path
+
+
+def test_rf_paths(cervicalb_rf_paths):
+    paths = cervicalb_rf_paths.get_paths_for_prediction(prediction=0)
+    assert len(paths) == 10
+    paths = cervicalb_rf_paths.get_paths_for_prediction(prediction=1)
+    assert len(paths) == 0
+    paths = cervicalb_rf_paths.get_paths_for_prediction(prediction=0.0)
+    assert len(paths) == 10
+    assert all(p[1] == 1.0 for p in paths)
+
+
+
+def test_ada_paths(cervicalb_ada_paths_factory):
+    paths = cervicalb_ada_paths_factory(max_depth=1).get_paths_for_prediction(prediction=0)
+    assert len(paths) == 10
+    paths = cervicalb_ada_paths_factory(max_depth=2).get_paths_for_prediction(prediction=0)
+    assert len(paths) == 10
+    assert all(p[1] < 1.0 for p in paths) and all(p[1] > 0.0 for p in paths)

@@ -20,11 +20,15 @@ class PatternMiner:
         forest_path: ForestPath,
         feature_names: list[str],
         prediction: np.uint8,
-
     ):
-        self.forest_path = forest_path
         self.prediction = prediction
         self.feature_names = feature_names
+        prediction_paths = forest_path.get_paths_for_prediction(prediction)
+        if not prediction_paths:
+            raise ValueError(f"No paths found for prediction {prediction}")
+        # weights are always 1.0 for RF but not for Adaboost
+        tree_node_paths, self.weights = zip(*prediction_paths) # transposes, unpacking
+        # tree_nodepaths simplify to node patterns
         self.paths = tuple(
             tuple(
                 NodePattern(
@@ -32,12 +36,9 @@ class PatternMiner:
                     threshold=node.threshold,
                     leq_threshold=node.leq_threshold,
                 )
-                for node in nodes
+                for node in tree_node_path
             )
-            for nodes, weight in self.forest_path.get_paths_for_prediction(
-                prediction=self.prediction
-            )
-            for _ in range(int(weight))
+            for tree_node_path in tree_node_paths
         )
 
         feature_values_leq, feature_values_gt = self.discretize_continuous_thresholds()
@@ -112,6 +113,7 @@ class PatternMiner:
             {k: self.centering(np.array(v)) for k, v in feature_values_gt.items()}
         )
 
+
 class RandomForestPatternMiner(PatternMiner):
     def __init__(
         self,
@@ -124,10 +126,45 @@ class RandomForestPatternMiner(PatternMiner):
         if min_support > 1.0:
             raise ValueError("Set min_support using a fraction")
         self.support = round(min_support * len(forest_path.paths))
-        
+
         frequent_patterns = find_frequent_patterns(self.discretized_paths, self.support)
         if frequent_patterns:
             patterns, weights = zip(*frequent_patterns.items())
         else:
             patterns, weights = [], []
         self.pattern_set = PatternSet(patterns=patterns, weights=weights)
+
+
+class AdaboostPatternMiner(PatternMiner):
+    def __init__(
+        self,
+        forest_path: ForestPath,
+        feature_names: list[str],
+        prediction: np.uint8,
+        min_support: Optional[Union[float, int]] = 0.1,
+    ):
+        super().__init__(forest_path, feature_names, prediction)
+        if min_support > 1.0:
+            raise ValueError("Set min_support using a fraction")
+        self.support = round(min_support * len(forest_path.paths))
+
+        # using the entropy at each node to redistribute the weights
+        pattern_weights = defaultdict(float)
+        for path, weight in zip(self.discretized_paths, self.weights):
+            entropy = np.zeros(len(path))
+            for n, node in enumerate(path):
+                entropy[n] = None # TODO: implement entropy calculation - where do we get the background data?
+                pattern_weights[node] += weight
+        # filter out patterns with low support
+        frequent_patterns = {
+            pattern: weight
+            for pattern, weight in pattern_weights.items()
+            if weight >= self.support
+        }
+        if frequent_patterns:
+            patterns, weights = zip(*frequent_patterns.items())
+        else:
+            patterns, weights = [], []
+        self.pattern_set = PatternSet(patterns=patterns, weights=weights)
+
+
