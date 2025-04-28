@@ -18,7 +18,12 @@ def test_rule_miner_init_patterns(cervicalb_rf_pattern_scorer):  # noqa # mypy c
                 "pattern": [convert_native(asdict(p)) for p in pattern],
                 "weight": convert_native(weight),
             }
-            for i, (pattern, weight) in enumerate(zip(cervicalb_rf_pattern_scorer.patterns, cervicalb_rf_pattern_scorer.weights))
+            for i, (pattern, weight) in enumerate(
+                zip(
+                    cervicalb_rf_pattern_scorer.patterns,
+                    cervicalb_rf_pattern_scorer.weights,
+                )
+            )
         },
         "pattern_score_patterns_cervicalb",
     )
@@ -34,16 +39,20 @@ def test_entropy_reg_weights(cervicalb_rf_pattern_scorer):
         "entropy_weights_cervicalb",
     )
 
+
 def test_custom_sorted_patterns(cervicalb_rf_pattern_scorer):
     assert_dict_matches_fixture(
         {
             i: {
                 "cs_pattern": [convert_native(asdict(p)) for p in pattern],
             }
-            for i, (pattern) in enumerate(cervicalb_rf_pattern_scorer.custom_sorted_patterns)
+            for i, (pattern) in enumerate(
+                cervicalb_rf_pattern_scorer.custom_sorted_patterns
+            )
         },
         "custom_sorted_patterns_cervicalb",
     )
+
 
 weights1 = tuple([1.0, 2.0, 3.0, 4.0, 5.0])
 weights2 = tuple([1.0, 1.0, 1.0, 1.0, 1.0])
@@ -54,6 +63,7 @@ weights6 = tuple(w / 10.0 for w in weights2)  # max weight is 0.1 all same
 weights7 = tuple(w * 2.0 for w in weights2)  # max weight is 2.0 all same
 expected1 = [0.2, 0.4, 0.6, 0.8, 1.0]
 expected2 = [1.0, 1.0, 1.0, 1.0, 1.0]
+
 
 @pytest.mark.parametrize(
     "pattern_miner_weights,expected_scaled_weights",
@@ -67,9 +77,7 @@ expected2 = [1.0, 1.0, 1.0, 1.0, 1.0]
         (weights7, expected2),
     ],
 )
-def test_rule_miner_weights(
-    pattern_miner_weights, expected_scaled_weights
-):
+def test_rule_miner_weights(pattern_miner_weights, expected_scaled_weights):
     pattern_scorer = RandomForestPatternScorer(
         patterns=tuple(),
         weights=pattern_miner_weights,

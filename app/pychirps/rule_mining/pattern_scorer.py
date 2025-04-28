@@ -4,6 +4,7 @@ import app.pychirps.rule_mining.rule_utilities as rutils
 from functools import cached_property
 import numpy as np
 
+
 class RandomForestPatternScorer(Evaluator):
     def __init__(
         self,

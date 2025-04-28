@@ -67,7 +67,7 @@ class Explainer:
             preds=preds,
             classes=classes,
         )
-        
+
         self.rule_miner = RuleMiner(
             y_pred=self.prediction,
             features=transformed_features,

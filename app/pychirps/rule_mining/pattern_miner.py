@@ -20,7 +20,7 @@ class PatternMiner:
         forest_path: ForestPath,
         feature_names: list[str],
         prediction: np.uint8,
-        min_support: np.float16
+        min_support: np.float16,
     ):
         if min_support > 1.0:
             raise ValueError("Set min_support using a fraction")
@@ -31,7 +31,7 @@ class PatternMiner:
         if not prediction_paths:
             raise ValueError(f"No paths found for prediction {prediction}")
         # weights are always 1.0 for RF but not for Adaboost
-        tree_node_paths, self.weights = zip(*prediction_paths) # transposes, unpacking
+        tree_node_paths, self.weights = zip(*prediction_paths)  # transposes, unpacking
         # tree_nodepaths simplify to node patterns
         self.paths = tuple(
             tuple(

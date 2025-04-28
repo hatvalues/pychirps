@@ -134,10 +134,13 @@ def test_rf_paths(cervicalb_rf_paths):
     assert all(p[1] == 1.0 for p in paths)
 
 
-
 def test_ada_paths(cervicalb_ada_paths_factory):
-    paths = cervicalb_ada_paths_factory(max_depth=1).get_paths_for_prediction(prediction=0)
+    paths = cervicalb_ada_paths_factory(max_depth=1).get_paths_for_prediction(
+        prediction=0
+    )
     assert len(paths) == 10
-    paths = cervicalb_ada_paths_factory(max_depth=2).get_paths_for_prediction(prediction=0)
+    paths = cervicalb_ada_paths_factory(max_depth=2).get_paths_for_prediction(
+        prediction=0
+    )
     assert len(paths) == 10
     assert all(p[1] < 1.0 for p in paths) and all(p[1] > 0.0 for p in paths)

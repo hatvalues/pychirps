@@ -46,6 +46,7 @@ def test_rule_miner_hill_climb(cervicalb_rule_miner):  # noqa # mypy can't cope 
         "patterns_cervicalb_hill_climb_excl_cov_weighted",
     )
 
+
 def test_pattern_equality():
     # fail if any special __eq__ method is defined incorrectly
     assert NodePattern(feature=0, threshold=22.0, leq_threshold=True) == NodePattern(
@@ -97,4 +98,3 @@ def test_pattern_list_prune(cervicalb_rule_miner):  # noqa # mypy can't cope wit
 
     # was the non_covered_singleton not pruned?
     assert non_covered_singleton in pruned_patterns
-

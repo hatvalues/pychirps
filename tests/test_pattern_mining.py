@@ -29,6 +29,7 @@ def test_pattern_miner_alt_prediction(cervicalb_rf_paths, cervicalb_enc):  # noq
         )
     # no paths for prediction 1
 
+
 def test_pattern_miner_weighted_paths(weighted_paths):  # noqa # mypy can't cope with pytest fixtures
     pattern_miner = RandomForestPatternMiner(
         forest_path=weighted_paths,

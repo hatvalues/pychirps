@@ -97,8 +97,11 @@ def cervicalb_rf_pattern_miner(cervicalb_rf_paths, cervicalb_enc):  # noqa # myp
         min_support=0.2,
     )
 
+
 @pytest.fixture(scope="session")
-def cervicalb_rf_pattern_scorer(cervicalb_rf, cervicalb_enc, cervicalb_rf_pattern_miner):
+def cervicalb_rf_pattern_scorer(
+    cervicalb_rf, cervicalb_enc, cervicalb_rf_pattern_miner
+):
     return RandomForestPatternScorer(
         patterns=cervicalb_rf_pattern_miner.patterns,
         weights=cervicalb_rf_pattern_miner.weights,
@@ -107,6 +110,7 @@ def cervicalb_rf_pattern_scorer(cervicalb_rf, cervicalb_enc, cervicalb_rf_patter
         preds=cervicalb_rf.predict(cervicalb_enc.features),
         classes=np.unique(cervicalb_enc.target),
     )
+
 
 @pytest.fixture(scope="session")
 def cervicalb_rule_miner(cervicalb_rf, cervicalb_enc, cervicalb_rf_pattern_scorer):  # noqa # mypy can't cope with pytest fixtures
