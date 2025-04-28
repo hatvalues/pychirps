@@ -229,7 +229,7 @@ def page_rule_frame(
             "Counterfactual Rule": (
                 " & ".join(
                     rule_parser.parse(
-                        (node_pattern for node_pattern in counterfactual_rule),
+                        counterfactual_rule,
                         rounding=2,
                     )
                 )
