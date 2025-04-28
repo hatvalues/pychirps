@@ -6,6 +6,7 @@ from app.pychirps.rule_mining.pattern_miner import RandomForestPatternMiner
 from app.pychirps.rule_mining.rule_miner import RuleMiner, CounterfactualEvaluater
 from app.pychirps.data_prep.pandas_encoder import PandasEncoder
 from app.pychirps.model_prep.model_building import RandomForestClassifier
+from app.pychirps.rule_mining.pattern_scorer import RandomForestPatternScorer
 
 
 def predict(
@@ -43,6 +44,10 @@ class Explainer:
         self.prediction = prediction
         self.encoder = encoder
 
+        transformed_features, transformed_targets = self.encoder.transform()
+        preds = model.predict(transformed_features)
+        classes = np.unique(transformed_targets)
+
         self.forest_explorer = ForestExplorer(self.model, self.encoder)
         encoded_instance, _ = encoder.transform(features=feature_frame)
         encoded_instance = encoded_instance.astype(np.float32).reshape(1, -1)
@@ -54,15 +59,21 @@ class Explainer:
             min_support=min_support,
         )
 
-        transformed_features, transformed_targets = self.encoder.transform()
-        preds = model.predict(transformed_features)
-        classes = np.unique(transformed_targets)
-        self.rule_miner = RuleMiner(
-            pattern_miner=self.pattern_miner,
+        self.pattern_scorer = RandomForestPatternScorer(
+            patterns=self.pattern_miner.patterns,
+            weights=self.pattern_miner.weights,
             y_pred=self.prediction,
             features=transformed_features,
             preds=preds,
             classes=classes,
+        )
+        
+        self.rule_miner = RuleMiner(
+            y_pred=self.prediction,
+            features=transformed_features,
+            preds=preds,
+            classes=classes,
+            patterns=self.pattern_scorer.custom_sorted_patterns,
             pruning_tolerance=pruning_tolerance,
         )
 

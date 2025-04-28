@@ -3,7 +3,7 @@ from pyfpgrowth import find_frequent_patterns
 from app.pychirps.rule_mining.rule_utilities import NodePattern
 from collections import defaultdict
 from dataclasses import dataclass
-from typing import Optional, Generator, Union
+from typing import Generator
 import app.pychirps.rule_mining.rule_utilities as rutils
 import numpy as np
 
@@ -20,7 +20,11 @@ class PatternMiner:
         forest_path: ForestPath,
         feature_names: list[str],
         prediction: np.uint8,
+        min_support: np.float16
     ):
+        if min_support > 1.0:
+            raise ValueError("Set min_support using a fraction")
+        self.support = round(min_support * len(forest_path.paths))
         self.prediction = prediction
         self.feature_names = feature_names
         prediction_paths = forest_path.get_paths_for_prediction(prediction)
@@ -120,19 +124,15 @@ class RandomForestPatternMiner(PatternMiner):
         forest_path: ForestPath,
         feature_names: list[str],
         prediction: np.uint8,
-        min_support: Optional[Union[float, int]] = 0.1,
+        min_support: np.float16 = 0.1,
     ):
-        super().__init__(forest_path, feature_names, prediction)
-        if min_support > 1.0:
-            raise ValueError("Set min_support using a fraction")
-        self.support = round(min_support * len(forest_path.paths))
+        super().__init__(forest_path, feature_names, prediction, min_support)
 
         frequent_patterns = find_frequent_patterns(self.discretized_paths, self.support)
         if frequent_patterns:
-            patterns, weights = zip(*frequent_patterns.items())
+            self.patterns, self.weights = zip(*frequent_patterns.items())
         else:
-            patterns, weights = [], []
-        self.pattern_set = PatternSet(patterns=patterns, weights=weights)
+            self.patterns, self.weights = tuple(), tuple()
 
 
 class AdaboostPatternMiner(PatternMiner):
@@ -141,30 +141,11 @@ class AdaboostPatternMiner(PatternMiner):
         forest_path: ForestPath,
         feature_names: list[str],
         prediction: np.uint8,
-        min_support: Optional[Union[float, int]] = 0.1,
+        min_support: np.float16 = 0.1,
     ):
-        super().__init__(forest_path, feature_names, prediction)
-        if min_support > 1.0:
-            raise ValueError("Set min_support using a fraction")
+        super().__init__(forest_path, feature_names, prediction, min_support)
         self.support = round(min_support * len(forest_path.paths))
-
-        # using the entropy at each node to redistribute the weights
-        pattern_weights = defaultdict(float)
-        for path, weight in zip(self.discretized_paths, self.weights):
-            entropy = np.zeros(len(path))
-            for n, node in enumerate(path):
-                entropy[n] = None # TODO: implement entropy calculation - where do we get the background data?
-                pattern_weights[node] += weight
-        # filter out patterns with low support
-        frequent_patterns = {
-            pattern: weight
-            for pattern, weight in pattern_weights.items()
-            if weight >= self.support
-        }
-        if frequent_patterns:
-            patterns, weights = zip(*frequent_patterns.items())
+        if self.discretized_paths:
+            self.patterns, self.weights = self.discretized_paths, self.weights
         else:
-            patterns, weights = [], []
-        self.pattern_set = PatternSet(patterns=patterns, weights=weights)
-
-
+            self.patterns, self.weights = tuple(), tuple()

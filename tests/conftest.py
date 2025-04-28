@@ -1,6 +1,7 @@
 from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasEncoder
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
 from app.pychirps.rule_mining.pattern_miner import RandomForestPatternMiner
+from app.pychirps.rule_mining.pattern_scorer import RandomForestPatternScorer
 from app.pychirps.rule_mining.rule_miner import RuleMiner
 from app.pychirps.model_prep.model_building import fit_random_forest, fit_adaboost
 from app.pychirps.explain.explainer import Explainer
@@ -87,7 +88,7 @@ def cervicalb_ada_paths_factory(cervicalb_pd, cervicalb_enc, cervicalb_ada_facto
     return _factory
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def cervicalb_rf_pattern_miner(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
     return RandomForestPatternMiner(
         forest_path=cervicalb_rf_paths,
@@ -96,17 +97,27 @@ def cervicalb_rf_pattern_miner(cervicalb_rf_paths, cervicalb_enc):  # noqa # myp
         min_support=0.2,
     )
 
+@pytest.fixture(scope="session")
+def cervicalb_rf_pattern_scorer(cervicalb_rf, cervicalb_enc, cervicalb_rf_pattern_miner):
+    return RandomForestPatternScorer(
+        patterns=cervicalb_rf_pattern_miner.patterns,
+        weights=cervicalb_rf_pattern_miner.weights,
+        y_pred=cervicalb_rf.predict(cervicalb_enc.unseen_instance_features)[0],
+        features=cervicalb_enc.features,
+        preds=cervicalb_rf.predict(cervicalb_enc.features),
+        classes=np.unique(cervicalb_enc.target),
+    )
 
-@pytest.fixture
-def cervicalb_rule_miner(cervicalb_rf, cervicalb_enc, cervicalb_rf_pattern_miner):  # noqa # mypy can't cope with pytest fixtures
+@pytest.fixture(scope="session")
+def cervicalb_rule_miner(cervicalb_rf, cervicalb_enc, cervicalb_rf_pattern_scorer):  # noqa # mypy can't cope with pytest fixtures
     y_pred = cervicalb_rf.predict(cervicalb_enc.unseen_instance_features)[0]
     preds = cervicalb_rf.predict(cervicalb_enc.features)
     return RuleMiner(
-        pattern_miner=cervicalb_rf_pattern_miner,
         y_pred=y_pred,
         features=cervicalb_enc.features,
         preds=preds,
         classes=np.unique(cervicalb_enc.target),
+        patterns=cervicalb_rf_pattern_scorer.custom_sorted_patterns,
     )
 
 

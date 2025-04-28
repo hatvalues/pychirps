@@ -46,7 +46,7 @@ def test_fp_paths(weighted_paths):
         prediction=0.0,
         min_support=0.5,
     )
-    patterns = pattern_miner.pattern_set.patterns
+    patterns = pattern_miner.patterns
     assert_dict_matches_fixture(
         {
             i: [convert_native(asdict(p)) for p in pattern]
