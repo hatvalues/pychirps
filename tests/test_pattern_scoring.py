@@ -53,10 +53,16 @@ def test_custom_sorted_patterns(cervicalb_rf_pattern_scorer):
         "custom_sorted_patterns_cervicalb",
     )
 
+
 def test_pattern_importance_score(cervicalb_rf_pattern_scorer):
     cervicalb_rf_pattern_scorer.cardinality_regularizing_weight = 1.0
     assert cervicalb_rf_pattern_scorer.pattern_importance_score(2) == 0.5
-    assert cervicalb_rf_pattern_scorer.pattern_importance_score(2, support_regularizing_weight=0.5) == 0.25
+    assert (
+        cervicalb_rf_pattern_scorer.pattern_importance_score(
+            2, support_regularizing_weight=0.5
+        )
+        == 0.25
+    )
     assert (
         cervicalb_rf_pattern_scorer.pattern_importance_score(
             2, entropy_regularizing_weight=0.5, support_regularizing_weight=0.5
@@ -64,9 +70,7 @@ def test_pattern_importance_score(cervicalb_rf_pattern_scorer):
         == 0.125
     )
     cervicalb_rf_pattern_scorer.cardinality_regularizing_weight = 0.0
-    assert (
-        cervicalb_rf_pattern_scorer.pattern_importance_score(2) == 1.0
-    )
+    assert cervicalb_rf_pattern_scorer.pattern_importance_score(2) == 1.0
 
 
 weights1 = tuple([1.0, 2.0, 3.0, 4.0, 5.0])

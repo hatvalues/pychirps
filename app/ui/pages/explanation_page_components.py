@@ -113,7 +113,7 @@ def render_input(column_name: str, column_descriptor: ColumnDescriptor) -> Any:
 
 
 def create_sidebar(
-    feature_descriptors: dict[ColumnDescriptor],
+    feature_descriptors: dict[str, ColumnDescriptor],
 ) -> tuple[bool, dict[ColumnDescriptor, Any], dict[str, Union[int, float]]]:
     with st.sidebar.form(key="input_form", border=False):
         st.title("Inputs")

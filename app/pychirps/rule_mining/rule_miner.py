@@ -1,7 +1,6 @@
 from app.pychirps.rule_mining.evaluator import Evaluator
 from app.pychirps.rule_mining.rule_utilities import NodePattern
 import app.pychirps.rule_mining.rule_utilities as rutils
-from functools import cached_property
 import numpy as np
 
 

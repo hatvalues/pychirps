@@ -29,3 +29,6 @@ all: clean install lint format test
 
 viewer:
 	PYTHONPATH=".:app:../data_preprocs" poetry run streamlit run app/ui/streamlit_app.py
+
+python:
+	poetry run python
