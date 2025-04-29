@@ -159,20 +159,6 @@ def test_adjusted_cardinality_weight():
         assert rutils.adjusted_cardinality_weight(3, -1) == 4 / 3
 
 
-def test_pattern_importance_score():
-    assert rutils.pattern_importance_score(2) == 0.5
-    assert (
-        rutils.pattern_importance_score(2, cardinality_regularizing_weight=0.0) == 1.0
-    )
-    assert rutils.pattern_importance_score(2, support_regularizing_weight=0.5) == 0.25
-    assert (
-        rutils.pattern_importance_score(
-            2, entropy_regularizing_weight=0.5, support_regularizing_weight=0.5
-        )
-        == 0.125
-    )
-
-
 def test_entropy():
     assert rutils.entropy(p=np.array([1.0, 0.0])) == 0.0
     assert rutils.entropy(p=np.array([0.0, 1.0])) == 0.0

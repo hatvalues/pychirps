@@ -152,26 +152,6 @@ def objective_function(
     )
 
 
-def pattern_importance_score(
-    cardinality: np.uint8,
-    support_regularizing_weight: float = 1.0,
-    entropy_regularizing_weight: float = 1.0,
-    cardinality_regularizing_weight: float = 1.0,
-):
-    # THESIS CHAPTER 6: Equation 6.1 full equation for scoring path segments extracted by frequent pattern mining
-    # cardinality_regularizing_weight is the alpha parameter in the thesis
-    # support_regularizing_weight is the sup parameter in the thesis
-    # entropy_regularizing_weight is the w parameter in the thesis
-    return (
-        support_regularizing_weight
-        * entropy_regularizing_weight
-        * adjusted_cardinality_weight(
-            cardinality=cardinality,
-            cardinality_regularizing_weight=cardinality_regularizing_weight,
-        )
-    )
-
-
 # For the avoidance of confusion elsewhere in code, I'm separating the overloading of the scipy.entropy function
 def entropy(p: np.ndarray) -> np.float64:
     return scipy_entropy(p)

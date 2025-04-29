@@ -10,7 +10,7 @@ class Evaluator:
         y_pred: np.uint8,
         features: np.ndarray,
         preds: np.ndarray,
-        classes=np.array([0, 1], dtype=np.uint8),
+        classes: np.ndarray,
     ):
         self.y_pred = y_pred
         self.features = features
