@@ -107,7 +107,7 @@ class RandomForestPatternScorer(PatternScorer):
         return tuple(pattern for pattern, _, _ in sorted_pattern_weights)
 
 
-class AdaboostPatternScorer(Evaluator):
+class AdaboostPatternScorer(PatternScorer):
     def __init__(
         self,
         patterns: tuple[tuple[NodePattern]],

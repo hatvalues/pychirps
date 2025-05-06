@@ -1,0 +1,60 @@
+0:
+  pattern:
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 1.0
+1:
+  pattern:
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.9106611908362531
+2:
+  pattern:
+  - feature: 26
+    leq_threshold: true
+    threshold: 0.5
+  weight: 0.8195950717526275
+3:
+  pattern:
+  - feature: 8
+    leq_threshold: true
+    threshold: 8.5
+  weight: 0.7441699953787277
+4:
+  pattern:
+  - feature: 8
+    leq_threshold: true
+    threshold: 8.5
+  weight: 0.6697529958408551
+5:
+  pattern:
+  - feature: 8
+    leq_threshold: true
+    threshold: 8.5
+  weight: 0.6027776962567698
+6:
+  pattern:
+  - feature: 8
+    leq_threshold: true
+    threshold: 8.5
+  weight: 0.5424999266310924
+7:
+  pattern:
+  - feature: 8
+    leq_threshold: true
+    threshold: 8.5
+  weight: 0.49060009767450574
+8:
+  pattern:
+  - feature: 6
+    leq_threshold: true
+    threshold: 1.22509765625
+  weight: 0.44999682374867167
+9:
+  pattern:
+  - feature: 6
+    leq_threshold: true
+    threshold: 1.22509765625
+  weight: 0.40683097358536413

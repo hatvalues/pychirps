@@ -1,7 +1,13 @@
 from app.pychirps.data_prep.pandas_encoder import get_fitted_encoder_pd, PandasEncoder
 from app.pychirps.path_mining.forest_explorer import ForestExplorer
-from app.pychirps.rule_mining.pattern_miner import RandomForestPatternMiner
-from app.pychirps.rule_mining.pattern_scorer import RandomForestPatternScorer
+from app.pychirps.rule_mining.pattern_miner import (
+    RandomForestPatternMiner,
+    AdaboostPatternMiner,
+)
+from app.pychirps.rule_mining.pattern_scorer import (
+    RandomForestPatternScorer,
+    AdaboostPatternScorer,
+)
 from app.pychirps.rule_mining.rule_miner import RuleMiner
 from app.pychirps.model_prep.model_building import fit_random_forest, fit_adaboost
 from app.pychirps.explain.explainer import Explainer
@@ -110,6 +116,43 @@ def cervicalb_rf_pattern_scorer(
         preds=cervicalb_rf.predict(cervicalb_enc.features),
         classes=np.unique(cervicalb_enc.target),
     )
+
+
+@pytest.fixture(scope="session")
+def cervicalb_ada_pattern_miner_factory(cervicalb_ada_paths_factory, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
+    def _factory(n_estimators=10, max_depth=1):
+        cervicalb_ada_paths = cervicalb_ada_paths_factory(
+            n_estimators=n_estimators, max_depth=max_depth
+        )
+        return AdaboostPatternMiner(
+            forest_path=cervicalb_ada_paths,
+            feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
+            prediction=0.0,
+            min_support=0.2,
+        )
+
+    return _factory
+
+
+@pytest.fixture(scope="session")
+def cervicalb_ada_pattern_scorer_factory(
+    cervicalb_ada_factory, cervicalb_enc, cervicalb_ada_pattern_miner_factory
+):
+    def _factory(n_estimators=10, max_depth=1):
+        model = cervicalb_ada_factory(n_estimators=n_estimators, max_depth=max_depth)
+        pattern_miner = cervicalb_ada_pattern_miner_factory(
+            n_estimators=n_estimators, max_depth=max_depth
+        )
+        return AdaboostPatternScorer(
+            patterns=pattern_miner.patterns,
+            weights=pattern_miner.weights,
+            y_pred=model.predict(cervicalb_enc.unseen_instance_features)[0],
+            features=cervicalb_enc.features,
+            preds=model.predict(cervicalb_enc.features),
+            classes=np.unique(cervicalb_enc.target),
+        )
+
+    return _factory
 
 
 @pytest.fixture(scope="session")
