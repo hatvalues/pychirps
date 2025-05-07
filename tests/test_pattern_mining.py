@@ -1,5 +1,8 @@
 from tests.forest_paths_helper import weighted_paths  # noqa # mypy can't cope with pytest fixtures
-from app.pychirps.rule_mining.pattern_miner import RandomForestPatternMiner
+from app.pychirps.rule_mining.pattern_miner import (
+    RandomForestPatternMiner,
+    AdaboostPatternMiner,
+)
 from tests.fixture_helper import assert_dict_matches_fixture, convert_native
 from dataclasses import asdict
 from itertools import cycle
@@ -11,7 +14,17 @@ def test_pattern_miner(cervicalb_rf_pattern_miner):  # noqa # mypy can't cope wi
     assert len(cervicalb_rf_pattern_miner.paths) == 10
 
 
-def test_pattern_miner_prediction(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
+@pytest.mark.parametrize("max_depth", [1, 2, 5])
+def test_adaboost_miner(cervicalb_ada_pattern_miner_factory, max_depth):  # noqa # mypy can't cope with pytest fixtures
+    pattern_miner = cervicalb_ada_pattern_miner_factory(
+        n_estimators=10,
+        max_depth=max_depth,
+    )
+    assert len(pattern_miner.paths) == 10
+    assert all(len(path) == max_depth for path in pattern_miner.paths)
+
+
+def test_rf_pattern_miner_prediction(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
     pattern_miner = RandomForestPatternMiner(
         forest_path=cervicalb_rf_paths,
         feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
@@ -19,15 +32,38 @@ def test_pattern_miner_prediction(cervicalb_rf_paths, cervicalb_enc):  # noqa # 
     )
     assert len(pattern_miner.paths) == 10
 
-
-def test_pattern_miner_alt_prediction(cervicalb_rf_paths, cervicalb_enc):  # noqa # mypy can't cope with pytest fixtures
+    # alternative prediction
     with pytest.raises(ValueError):
         RandomForestPatternMiner(
             forest_path=cervicalb_rf_paths,
             feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
             prediction=1,
         )
-    # no paths for prediction 1
+
+
+@pytest.mark.parametrize("max_depth", [1, 2, 5])
+def test_ada_pattern_miner_prediction(
+    cervicalb_ada_paths_factory, cervicalb_enc, max_depth
+):  # noqa # mypy can't cope with pytest fixtures
+    forest_paths = cervicalb_ada_paths_factory(
+        n_estimators=10,
+        max_depth=max_depth,
+    )
+    pattern_miner = AdaboostPatternMiner(
+        forest_path=forest_paths,
+        feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
+        prediction=0,
+    )
+    assert len(pattern_miner.paths) == 10
+    assert all(len(path) == max_depth for path in pattern_miner.paths)
+
+    # alternative prediction
+    with pytest.raises(ValueError):
+        pattern_miner = AdaboostPatternMiner(
+            forest_path=forest_paths,
+            feature_names=cervicalb_enc.encoder.preprocessor.get_feature_names_out().tolist(),
+            prediction=1,
+        )
 
 
 def test_pattern_miner_weighted_paths(weighted_paths):  # noqa # mypy can't cope with pytest fixtures

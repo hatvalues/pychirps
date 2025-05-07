@@ -7,6 +7,7 @@ from scipy.stats import wasserstein_distance
 from sklearn.metrics import silhouette_score
 from app.config import DEFAULT_RANDOM_SEED
 from ordered_set import OrderedSet
+from typing import Union, Any
 
 
 @dataclass(frozen=True)
@@ -80,7 +81,7 @@ def stability(
 
     same_pred = len(set(rule_applies_indices).intersection(set(y_pred_indices)))
     # ASSUMPTION: x, the instance we are trying to explain is not in the set Z. If x is in Z, we would not + 1 the numerator
-    return (same_pred + 1) / (len(rule_applies_indices) + K)
+    return float((same_pred + 1) / (len(rule_applies_indices) + K))
 
 
 def true_negative_rate(
@@ -116,7 +117,7 @@ def exclusive_coverage(
     # ... multiplied by the True Negative Rate (TNR) of the rule
     rule_applies_indices = apply_rule(rule=pattern, Z=Z)
     # ASSUMPTION: x, the instance we are trying to explain is not in the set Z. If x is in Z, we would not + 1 the numerator
-    return (
+    return float(
         len(rule_applies_indices + 1)
         / (len(Z) + K)
         * true_negative_rate(y_pred=y_pred, z_pred=z_pred, Z=Z, pattern=pattern)
@@ -124,7 +125,7 @@ def exclusive_coverage(
 
 
 def adjusted_cardinality_weight(
-    cardinality: np.uint8, cardinality_regularizing_weight: float
+    cardinality: np.uint8, cardinality_regularizing_weight: np.number
 ):
     if cardinality_regularizing_weight < 0:
         warnings.warn(
@@ -142,11 +143,11 @@ def objective_function(
     cardinality_regularizing_weight,
 ) -> float:
     # objective function to evaluate the quality of the rules
-    return (
+    return float(
         (blending_weight * stability_score)
         + ((1 - blending_weight) * excl_cov_score)
         - adjusted_cardinality_weight(
-            cardinality=cardinality,
+            cardinality=np.uint8(cardinality),
             cardinality_regularizing_weight=cardinality_regularizing_weight,
         )
     )
@@ -154,7 +155,7 @@ def objective_function(
 
 # For the avoidance of confusion elsewhere in code, I'm separating the overloading of the scipy.entropy function
 def entropy(p: np.ndarray) -> np.float64:
-    return scipy_entropy(p)
+    return np.float64(scipy_entropy(p))
 
 
 def count_data_check(arr: np.ndarray) -> None:
@@ -165,7 +166,7 @@ def count_data_check(arr: np.ndarray) -> None:
 
 
 # TODO: in most use cases in this package, we should be testing KL-div only on distributions where the pred class has a higher probability in Q than P. May need some guard rails for this.
-def kl_div(p: np.ndarray, q: np.ndarray) -> np.float64:
+def kl_div(p: np.ndarray, q: np.ndarray) -> Any:
     """Convenience wrapper for kl-div calculation, handling zero and smoothing so we never always get a valid value, never np.inf"""
     count_data_check(p)
     alpha = np.finfo(dtype="float16").eps
@@ -182,7 +183,7 @@ def kl_div(p: np.ndarray, q: np.ndarray) -> np.float64:
 def ws_dis(p: np.ndarray, q: np.ndarray) -> np.float64:
     """Adjusted Wasserstein Distance, normalized by total count."""
     count_data_check(p)
-    return wasserstein_distance(p, q) / p.sum()
+    return np.float64(wasserstein_distance(p, q) / p.sum())
 
 
 def bin_centering(arr: np.ndarray) -> np.ndarray:
@@ -201,7 +202,7 @@ def bin_centering(arr: np.ndarray) -> np.ndarray:
     nearest_midpoint_indices = np.argmin(distances, axis=1)
     centred = bin_midpoints[nearest_midpoint_indices]
     assert len(centred) == len(arr), "Output array length not equal input array length"
-    return centred
+    return np.array(centred)
 
 
 def cluster_centering(

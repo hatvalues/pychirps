@@ -70,6 +70,18 @@ def test_parse_tree_for_instance(cervicalb_enc, cervicalb_rf):
     )
 
 
+@pytest.mark.parametrize("max_depth", [1, 2, 5])
+def test_adaboost_explorer_weights(cervicalb_ada_factory, max_depth):
+    model = cervicalb_ada_factory(n_estimators=10, max_depth=max_depth)
+    assert model.estimator_weights_ is not None
+    assert_dict_matches_fixture(
+        {
+            "estimator_weights_": convert_native(model.estimator_weights_),
+        },
+        f"adaboost_estimator_weights_{max_depth}",
+    )
+
+
 @pytest.mark.parametrize(
     "max_depth,expected_sparse_path",
     [
